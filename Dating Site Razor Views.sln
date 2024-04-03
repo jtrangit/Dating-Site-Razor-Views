@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34525.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dating Site Razor Views", "Dating Site Razor Views\Dating Site Razor Views.csproj", "{953F6DC2-422A-4711-8AA3-A6847D01745E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{953F6DC2-422A-4711-8AA3-A6847D01745E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{953F6DC2-422A-4711-8AA3-A6847D01745E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{953F6DC2-422A-4711-8AA3-A6847D01745E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{953F6DC2-422A-4711-8AA3-A6847D01745E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9138E640-EA37-4294-BD2F-78BA4D5A3D9F}
+	EndGlobalSection
+EndGlobal
