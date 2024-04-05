@@ -5,9 +5,9 @@ VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dating Site Razor Views", "Dating Site Razor Views\Dating Site Razor Views.csproj", "{953F6DC2-422A-4711-8AA3-A6847D01745E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "Utilities\Utilities.csproj", "{1D30647C-F4C9-49ED-AE20-1FFF230541FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Utilities", "Utilities\Utilities.csproj", "{1D30647C-F4C9-49ED-AE20-1FFF230541FE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingSiteLibrary", "DatingSiteLibrary\DatingSiteLibrary.csproj", "{61A50B98-67E3-49B9-9CB7-35D69E2CF22D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingSiteLibrary", "DatingSiteLibrary\DatingSiteLibrary.csproj", "{61A50B98-67E3-49B9-9CB7-35D69E2CF22D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

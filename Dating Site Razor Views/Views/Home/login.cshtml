@@ -1,12 +1,11 @@
-﻿@page
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿
 @model Dating_Site_Razor_Views.Models.LoginValidation
 @{
     ViewData["Title"] = "Login Page";
 }
 
 <body>
-    <form id="form1" runat="server" method="post">
+    <form id="form1" method="post">
         <div>
             <section class="h-100 gradient-form" style="background-color: lightskyblue">
                 <div class="container py-5 h-100">
@@ -26,37 +25,29 @@
                                             <p>Please login to your account</p>
 
                                             <div class="form-outline mb-4">
-                                                <asp:TextBox ID="txtUsername" CssClass="form-control" placeholder="Username" runat="server" CausesValidation="true"></asp:TextBox>
-                                                
+                                                <input id="txtUsername" class="form-control" placeholder="Username" asp-for="Username" />
                                                 <label class="form-label">Username</label>
-                                                <input type="text" name="txtUsername" 
-                                                <asp:RequiredFieldValidator ID="rfvUsername" runat="server"
-                                                                            Style="top: 305px; left: 400px; position: absolute; height: 26px; width: 162px; color:red"
-                                                                            ErrorMessage="Username required" ControlToValidate="txtUsername">
-                                                </asp:RequiredFieldValidator>
+                                                <span class="text-danger" asp-validation-for="Username"></span>
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <asp:TextBox ID="txtPassword" CssClass="form-control" runat="server" CausesValidation="true" TextMode="Password"></asp:TextBox>
+                                                <input id="txtPassword" class="form-control" placeholder="Password" asp-for="Password" type="password" />
                                                 <label class="form-label" for="txtPassword">Password</label>
-                                                <asp:RequiredFieldValidator ID="rfvPassword" runat="server"
-                                                                            Style="top: 405px; left: 400px; position: absolute; height: 26px; width: 162px; color:red"
-                                                                            ErrorMessage="Password required" ControlToValidate="txtPassword">
-                                                </asp:RequiredFieldValidator>
+                                                <span class="text-danger" asp-validation-for="Password"></span>
                                             </div>
 
                                             <div>
-                                                <asp:Label CssClass="form-label" ID="lblIncorrectUserOrPass" Text="Username or Password was incorrect" runat="server" Style="color:red" Visible="false"></asp:Label>
+                                                <span class="form-label text-danger" asp-validation-summary="ModelOnly"></span>
                                             </div>
 
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="button" id="btnLogin" runat="server" onserverclick="btnLogin_ServerClick">Log in</button>
+                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in</button>
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-center pb-4">
                                                 <p class="mb-0 me-2">Don't have an account?</p>
-                                                <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" onserverclick="btnNewAccount_ServerClick" causesvalidation="false">Create new</button>
+                                                <a href="/Registration" class="btn btn-outline-danger">Create new</a>
                                             </div>
                                         </div>
                                     </div>
