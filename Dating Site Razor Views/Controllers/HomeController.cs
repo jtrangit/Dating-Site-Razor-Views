@@ -28,11 +28,6 @@ namespace Dating_Site_Razor_Views.Controllers
             return View();
         }
 
-        public IActionResult Registration()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

@@ -44,10 +44,8 @@
 
                                             </div>
 
-                                            <div asp-validation-summary="All"></div>
-
                                             <div>
-                                                <asp:Label CssClass="form-label" ID="lblIncorrectUserOrPass" Text="Username or Password was incorrect" runat="server" Style="color:red" Visible="false"></asp:Label>
+                                                <span class="form-label text-danger" asp-validation-summary="ModelOnly"></span>
                                             </div>
 
                                             <br />
@@ -61,7 +59,7 @@
 
                                             <div class="d-flex align-items-center justify-content-center pb-4">
                                                 <p class="mb-0 me-2">Don't have an account?</p>
-                                                <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" onserverclick="btnNewAccount_ServerClick" causesvalidation="false">Create new</button>
+                                                <a href="/Registration" class="btn btn-outline-danger">Create new</a>
                                             </div>
                                         </div>
                                     </div>
