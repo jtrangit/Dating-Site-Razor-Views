@@ -8,15 +8,14 @@ namespace Dating_Site_Razor_Views.Pages
     {
         [BindProperty]
         public required LoginValidation LoginValidation { get; set; }
-
         public void OnGet()
         {
-
         }
 
         public void OnPost() 
         { 
         
         }
+
     }
 }
