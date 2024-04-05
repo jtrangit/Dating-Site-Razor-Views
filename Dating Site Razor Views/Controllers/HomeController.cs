@@ -27,10 +27,25 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View();
         }
-
-        public IActionResult Registration()
+        
+        public IActionResult Register()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Login(LoginValidation login)
+        {
+            if (ModelState.IsValid)
+            {
+                //authenticate user 
+                return View();
+            }
+            else
+            {
+                return View();
+            }
+
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
