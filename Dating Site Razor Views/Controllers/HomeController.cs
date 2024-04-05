@@ -29,6 +29,11 @@ namespace Dating_Site_Razor_Views.Controllers
             return View();
         }
 
+        public IActionResult Register()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Login(LoginValidation login)
         {
