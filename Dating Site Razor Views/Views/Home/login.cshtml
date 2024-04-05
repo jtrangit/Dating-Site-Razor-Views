@@ -1,4 +1,6 @@
-﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+>>>>>>> c21c99c12b219b03a8caaa5a4a3ab58fe6d59426
 @model Dating_Site_Razor_Views.Models.LoginValidation
 @{
     ViewData["Title"] = "Login Page";
@@ -26,12 +28,20 @@
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Username</label> <br />
+
                                                 <input type="text" name="txtUsername" asp-for="Username" class="form-control" />
+
+                                                <input type="text" name="txtUsername" asp-for="Username" class="form-control"/>
+
                                             </div>
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Password</label> <br />
+
                                                 <input type="password" name="txtPassword" asp-for="Password" class="form-control" />
+
+                                                <input type="password" name="txtPassword" asp-for="Password" class="form-control"/>
+
                                             </div>
 
                                             <div asp-validation-summary="All"></div>
@@ -42,6 +52,9 @@
 
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
+
+
+                                                
 
                                                 <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server" onserverclick="btnLogin_ServerClick">Log in</button>
                                             </div>
