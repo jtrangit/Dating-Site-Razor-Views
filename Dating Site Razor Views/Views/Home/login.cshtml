@@ -1,11 +1,11 @@
-﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Dating_Site_Razor_Views.Models.LoginValidation
 @{
     ViewData["Title"] = "Login Page";
 }
 
 <body>
-    <form id="form1" method="post">
+    <form id="form1" runat="server" method="post">
         <div>
             <section class="h-100 gradient-form" style="background-color: lightskyblue">
                 <div class="container py-5 h-100">
@@ -25,29 +25,30 @@
                                             <p>Please login to your account</p>
 
                                             <div class="form-outline mb-4">
-                                                <input id="txtUsername" class="form-control" placeholder="Username" asp-for="Username" />
-                                                <label class="form-label">Username</label>
-                                                <span class="text-danger" asp-validation-for="Username"></span>
+                                                <label class="form-label">Username</label> <br />
+                                                <input type="text" name="txtUsername" asp-for="Username" class="form-control"/>
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <input id="txtPassword" class="form-control" placeholder="Password" asp-for="Password" type="password" />
-                                                <label class="form-label" for="txtPassword">Password</label>
-                                                <span class="text-danger" asp-validation-for="Password"></span>
+                                                <label class="form-label">Password</label> <br />
+                                                <input type="password" name="txtPassword" asp-for="Password" class="form-control"/>
                                             </div>
 
+                                            <div asp-validation-summary="All"></div>
+
                                             <div>
-                                                <span class="form-label text-danger" asp-validation-summary="ModelOnly"></span>
+                                                <asp:Label CssClass="form-label" ID="lblIncorrectUserOrPass" Text="Username or Password was incorrect" runat="server" Style="color:red" Visible="false"></asp:Label>
                                             </div>
 
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit">Log in</button>
+                                                
+                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server" onserverclick="btnLogin_ServerClick">Log in</button>
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-center pb-4">
                                                 <p class="mb-0 me-2">Don't have an account?</p>
-                                                <a href="/Registration" class="btn btn-outline-danger">Create new</a>
+                                                <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" onserverclick="btnNewAccount_ServerClick" causesvalidation="false">Create new</button>
                                             </div>
                                         </div>
                                     </div>

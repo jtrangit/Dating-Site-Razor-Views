@@ -2,6 +2,7 @@ using Dating_Site_Razor_Views.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
+
 namespace Dating_Site_Razor_Views.Controllers
 {
     public class HomeController : Controller
@@ -28,6 +29,19 @@ namespace Dating_Site_Razor_Views.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Login(LoginValidation login)
+        {
+
+            if (ModelState.IsValid)
+            {
+                return View("login");
+            }
+            else
+            {
+                return View("login");
+            }
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
