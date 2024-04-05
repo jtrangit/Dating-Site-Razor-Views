@@ -26,15 +26,15 @@
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Username</label> <br />
-                                                <input type="text" name="txtUsername" asp-for="Username" class="form-control"/>
+                                                <input type="text" name="txtUsername" asp-for="Username" class="form-control"/> 
+                                                <span class="text-danger" asp-validation-for="Username"></span>
                                             </div>
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Password</label> <br />
                                                 <input type="password" name="txtPassword" asp-for="Password" class="form-control"/>
+                                                <span class="text-danger" asp-validation-for="Password"></span>
                                             </div>
-
-                                            <div asp-validation-summary="All"></div>
 
                                             <div>
                                                 <asp:Label CssClass="form-label" ID="lblIncorrectUserOrPass" Text="Username or Password was incorrect" runat="server" Style="color:red" Visible="false"></asp:Label>
@@ -43,12 +43,12 @@
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
                                                 
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server" onserverclick="btnLogin_ServerClick">Log in</button>
+                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server">Log in</button>
                                             </div>
 
                                             <div class="d-flex align-items-center justify-content-center pb-4">
                                                 <p class="mb-0 me-2">Don't have an account?</p>
-                                                <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" onserverclick="btnNewAccount_ServerClick" causesvalidation="false">Create new</button>
+                                                <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" causesvalidation="false" onclick="location.href='@Url.Action("Register", "Home")'">Create Account</button>
                                             </div>
                                         </div>
                                     </div>

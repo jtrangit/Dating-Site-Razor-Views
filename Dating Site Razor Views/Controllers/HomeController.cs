@@ -37,16 +37,17 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult Login(LoginValidation login)
         {
-
             if (ModelState.IsValid)
             {
-                return View("login");
+                //authenticate user 
+                return View();
             }
             else
             {
-                return View("login");
+                return View();
             }
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
