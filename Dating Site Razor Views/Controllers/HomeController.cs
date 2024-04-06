@@ -32,22 +32,7 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View();
         }
-
-        [HttpPost]
-        public IActionResult Login(LoginValidation login)
-        {
-            if (ModelState.IsValid)
-            {
-                //authenticate user 
-                return View();
-            }
-            else
-            {
-                return View(login);
-            }
-
-        }
-
+ 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
