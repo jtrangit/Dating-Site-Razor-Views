@@ -1,10 +1,14 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model Dating_Site_Razor_Views.Pages.Login
+@{
+    Layout = "_Layout";
     ViewData["Title"] = "Login Page";
 }
-
+@section styles {
+    <link href="@Url.Content("~/css/login.css")" rel="stylesheet" type="text/css" />
+}
 <body>
-    <form id="form1" runat="server" method="post" asp-controller="Home" asp-action="Login">
+    <form id="form1" method="post" asp-controller="Home" asp-action="AuthenticateUser">
         <div>
             <section class="h-100 gradient-form" style="background-color: lightskyblue">
                 <div class="container py-5 h-100">
@@ -25,13 +29,13 @@
                                             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Username</label> <br />
-                                                <input type="text" asp-for="Credential.Username" class="form-control" id="txtUsername" name="txtUsername"/>
+                                                <input type="text" asp-for="Credential.Username" class="form-control" id="txtUsername"/>
                                                 <span class="text-danger" asp-validation-for="Credential.Username"></span>
                                             </div>
 
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Password</label> <br />
-                                                <input type="password" asp-for="Credential.Password" class="form-control" id="txtPassword" name="txtPassword"/>
+                                                <input type="password" asp-for="Credential.Password" class="form-control"/>
                                                 <span class="text-danger" asp-validation-for="Credential.Password"></span>
                                             </div>
 
@@ -43,8 +47,8 @@
                                             <div class="text-center pt-1 mb-5 pb-1">
 
                                                 
-                                                <button class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server" onclick="AuthenticateUser()">Log in</button>
-
+                                                @*<input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server"  /> *@
+                                                <input type="submit" id="btnLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"  />
                                             </div>
 
 

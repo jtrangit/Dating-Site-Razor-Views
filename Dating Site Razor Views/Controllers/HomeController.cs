@@ -32,7 +32,19 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View();
         }
- 
+
+        public IActionResult Home()
+        {
+            return View();
+        }
+
+        [HttpPost]
+       public IActionResult AuthenticatUser()
+        {
+            Debug.WriteLine("wasd");
+            return View("home");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

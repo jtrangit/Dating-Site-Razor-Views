@@ -2,23 +2,35 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+
+using Utilities;
+using DatingSiteLibrary;
+using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Data;
 
 namespace Dating_Site_Razor_Views.Pages
 {
+
     public class Login : PageModel
     {
+        DBConnect objDB = new DBConnect();
+
+        SqlCommand objCommand = new SqlCommand();
+
         [BindProperty]
         public Credential Credential { get; set; }
 
 
         public void OnGet()
         {
-
+            
         }
 
         public void OnPost()
-        {
-            
+        { 
+
         }
     }
     public class Credential
