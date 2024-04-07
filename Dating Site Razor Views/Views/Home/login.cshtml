@@ -39,9 +39,7 @@
                                                 <span class="text-danger" asp-validation-for="Credential.Password"></span>
                                             </div>
 
-                                            <div>
-                                                <asp:Label CssClass="form-label" ID="lblIncorrectUserOrPass" Text="Username or Password was incorrect" runat="server" Style="color:red" Visible="false"></asp:Label>
-                                            </div>
+                                            <div id="divInccorectUserOrPass" style="color:red">@Html.Raw(ViewData["InvalidCredentials"])</div>
 
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
