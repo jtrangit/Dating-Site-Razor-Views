@@ -6,17 +6,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Client;
 using System.Data;
 using System.Diagnostics;
+using Utilities;
 
 namespace Dating_Site_Razor_Views.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DBConnect _dbConnect;
+        private readonly Dating _dating;
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            _dbConnect = new DBConnect();
+            _dating = new Dating();
+
         }
+
+
+
 
         public IActionResult Index()
         {
@@ -42,6 +51,30 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Register(RegistrationValidation model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            try
+            {
+                _dating.createAccount(model.Username, model.Password, model.FirstName, model.LastName, model.Email);
+                return RedirectToAction("Login");
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", "Registration failed. Please try again later.");
+                return View(model);
+            }
+        }
+
+
+
+
 
         [HttpPost]
        public IActionResult AuthenticateUser()
