@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Identity.Client;
 using System.Data;
 using System.Diagnostics;
+using System.Configuration;
+using System.Data.SqlClient;
+using System.Collections.Generic;
 
 namespace Dating_Site_Razor_Views.Controllers
 {
@@ -112,9 +115,11 @@ namespace Dating_Site_Razor_Views.Controllers
             }
         }
 
+        
         public ActionResult ListProfiles()
         {
-            string filterType = Request.Form["ddlFilterProfiles"];
+            
+            var filterType = Request.Form["ddlFilterProfiles"].ToString();
             Debug.WriteLine(filterType);
 
             int UserAccID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
@@ -155,6 +160,7 @@ namespace Dating_Site_Razor_Views.Controllers
 
             Profiles profiles = new Profiles();
             
+            List<Profiles> profilesList = new List<Profiles>();
 
             //add every profile into list to be shown
             for (int i = 0; i < otherProfiles.Tables[0].Rows.Count; i++)
@@ -163,12 +169,16 @@ namespace Dating_Site_Razor_Views.Controllers
                 theProfile.profilePic = otherProfiles.Tables[0].Rows[i]["ProfileImg"].ToString();
                 theProfile.age = Convert.ToInt32(otherProfiles.Tables[0].Rows[i]["Age"]);
                 theProfile.description = otherProfiles.Tables[0].Rows[i]["Description"].ToString();
-                profiles.profiles.Add(theProfile);
+                profilesList.Add(theProfile);
             }
 
-            Debug.WriteLine("yeee");
-            return View();
+            profiles.profiles = profilesList;
+
+            
+
+            return View("home", profiles);
         }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

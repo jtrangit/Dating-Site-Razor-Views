@@ -1,5 +1,6 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http;
+@model Dating_Site_Razor_Views.Pages.Profiles
 @{
     Layout = "noNav";
     ViewData["Title"] = "Home Page";
@@ -8,7 +9,7 @@
     <link href="@Url.Content("~/css/home.css")" rel="stylesheet" type="text/css" />
 }
 <body>
-    <form id="form1" method="post">
+    <form id="form1" method="post" asp-controller="Home" asp-action="ListProfiles">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
@@ -87,15 +88,15 @@
                                                 <label>Search by:</label>
                                             </div>
                                             <div class="col-lg-4">
-                                                <select id="ddlFilterProfiles" class="form-control">
-                                                    <option selected="True">Age</option>
-                                                    <option>Gender</option>
-                                                    <option>State</option>
-                                                    <option>Commitment</option>
+                                                <select name="ddlFilterProfiles" id="ddlFilterProfiles" class="form-control">
+                                                    <option selected="True" value="Age">Age</option>
+                                                    <option value="Gender">Gender</option>
+                                                    <option value="State">State</option>
+                                                    <option value="Commitment">Commitment</option>
                                                 </select>
                                             </div>
                                             <div class="col-lg-4">
-                                                <button type="button" id="btnSearchForMatches" onclick="location.href='@Url.Action("ListProfiles", "Home")'">Search</button>
+                                                <button type="submit" id="btnSearchForMatches">Search</button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,26 +108,29 @@
             </div>
         </div>
             
-        @*
-        <table>
-            @if(Model.profiles != null)
+            @if (Model == null)
             {
-                @foreach (var item in Model.profiles)
-                {
-                    <tr>
-                        <li class="profiles">
-                            <a href="#"><img src="@item.profilePic" /></a>
-                            <div class="profile-info">
-                                <h4>Age: @item.age years old</h4>
-                                <h4>@item.description</h4>
-                                <button type="button" id="btnViewProfile">View Profile</button>
-                            </div>
-                        </li>
-                    </tr>
-                }
+                <p><em>Click Search to find other people</em></p>
             }
-        </table>
-        *@
+            else if (Model.profiles.Count == 0)
+            {
+                <p><em>Nobody was found that fits your search criteria.</em></p>
+            }
+            else
+            {
+                <ul>
+                @foreach(var profile in Model.profiles)
+                {
+                    <li class="profiles">
+                        <a href="#"><img src="@profile.profilePic" style="height: 100px; width: 100px;"></a>
+                        <div class="profile-info">
+                            <h4>Age: @profile.age years old</h4>
+                            <h4>@profile.description</h4>
+                        </div>
+                    </li>
+                }
+                </ul>
+            }
 
         @*
         <asp:Repeater ID="rpMatches" runat="server">
