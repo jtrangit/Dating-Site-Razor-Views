@@ -132,33 +132,6 @@
                 </ul>
             }
 
-        @*
-        <asp:Repeater ID="rpMatches" runat="server">
-            <HeaderTemplate>
-                <ul>
-
-
-            </HeaderTemplate>
-            <ItemTemplate>
-                <center>
-                <li class="profiles">
-                    <a href="#"><img src="<%#Eval(" ProfileImg") %>"/></a>
-                    <div class="profile-info">
-                        <h4>Age: <%#Eval("Age") %> years old</h4>
-                        <h4><%#Eval("Description")%></h4>
-                        <asp:Button ID="btnViewProfile" CssClass="button" runat="server" Text="View Profile" OnClick="btnViewProfile_Click" CommandArgument='<%# Eval("AccountID") %>' />
-                    </div>
-                </li>
-                </center>
-            </ItemTemplate>
-            <FooterTemplate>
-                </ul>
-                <center>
-                    <asp:Label ID="lblEmptyRepeater" runat="server" Visible='<%# rpMatches.Items.Count == 0 %>' Text="Nobody was found fitting your search criteria." Style="color: red"></asp:Label>
-                </center>
-            </FooterTemplate>
-        </asp:Repeater>
-        *@
     </div>
 
 
