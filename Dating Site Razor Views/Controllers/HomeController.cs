@@ -1,4 +1,5 @@
 using Dating_Site_Razor_Views.Models;
+using Dating_Site_Razor_Views.Pages;
 using DatingSiteLibrary;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,7 +45,7 @@ namespace Dating_Site_Razor_Views.Controllers
         }
 
         [HttpPost]
-       public IActionResult AuthenticateUser()
+        public IActionResult AuthenticateUser()
         {
             //get the credentials that the user typed
             string username = Request.Form["Credential.Username"].ToString();
@@ -59,6 +60,10 @@ namespace Dating_Site_Razor_Views.Controllers
 
             if (count == 1)
             {
+                //error message is empty when the login is valid
+                string invalidCredMsg = "";
+                ViewData["InvalidCredentials"] = invalidCredMsg;
+
                 Debug.WriteLine("Account Found");
 
                 Dating user = new Dating();
@@ -107,6 +112,63 @@ namespace Dating_Site_Razor_Views.Controllers
             }
         }
 
+        public ActionResult ListProfiles()
+        {
+            string filterType = Request.Form["ddlFilterProfiles"];
+            Debug.WriteLine(filterType);
+
+            int UserAccID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
+            Debug.WriteLine(UserAccID.ToString());
+
+            Dating User = new Dating();
+            DataSet UserInfo = new DataSet();
+
+            UserInfo = User.getProfileInfo(UserAccID);
+
+            int userAge = (int)UserInfo.Tables[0].Rows[0]["Age"];
+            string userGender = (string)UserInfo.Tables[0].Rows[0]["Gender"];
+            string userCommitment = (string)UserInfo.Tables[0].Rows[0]["Commitment"];
+            string userState = (string)UserInfo.Tables[0].Rows[0]["State"];
+
+            DataSet otherProfiles = new DataSet();
+
+            if (filterType == "Age")
+            {
+                Dating otherUsers = new Dating();
+                otherProfiles = otherUsers.getProfilesByAge(UserAccID, userAge - 2, userAge + 2);
+            }
+            else if (filterType == "Gender")
+            {
+                Dating otherUsers = new Dating();
+                otherProfiles = otherUsers.getProfilesByGender(UserAccID, userGender);
+            }
+            else if (filterType == "State")
+            {
+                Dating otherUsers = new Dating();
+                otherProfiles = otherUsers.getProfilesByState(UserAccID, userState);
+            }
+            else //filter type commitment
+            {
+                Dating otherUsers = new Dating();
+                otherProfiles = otherUsers.getProfilesByCommitment(UserAccID, userCommitment);
+            }
+
+            Profiles profiles = new Profiles();
+            
+
+            //add every profile into list to be shown
+            for (int i = 0; i < otherProfiles.Tables[0].Rows.Count; i++)
+            {
+                Profiles theProfile = new Profiles();
+                theProfile.profilePic = otherProfiles.Tables[0].Rows[i]["ProfileImg"].ToString();
+                theProfile.age = Convert.ToInt32(otherProfiles.Tables[0].Rows[i]["Age"]);
+                theProfile.description = otherProfiles.Tables[0].Rows[i]["Description"].ToString();
+                profiles.profiles.Add(theProfile);
+            }
+
+            Debug.WriteLine("yeee");
+            return View();
+        }
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

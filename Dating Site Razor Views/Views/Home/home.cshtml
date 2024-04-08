@@ -1,9 +1,162 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http;
 @{
-    Layout = "_Layout";
+    Layout = "noNav";
     ViewData["Title"] = "Home Page";
 }
+@section styles {
+    <link href="@Url.Content("~/css/home.css")" rel="stylesheet" type="text/css" />
+}
+<body>
+    <form id="form1" method="post">
 
-<p>WIP logged in home page</p>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+        <button class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav align-items-center mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbMyProfile" runat="server" OnClick="lbMyProfile_Click" CssClass="navbarlinks">My Profile &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbLikes" runat="server" OnClick="lbLikes_Click" CssClass="navbarlinks">My Likes &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbMyMatches" runat="server" OnClick="lbMyMatches_Click" CssClass="navbarlinks">My Matches &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbMyDates" runat="server" OnClick="lbMyDates_Click" CssClass="navbarlinks">My Dates &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-2">
+                                    <i class="fas fa-heart pe-2" style="color:mediumblue">Logged In as: 
+                                        @Context.Session.GetString("accountUsername")
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <div>
+        <br />
+         
+        <center>
+            <h3>
+                Search by age shows profiles who are are within 2 years of your age range <br />
+                Search by gender shows profiles who are not your gender <br />
+                Search by state shows profiles in the same state as you <br />
+                Search by commitment shows those are looking for the same kind of relationship as you <br />
+            </h3>
+        </center>
+
+
+        <div class="searchbar">
+            <div class="row">
+                <div class="col-lg-6 card-margin">
+                    <div class="card search-form">
+                        <div class="card-body p-0">
+                            <div id="search-form">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="row no-gutters">
+
+                                            <div class="col-lg-4">
+                                                <label>Search by:</label>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <select id="ddlFilterProfiles" class="form-control">
+                                                    <option selected="True">Age</option>
+                                                    <option>Gender</option>
+                                                    <option>State</option>
+                                                    <option>Commitment</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <button type="button" id="btnSearchForMatches" onclick="location.href='@Url.Action("ListProfiles", "Home")'">Search</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+            
+        @*
+        <table>
+            @if(Model.profiles != null)
+            {
+                @foreach (var item in Model.profiles)
+                {
+                    <tr>
+                        <li class="profiles">
+                            <a href="#"><img src="@item.profilePic" /></a>
+                            <div class="profile-info">
+                                <h4>Age: @item.age years old</h4>
+                                <h4>@item.description</h4>
+                                <button type="button" id="btnViewProfile">View Profile</button>
+                            </div>
+                        </li>
+                    </tr>
+                }
+            }
+        </table>
+        *@
+
+        @*
+        <asp:Repeater ID="rpMatches" runat="server">
+            <HeaderTemplate>
+                <ul>
+
+
+            </HeaderTemplate>
+            <ItemTemplate>
+                <center>
+                <li class="profiles">
+                    <a href="#"><img src="<%#Eval(" ProfileImg") %>"/></a>
+                    <div class="profile-info">
+                        <h4>Age: <%#Eval("Age") %> years old</h4>
+                        <h4><%#Eval("Description")%></h4>
+                        <asp:Button ID="btnViewProfile" CssClass="button" runat="server" Text="View Profile" OnClick="btnViewProfile_Click" CommandArgument='<%# Eval("AccountID") %>' />
+                    </div>
+                </li>
+                </center>
+            </ItemTemplate>
+            <FooterTemplate>
+                </ul>
+                <center>
+                    <asp:Label ID="lblEmptyRepeater" runat="server" Visible='<%# rpMatches.Items.Count == 0 %>' Text="Nobody was found fitting your search criteria." Style="color: red"></asp:Label>
+                </center>
+            </FooterTemplate>
+        </asp:Repeater>
+        *@
+    </div>
+
+
+</form>
+</body>
