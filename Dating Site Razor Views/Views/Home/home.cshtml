@@ -126,7 +126,9 @@
                         <div class="profile-info">
                             <h4>Age: @profile.age years old</h4>
                             <h4>@profile.description</h4>
+                            <h4 style="visibility:hidden">@profile.accID</h4>
                         </div>
+                            <button type="button" name="btnViewProfile" id="btnViewProfile" class="form-control" href="@Url.Action("ViewProfile","Home")">View Profile</button>
                     </li>
                 }
                 </ul>

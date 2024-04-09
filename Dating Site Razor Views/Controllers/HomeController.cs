@@ -202,6 +202,7 @@ namespace Dating_Site_Razor_Views.Controllers
                 theProfile.profilePic = otherProfiles.Tables[0].Rows[i]["ProfileImg"].ToString();
                 theProfile.age = Convert.ToInt32(otherProfiles.Tables[0].Rows[i]["Age"]);
                 theProfile.description = otherProfiles.Tables[0].Rows[i]["Description"].ToString();
+                theProfile.accID = (int)otherProfiles.Tables[0].Rows[i]["AccountID"];
                 profilesList.Add(theProfile);
             }
 
@@ -210,6 +211,11 @@ namespace Dating_Site_Razor_Views.Controllers
             
 
             return View("home", profiles);
+        }
+
+        public ActionResult ViewProfile()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
