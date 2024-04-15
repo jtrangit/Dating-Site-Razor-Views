@@ -11,6 +11,7 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using Utilities;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Dating_Site_Razor_Views.Controllers
 {
@@ -27,9 +28,6 @@ namespace Dating_Site_Razor_Views.Controllers
             _dating = new Dating();
 
         }
-
-
-
 
         public IActionResult Index()
         {
@@ -56,6 +54,11 @@ namespace Dating_Site_Razor_Views.Controllers
             return View();
         }
 
+        public IActionResult ViewProfile()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Register(RegistrationValidation model)
         {
@@ -75,10 +78,6 @@ namespace Dating_Site_Razor_Views.Controllers
                 return View(model);
             }
         }
-
-
-
-
 
         [HttpPost]
         public IActionResult AuthenticateUser()
@@ -148,7 +147,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
         }
 
-        
+        [HttpPost]
         public ActionResult ListProfiles()
         {
             
@@ -208,14 +207,19 @@ namespace Dating_Site_Razor_Views.Controllers
 
             profiles.profiles = profilesList;
 
-            
+            ViewBag.ProfilesList = profilesList;
 
             return View("home", profiles);
         }
 
-        public ActionResult ViewProfile()
+        public IActionResult ViewSpecificProfile(string accID)
         {
-            return View();
+            //int accID = Convert.ToInt32(Request.Form["AccountID"]);
+            // Debug.WriteLine("accID: " + accID);
+            string theID = accID;
+            Debug.WriteLine(theID);
+
+            return View("viewProfile");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

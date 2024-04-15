@@ -9,7 +9,7 @@
     <link href="@Url.Content("~/css/home.css")" rel="stylesheet" type="text/css" />
 }
 <body>
-    <form id="form1" method="post" asp-controller="Home" asp-action="ListProfiles">
+    <form id="form1" method="post">
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
@@ -96,7 +96,7 @@
                                                 </select>
                                             </div>
                                             <div class="col-lg-4">
-                                                <button type="submit" id="btnSearchForMatches">Search</button>
+                                                    <button type="submit" id="btnSearchForMatches" asp-controller="Home" asp-action="ListProfiles">Search</button>
                                             </div>
                                         </div>
                                     </div>
@@ -119,23 +119,25 @@
             else
             {
                 <ul>
-                @foreach(var profile in Model.profiles)
+                @foreach(var profile in ViewBag.ProfilesList)
                 {
-                    <li class="profiles" style="height: 250px; width: 250px;">
+                    <li class="profiles" style="height: 400px; width: 300px;">
                         <a href="#"><img src="@profile.profilePic" style="height: 100px; width: 100px;"></a>
                         <div class="profile-info">
                             <h4>Age: @profile.age years old</h4>
                             <h4>@profile.description</h4>
-                            <h4 style="visibility:hidden">@profile.accID</h4>
+                            <h4>@profile.accID</h4>
                         </div>
-                            <button type="button" name="btnViewProfile" id="btnViewProfile" class="form-control" href="@Url.Action("ViewProfile","Home")">View Profile</button>
+                        <div class="searchProfileButtons">
+                                <a class="btn btn-primary m-1" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="Home">View Profile</a>
+                                <button type="button" name="btnLike" id="btnLike" class="form-control" onclick="location.href='@Url.Action("ViewSpecificProfile", "Home")'">Like</button>
+                        </div>
                     </li>
                 }
                 </ul>
             }
-
     </div>
-
+        
 
 </form>
 </body>
