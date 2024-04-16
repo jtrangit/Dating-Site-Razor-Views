@@ -76,7 +76,7 @@ namespace Dating_Site_Razor_Views.Controllers
                 //show error message on invalid login
                 string invalidCredMsg = "Username or Password is incorrect";
                 ViewData["InvalidCredentials"] = invalidCredMsg;
-                return View("login");
+                return View("~/Views/Home/login.cshtml");
             }
         }
     }

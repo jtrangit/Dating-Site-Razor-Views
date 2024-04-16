@@ -41,11 +41,15 @@
 
                                             <div id="divInccorectUserOrPass" style="color:red">@Html.Raw(ViewData["InvalidCredentials"])</div>
 
+                                            <div id="keepLoggedIn">
+                                                <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn" value="true" checked /> <label>Remember Me</label> &nbsp; &nbsp; <span class="forgot-password">
+                                                    <a href="#" title="Forgot Password" id="link-reset">Forgot Password?</a>
+                                                </span>
+                                            </div>
+
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
 
-                                                
-                                                @*<input class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" type="submit" id="btnLogin" runat="server"  /> *@
                                                 <input type="submit" id="btnLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"  />
                                             </div>
 

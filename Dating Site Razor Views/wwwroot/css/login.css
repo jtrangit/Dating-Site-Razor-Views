@@ -19,3 +19,9 @@
         border-bottom-right-radius: .3rem;
     }
 }
+
+.forgot-password {
+    text-align: right;
+    float: right;
+    font-size: 10px
+}
