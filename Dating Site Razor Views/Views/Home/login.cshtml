@@ -7,6 +7,7 @@
 @section styles {
     <link href="@Url.Content("~/css/login.css")" rel="stylesheet" type="text/css" />
 }
+
 <body>
     <form id="form1" method="post" asp-controller="Login" asp-action="AuthenticateUser">
         <div>
@@ -29,13 +30,14 @@
                                             <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Username</label> <br />
-                                                <input type="text" asp-for="Credential.Username" class="form-control" id="txtUsername"/>
+                                                <input type="text" asp-for="Credential.Username" class="form-control" id="txtUsername" value="@Context.Request.Cookies["username"]" />
                                                 <span class="text-danger" asp-validation-for="Credential.Username"></span>
                                             </div>
 
+
                                             <div class="form-outline mb-4">
                                                 <label class="form-label">Password</label> <br />
-                                                <input type="password" asp-for="Credential.Password" class="form-control"/>
+                                                <input type="password" asp-for="Credential.Password" class="form-control" value="@Context.Request.Cookies["password"]" />
                                                 <span class="text-danger" asp-validation-for="Credential.Password"></span>
                                             </div>
 
@@ -49,8 +51,7 @@
 
                                             <br />
                                             <div class="text-center pt-1 mb-5 pb-1">
-
-                                                <input type="submit" id="btnLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"  />
+                                                <input type="submit" id="btnLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Login" />
                                             </div>
 
 
@@ -65,6 +66,7 @@
                                             <h4 class="mb-4">Find Your Match Today!</h4>
                                             <p class="small mb-0">We will extract and sell all your data.</p>
                                         </div>
+                                       
                                     </div>
                                 </div>
                             </div>
