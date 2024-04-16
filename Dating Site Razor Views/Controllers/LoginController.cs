@@ -40,6 +40,14 @@ namespace Dating_Site_Razor_Views.Controllers
 
                 userInfo = user.getUserInfo(username, password);
 
+                // Storing login information in a cookie
+                Response.Cookies.Append("username", username);
+                Response.Cookies.Append("password", password);
+
+                // Retrieving login information from cookies (if exists)
+                var storedUsername = Request.Cookies["username"];
+                var storedPassword = Request.Cookies["password"];
+
                 //debug showing the values from the getUserInfo stored procedures
                 Debug.WriteLine("Account ID: " + userInfo.Tables[0].Rows[0]["ID"].ToString()); //account ID#
                 Debug.WriteLine("Username: " + userInfo.Tables[0].Rows[0]["Username"].ToString()); //Username
