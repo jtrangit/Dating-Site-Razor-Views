@@ -24,10 +24,23 @@ namespace Dating_Site_Razor_Views.Controllers
 
             Dating login = new Dating();
 
-            int count = login.validateLogin(username, password); //does the stored prcedure to validate username and pass
+            int count = login.validateLogin(username, password); //does the stored procedure to validate username and password
 
             if (count == 1)
             {
+                // Storing login information in a cookie if "Remember Me" is checked
+                if (Request.Form["keepLoggedIn"] == "true")
+                {
+                    Response.Cookies.Append("username", username);
+                    Response.Cookies.Append("password", password);
+                }
+                else
+                {
+                    // Delete the cookies if "Remember Me" is not checked
+                    Response.Cookies.Delete("username");
+                    Response.Cookies.Delete("password");
+                }
+
                 //error message is empty when the login is valid
                 string invalidCredMsg = "";
                 ViewData["InvalidCredentials"] = invalidCredMsg;
@@ -39,14 +52,6 @@ namespace Dating_Site_Razor_Views.Controllers
                 DataSet userInfo = new DataSet();
 
                 userInfo = user.getUserInfo(username, password);
-
-                // Storing login information in a cookie
-                Response.Cookies.Append("username", username);
-                Response.Cookies.Append("password", password);
-
-                // Retrieving login information from cookies (if exists)
-                var storedUsername = Request.Cookies["username"];
-                var storedPassword = Request.Cookies["password"];
 
                 //debug showing the values from the getUserInfo stored procedures
                 Debug.WriteLine("Account ID: " + userInfo.Tables[0].Rows[0]["ID"].ToString()); //account ID#
@@ -87,5 +92,6 @@ namespace Dating_Site_Razor_Views.Controllers
                 return View("~/Views/Home/login.cshtml");
             }
         }
+
     }
 }
