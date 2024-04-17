@@ -48,6 +48,15 @@ namespace Dating_Site_Razor_Views.Controllers
             return View();
         }
 
+        public IActionResult Logout()
+        {
+
+            HttpContext.Session.Clear();
+
+
+            return RedirectToAction("Login", "Home");
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
