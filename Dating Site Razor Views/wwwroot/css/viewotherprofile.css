@@ -1,0 +1,24 @@
+﻿body {
+    background-color: #565CCE;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+a.navbarlinks {
+    color: #000000;
+    text-decoration: none;
+}
+
+    a.navbarlinks:hover {
+        text-decoration: none;
+    }
+
+.profileInfo {
+    padding-top: 70px;
+}
+
+.profileButtons {
+    margin-top: 20px;
+}

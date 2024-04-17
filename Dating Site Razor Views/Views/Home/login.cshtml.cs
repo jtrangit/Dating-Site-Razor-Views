@@ -15,10 +15,6 @@ namespace Dating_Site_Razor_Views.Pages
 
     public class Login : PageModel
     {
-        DBConnect objDB = new DBConnect();
-
-        SqlCommand objCommand = new SqlCommand();
-
         [BindProperty]
         public Credential Credential { get; set; }
 

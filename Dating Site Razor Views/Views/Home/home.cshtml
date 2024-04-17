@@ -129,8 +129,8 @@
                             <h4>@profile.accID</h4>
                         </div>
                         <div class="searchProfileButtons">
-                                <a class="btn btn-primary m-1" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="Home">View Profile</a>
-                                <button type="button" name="btnLike" id="btnLike" class="form-control" onclick="location.href='@Url.Action("ViewSpecificProfile", "Home")'">Like</button>
+                                <a class="btn btn-primary m-1" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
+                                <button type="button" name="btnLike" id="btnLike" class="form-control" onclick="location.href='@Url.Action("ViewSpecificProfile", "DatingHome")'">Like</button>
                         </div>
                     </li>
                 }

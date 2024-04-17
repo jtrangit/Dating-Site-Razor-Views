@@ -1,10 +1,215 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http;
+@model Dating_Site_Razor_Views.Pages.ViewedProfile
 @{
     Layout = "noNav";
     ViewData["Title"] = "View Someone Else's Profile";
 }
-
+@section styles {
+    <link href="@Url.Content("~/css/viewotherprofile.css")" rel="stylesheet" type="text/css" />
+}
 <form id="form1" method="post">
-    <h1>The User You Want To View Would Be Here</h1>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+        <button class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav align-items-center mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbMyProfile" runat="server" OnClick="lbMyProfile_Click" CssClass="navbarlinks">My Profile &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbLikes" runat="server" OnClick="lbLikes_Click" CssClass="navbarlinks">My Likes &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbMyMatches" runat="server" OnClick="lbMyMatches_Click" CssClass="navbarlinks">My Matches &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <asp:LinkButton ID="lbMyDates" runat="server" OnClick="lbMyDates_Click" CssClass="navbarlinks">My Dates &nbsp &nbsp</asp:LinkButton>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-2">
+                                    <i class="fas fa-heart pe-2" style="color:mediumblue">
+                                        Logged In as:
+                                        @Context.Session.GetString("accountUsername")
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    @foreach (var profile in ViewBag.ProfileBeingViewed)
+    {
+            <div class="container-fluid well" id="home" style="display:block; padding-top:70px;">
+                <div class="profileSquare">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col">
+                                        <center>
+                                            <img width="100" src="@profile.profilePic" id="aimgUserProfilePic" alt="https://static.vecteezy.com/system/resources/previews/024/983/914/original/simple-user-default-icon-free-png.png" />
+                                        </center>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <hr />
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label id="lblFirstName">First Name</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtFirstName" name="txtFirstName" readonly="readonly" value="@profile.FirstName"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label id="lblLastName">Last Name</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtLastName" name="txtLastName" readonly="readonly" value="@profile.LastName" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label id="lblEmail">Email</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtEmail" name="txtEmail" readonly="readonly" value="@profile.Email" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label id="lblPhoneNumber">Phone Number</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtPhoneNumber" name="txtPhoneNumber" readonly="readonly" value="@profile.PhoneNumber" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Address</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtAddress" name="txtLastName" readonly="readonly" value="@profile.Address"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>City</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtCity" name="txtCity" readonly="readonly" value="@profile.City"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>State</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtState" name="txtState" readonly="readonly" value="@profile.State" />
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Gender</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtGender" name="txtGender" readonly="readonly" value="@profile.Gender" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Height</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtHeight" name="txtHeight" readonly="readonly" value="@profile.Height"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Weight (in lbs)</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtWeight" name="txtWeight" readonly="readonly" value="@profile.Weight"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-4">
+                                        <label>Age</label>
+                                        <div class="form-group">
+                                            <input type="number" class="form-control" id="txtAge" name="txtAge" readonly="readonly" value="@profile.Age" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <label>Occupation</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtOccupation" name="txtOccupation" readonly="readonly" value="@profile.Occupation"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <label>Commitment</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtCommitment" name="txtCommitment" readonly="readonly" value="@profile.Commitment" />
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                                <div class="row">
+                                    <div class="col">
+                                        <label>Profile Description</label>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="txtDescription" name="txtDescription" readonly="readonly" value="@profile.Description" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <br />
+
+                                <div class="row">
+                                    <center>
+                                        <div class="col-6">
+                                            <div class="form-group">
+                                                <div class="profileButtons">
+                                                    <a class="btn btn-primary btn-lg" asp-route-accID="" asp-action="" asp-controller="">Back</a>
+                                                    <a class="btn btn-primary btn-lg" asp-route-accID="" asp-action="" asp-controller="">Like This Profile</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </form>
