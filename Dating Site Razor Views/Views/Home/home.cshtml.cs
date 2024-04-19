@@ -29,6 +29,11 @@ namespace Dating_Site_Razor_Views.Pages
         public int age { get; set; }
         public int accID { get; set; }
         public string description { get; set; }
+
+        public string state { get; set; }
+
+        public string city { get; set; }
+
         public List<Profiles> profiles { get; set; }
     }
 }

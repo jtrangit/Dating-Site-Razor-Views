@@ -10,6 +10,7 @@
 }
 <body>
     <form id="form1" method="post">
+    
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
@@ -32,19 +33,19 @@
                                 <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
                             </li>
                             <li class="nav-item">
-                                <asp:LinkButton ID="lbMyProfile" runat="server" OnClick="lbMyProfile_Click" CssClass="navbarlinks">My Profile &nbsp &nbsp</asp:LinkButton>
+                                <a class="nav-link mx-2" href="@Url.Action("UserProfile", "Home")">My Profile &nbsp &nbsp</a>
                             </li>
 
                             <li class="nav-item">
-                                <asp:LinkButton ID="lbLikes" runat="server" OnClick="lbLikes_Click" CssClass="navbarlinks">My Likes &nbsp &nbsp</asp:LinkButton>
+                                <a class="nav-link mx-2" href="#">My Likes &nbsp &nbsp</a>
                             </li>
 
                             <li class="nav-item">
-                                <asp:LinkButton ID="lbMyMatches" runat="server" OnClick="lbMyMatches_Click" CssClass="navbarlinks">My Matches &nbsp &nbsp</asp:LinkButton>
+                                <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
                             </li>
 
                             <li class="nav-item">
-                                <asp:LinkButton ID="lbMyDates" runat="server" OnClick="lbMyDates_Click" CssClass="navbarlinks">My Dates &nbsp &nbsp</asp:LinkButton>
+                                <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
                             </li>
 
                             <li class="nav-item">
@@ -124,21 +125,63 @@
                 <ul>
                 @foreach(var profile in ViewBag.ProfilesList)
                 {
-                    <li class="profiles" style="height: 400px; width: 300px;">
-                        <a href="#"><img src="@profile.profilePic" style="height: 100px; width: 100px;"></a>
-                        <div class="profile-info">
-                            <h4>Age: @profile.age years old</h4>
-                            <h4>@profile.description</h4>
-                            <h4>@profile.accID</h4>
+                    <div class="container mt-5 d-flex justify-content-center">
+
+                        <div class="card p-3">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="image">
+                                    <img src="@profile.profilePic" class="rounded" width="155">
+                                </div>
+
+                                <div class="ml-3 w-100">
+
+                                    <h4 class="mb-0 mt-0 description">@profile.description</h4>
+
+                                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white profileInfo">
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="city">City</span>
+                                            <span class="city2">@profile.city</span>
+
+                                        </div>
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="state">State</span>
+                                            <span class="state2">@profile.state</span>
+
+                                        </div>
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="age">Age</span>
+                                            <span class="age2">@profile.age</span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="button mt-2 d-flex flex-row align-items-center">
+                                        <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
+                                        &nbsp;
+                                        <a class="btn btn-sm btn-outline-primary w-100">Like</a>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
                         </div>
-                        <div class="searchProfileButtons">
-                                <a class="btn btn-primary m-1" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="Home">View Profile</a>
-                                <button type="button" name="btnLike" id="btnLike" class="form-control" onclick="location.href='@Url.Action("ViewSpecificProfile", "Home")'">Like</button>
-                        </div>
-                    </li>
+
+                    </div>
                 }
                 </ul>
             }
+
+            
     </div>
         
 

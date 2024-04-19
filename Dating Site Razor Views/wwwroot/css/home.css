@@ -9,6 +9,7 @@ body {
     font-family: 'Exo', sans-serif;
     padding-top: 65px;
     background-color: #565CCE;
+    border-radius: 10px;
 }
 
 .serachbar {
@@ -78,17 +79,53 @@ body {
     margin-bottom: 2rem;
 }
 
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-clip: border-box;
-    border: solid white;
-    border-radius: 8px;
+.image {
+    padding: 10px;
 }
 
+.description {
+    text-wrap: pretty;
+    inline-size: 300px;
+}
+
+.card {
+    width: 600px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.profileInfo {
+    background: #f2f5f8 !important;
+    color: #000 !important;
+}
+
+.city {
+    font-size: 10px;
+    color: #a1aab9;
+}
+
+.city2 {
+    font-weight: 500;
+}
+
+.state {
+    font-size: 10px;
+    color: #a1aab9;
+}
+
+.state2 {
+    font-weight: 500;
+}
+
+.age {
+    font-size: 10px;
+    color: #a1aab9;
+}
+
+.age2 {
+    font-weight: 500;
+}
 
 @keyframes animate {
 

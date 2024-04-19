@@ -1,10 +1,157 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http;
+@model Dating_Site_Razor_Views.Pages.ViewedProfile
 @{
     Layout = "noNav";
     ViewData["Title"] = "View Someone Else's Profile";
 }
-
+@section styles {
+    <link href="@Url.Content("~/css/viewotherprofile.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src='https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+}
 <form id="form1" method="post">
-    <h1>The User You Want To View Would Be Here</h1>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
+        <button class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav align-items-center mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="@Url.Action("UserProfile", "Home")">My Profile &nbsp &nbsp</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="#">My Likes &nbsp &nbsp</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link mx-2">
+                                    <i class="fas fa-heart pe-2" style="color:mediumblue">
+                                        Logged In as:
+                                        @Context.Session.GetString("accountUsername")
+                                    </i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar -->
+    @foreach (var profile in ViewBag.ProfileBeingViewed)
+    {
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-md-4">
+                    <div class="text-center card-box">
+                        <div class="member-card">
+                            <div class="thumb-xl member-thumb m-b-10 center-block">
+                                <img src="@profile.profilePic" class="img-circle img-thumbnail" alt="profile-image">
+                            </div>
+
+                            <div class="">
+                                <h4 class="m-b-5">@profile.FirstName @profile.LastName</h4>
+                            </div>
+
+                            <button type="button" class="btn btn-success btn-sm w-sm waves-effect m-t-10 waves-light">Like</button>
+                            <button type="button" class="btn btn-danger btn-sm w-sm waves-effect m-t-10 waves-light">Back To Home</button>
+
+                            <div class="text-left m-t-40">
+                                <br />
+                                <p class="text-muted font-13"><strong>Phone Number :</strong> <span class="m-l-15">@profile.PhoneNumber</span></p>
+                                <p class="text-muted font-13"><strong>Email :</strong> <span class="m-l-15">@profile.Email</span></p>
+                                <p class="text-muted font-13"><strong>Address :</strong> <span class="m-l-15">@profile.Address</span></p>
+                                <p class="text-muted font-13"><strong>City :</strong> <span class="m-l-15">@profile.City</span></p>
+                                <p class="text-muted font-13"><strong>State :</strong> <span class="m-l-15">@profile.State</span></p>
+                                <p class="text-muted font-13"><strong>Gender :</strong> <span class="m-l-15">@profile.Gender</span></p>
+                                <p class="text-muted font-13"><strong>Height :</strong> <span class="m-l-15">@profile.Height</span></p>
+                                <p class="text-muted font-13"><strong>Weight :</strong> <span class="m-l-15">@profile.Weight lbs</span></p>
+                                <p class="text-muted font-13"><strong>Age :</strong> <span class="m-l-15">@profile.Age</span></p>
+                                <p class="text-muted font-13"><strong>Occupation :</strong> <span class="m-l-15">@profile.Occupation</span></p>
+                                <p class="text-muted font-13"><strong>Commitment :</strong> <span class="m-l-15">@profile.Commitment</span></p>
+                            </div>
+                        </div>
+                    </div> <!-- end card-box -->
+                </div> <!-- end col -->
+
+
+                <div class="col-md-8 col-lg-9">
+                    <div class="">
+                        <div class="">
+                            <ul class="nav nav-tabs navtab-custom">
+                                <li class="active">
+                                    <a href="#tab-about" data-toggle="tab" aria-expanded="true">
+                                        <span class="visible-xs"><i class="fa fa-user"></i></span>
+                                        <span class="hidden-xs">ABOUT ME</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a href="#tab-profile" data-toggle="tab" aria-expanded="false">
+                                        <span class="visible-xs"><i class="fa fa-photo"></i></span>
+                                        <span class="hidden-xs">GALLERY</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab-about">
+                                    <p class="m-b-5">
+                                        <h5 class="text-primary m-b-5">Bio</h5>
+                                        @profile.Description
+                                    </p>
+
+                                    <div class="m-t-30">
+                                        <h5 class="text-primary m-b-5">We would get along if...</h5>
+                                        <p class="text-muted font-13 m-b-0">
+                                            "..."
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab-profile">
+                                    <div class="row">
+                                        <div class="col-sm-4">
+                                            <div class="gal-detail thumb">
+                                                <a href="#" class="image-popup" title="Screenshot-2">
+                                                    <img src="https://www.bootdey.com/image/400x300/008B8B/00000" class="thumb-img" alt="work-thumbnail">
+                                                </a>
+                                                <h4 class="text-center">Gallary Image</h4>
+                                                <div class="ga-border"></div>
+                                                <p class="text-muted text-center"><small>Photography</small></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+    }
+
 </form>
