@@ -9,6 +9,11 @@ namespace Dating_Site_Razor_Views.Controllers
 {
     public class DatingHomeController : Controller
     {
+        public IActionResult Home()
+        {
+            return View("~/Views/Home/home.cshtml");
+        }
+
         [HttpPost]
         public ActionResult ListProfiles()
         {

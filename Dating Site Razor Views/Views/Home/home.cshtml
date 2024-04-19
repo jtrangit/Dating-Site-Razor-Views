@@ -10,6 +10,7 @@
 }
 <body>
     <form id="form1" method="post">
+    
 
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
@@ -118,26 +119,6 @@
             }
             else
             {
-                @*
-                <ul>
-                @foreach(var profile in ViewBag.ProfilesList)
-                {
-                    
-                    <li class="profiles" style="height: 400px; width: 300px;">
-                        <a href="#"><img src="@profile.profilePic" style="height: 100px; width: 100px;"></a>
-                        <div class="profile-info">
-                            <h4>Age: @profile.age years old</h4>
-                            <h4>@profile.description</h4>
-                            <h4>@profile.accID</h4>
-                        </div>
-                        <div class="searchProfileButtons">
-                                <a class="btn btn-primary m-1" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
-                                <button type="button" name="btnLike" id="btnLike" class="form-control" onclick="location.href='@Url.Action("ViewSpecificProfile", "DatingHome")'">Like</button>
-                        </div>
-                    </li>
-                }
-                </ul>
-                *@
                 <ul>
                 @foreach(var profile in ViewBag.ProfilesList)
                 {
@@ -171,7 +152,6 @@
 
                                         </div>
 
-
                                         <div class="d-flex flex-column">
 
                                             <span class="age">Age</span>
@@ -181,15 +161,18 @@
 
                                     </div>
 
-
                                     <div class="button mt-2 d-flex flex-row align-items-center">
                                         <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
                                         &nbsp;
                                         <a class="btn btn-sm btn-outline-primary w-100">Like</a>
                                     </div>
+
                                 </div>
+
                             </div>
+
                         </div>
+
                     </div>
                 }
                 </ul>
