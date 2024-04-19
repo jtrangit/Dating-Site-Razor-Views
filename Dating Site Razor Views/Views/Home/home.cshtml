@@ -118,9 +118,11 @@
             }
             else
             {
+                @*
                 <ul>
                 @foreach(var profile in ViewBag.ProfilesList)
                 {
+                    
                     <li class="profiles" style="height: 400px; width: 300px;">
                         <a href="#"><img src="@profile.profilePic" style="height: 100px; width: 100px;"></a>
                         <div class="profile-info">
@@ -135,7 +137,65 @@
                     </li>
                 }
                 </ul>
+                *@
+                <ul>
+                @foreach(var profile in ViewBag.ProfilesList)
+                {
+                    <div class="container mt-5 d-flex justify-content-center">
+
+                        <div class="card p-3">
+
+                            <div class="d-flex align-items-center">
+
+                                <div class="image">
+                                    <img src="@profile.profilePic" class="rounded" width="155">
+                                </div>
+
+                                <div class="ml-3 w-100">
+
+                                    <h4 class="mb-0 mt-0 description">@profile.description</h4>
+
+                                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white profileInfo">
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="city">City</span>
+                                            <span class="city2">@profile.city</span>
+
+                                        </div>
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="state">State</span>
+                                            <span class="state2">@profile.state</span>
+
+                                        </div>
+
+
+                                        <div class="d-flex flex-column">
+
+                                            <span class="age">Age</span>
+                                            <span class="age2">@profile.age</span>
+
+                                        </div>
+
+                                    </div>
+
+
+                                    <div class="button mt-2 d-flex flex-row align-items-center">
+                                        <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
+                                        &nbsp;
+                                        <a class="btn btn-sm btn-outline-primary w-100">Like</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                </ul>
             }
+
+            
     </div>
         
 

@@ -64,6 +64,8 @@ namespace Dating_Site_Razor_Views.Controllers
                 theProfile.age = Convert.ToInt32(otherProfiles.Tables[0].Rows[i]["Age"]);
                 theProfile.description = otherProfiles.Tables[0].Rows[i]["Description"].ToString();
                 theProfile.accID = (int)otherProfiles.Tables[0].Rows[i]["AccountID"];
+                theProfile.city = otherProfiles.Tables[0].Rows[i]["City"].ToString();
+                theProfile.state = otherProfiles.Tables[0].Rows[i]["State"].ToString();
                 profilesList.Add(theProfile);
             }
 
