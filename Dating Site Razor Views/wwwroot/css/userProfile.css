@@ -1,0 +1,29 @@
+﻿* {
+
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+a.navbarlinks {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.navbarlinks:hover {
+    text-decoration: none;
+}
+
+body {
+    margin-top: 70px;
+}
+
+.avatar {
+    width: 200px;
+    height: 200px;
+}
+
+.badge-pill {
+    color: green;
+}

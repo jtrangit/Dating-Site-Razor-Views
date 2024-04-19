@@ -30,22 +30,27 @@ namespace Dating_Site_Razor_Views.Controllers
 
         public IActionResult Login()
         {
-            return View();
+            return View("~/Views/Home/login.cshtml");
         }
 
         public IActionResult Register()
         {
-            return View();
+            return View("~/Views/Home/Register.cshtml");
         }
 
         public IActionResult Home()
         {
-            return View();
+            return View("~/Views/Home/home.cshtml");
         }
 
         public IActionResult ViewProfile()
         {
-            return View();
+            return View("~/Views/Home/viewProfile.cshtml");
+        }
+
+        public IActionResult UserProfile()
+        {
+            return View("~/Views/Home/userProfile.cshtml");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
