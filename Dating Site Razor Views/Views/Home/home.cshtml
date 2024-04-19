@@ -1,6 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using Microsoft.AspNetCore.Http;
-@model Dating_Site_Razor_Views.Pages.Profiles
+@model List<Dating_Site_Razor_Views.Pages.Profiles>
+
 @{
     Layout = "noNav";
     ViewData["Title"] = "Home Page";
@@ -53,6 +54,9 @@
                                     <i class="fas fa-heart pe-2" style="color:mediumblue">Logged In as: 
                                         @Context.Session.GetString("accountUsername")
                                     </i>
+                                        <form id="logoutForm" method="post" asp-controller="Home" asp-action="Logout">
+                                            <button type="submit" id="btnLogout" class="btn btn-danger">Logout</button>
+                                        </form>
                                 </a>
                             </li>
                         </ul>
@@ -64,40 +68,73 @@
     <!-- Navbar -->
     <div>
         <br />
-         
-        <center>
-            <h3>
-                Search by age shows profiles who are are within 2 years of your age range <br />
-                Search by gender shows profiles who are not your gender <br />
-                Search by state shows profiles in the same state as you <br />
-                Search by commitment shows those are looking for the same kind of relationship as you <br />
-            </h3>
-        </center>
+
+            <form id="form1" method="post" asp-controller="DatingHome" asp-action="ListProfiles">
 
 
-        <div class="searchbar">
-            <div class="row">
-                <div class="col-lg-6 card-margin">
-                    <div class="card search-form">
-                        <div class="card-body p-0">
-                            <div id="search-form">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="row no-gutters">
-
-                                            <div class="col-lg-4">
-                                                <label>Search by:</label>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <select name="ddlFilterProfiles" id="ddlFilterProfiles" class="form-control">
-                                                    <option selected="True" value="Age">Age</option>
-                                                    <option value="Gender">Gender</option>
-                                                    <option value="State">State</option>
-                                                    <option value="Commitment">Commitment</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                    <button type="submit" id="btnSearchForMatches" asp-controller="DatingHome" asp-action="ListProfiles">Search</button>
+                <div class="searchbar">
+                    <div class="row">
+                        <div class="col-lg-6 card-margin">
+                            <div class="card search-form">
+                                <div class="card-body p-0">
+                                    <div id="search-form">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="row no-gutters">
+                                                    <div class="col-lg-3">
+                                                        <label>Minimum Age:</label>
+                                                        <input type="number" class="form-control" name="txtAgeMin" id="txtAgeMin" />
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label>Maximum Age:</label>
+                                                        <input type="number" class="form-control" name="txtAgeMax" id="txtAgeMax" />
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label>Gender:</label>
+                                                        <select name="ddlGender" id="ddlGender" class="form-control">
+                                                            <option value="">Select Gender</option>
+                                                            <option value="Male">Male</option>
+                                                            <option value="Female">Female</option>
+                                                            <option value="Non-Binary">Non-Binary</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <label>State:</label>
+                                                        <select class="form-control" name="ddlState" id="ddlState">
+                                                            <option value="">Select a state</option>
+                                                            <option value="Kentucky">Kentucky</option>
+                                                            <option value="Tennessee">Tennessee</option>
+                                                            <option value="Oregon">Oregon</option>
+                                                            <option value="California">California</option>
+                                                            <option value="Nebraska">Nebraska</option>
+                                                            <option value="North Dakota">North Dakota</option>
+                                                            <option value="Georgia">Georgia</option>
+                                                            <option value="Connecticut">Connecticut</option>
+                                                            <option value="Texas">Texas</option>
+                                                            <option value="Massachusetts">Massachusetts</option>
+                                                            <option value="Florida">Florida</option>
+                                                            <option value="Alabama">Alabama</option>
+                                                            <option value="Pennsylvania">Pennsylvania</option>
+                                                            <option value="South Carolina">South Carolina</option>
+                                                            <option value="District of Columbia">District of Columbia</option>
+                                                            <option value="Idaho">Idaho</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row no-gutters mt-2">
+                                                    <div class="col-lg-3">
+                                                        <label>Commitment:</label>
+                                                        <select name="ddlCommitment" id="ddlCommitment" class="form-control">
+                                                            <option value="">Select Commitment</option>
+                                                            <option value="Platonic">Platonic</option>
+                                                            <option value="Married">Married</option>
+                                                            <option value="Relationship">Relationship</option>
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <button type="submit" id="btnSearchForMatches" class="btn btn-primary">Search</button>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -106,14 +143,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-            
+            </form>
             @if (Model == null)
             {
                 <p><em>Click Search to find other people</em></p>
             }
-            else if (Model.profiles.Count == 0)
+            else if (ViewBag.ProfilesList == null || ViewBag.ProfilesList.Count == 0)
             {
                 <p><em>Nobody was found that fits your search criteria.</em></p>
             }

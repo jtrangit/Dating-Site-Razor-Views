@@ -15,71 +15,53 @@ namespace Dating_Site_Razor_Views.Controllers
         }
 
         [HttpPost]
-        public ActionResult ListProfiles()
+        public ActionResult ListProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment)
         {
+            Debug.WriteLine("ListProfiles action method called.");
 
-            var filterType = Request.Form["ddlFilterProfiles"].ToString();
-            Debug.WriteLine(filterType);
+            // Create an instance of the Dating class
+            Dating dating = new Dating();
 
-            int UserAccID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
-            Debug.WriteLine(UserAccID.ToString());
-
-            Dating User = new Dating();
-            DataSet UserInfo = new DataSet();
-
-            UserInfo = User.getProfileInfo(UserAccID);
-
-            int userAge = (int)UserInfo.Tables[0].Rows[0]["Age"];
-            string userGender = (string)UserInfo.Tables[0].Rows[0]["Gender"];
-            string userCommitment = (string)UserInfo.Tables[0].Rows[0]["Commitment"];
-            string userState = (string)UserInfo.Tables[0].Rows[0]["State"];
-
-            DataSet otherProfiles = new DataSet();
-
-            if (filterType == "Age")
-            {
-                Dating otherUsers = new Dating();
-                otherProfiles = otherUsers.getProfilesByAge(UserAccID, userAge - 2, userAge + 2);
-            }
-            else if (filterType == "Gender")
-            {
-                Dating otherUsers = new Dating();
-                otherProfiles = otherUsers.getProfilesByGender(UserAccID, userGender);
-            }
-            else if (filterType == "State")
-            {
-                Dating otherUsers = new Dating();
-                otherProfiles = otherUsers.getProfilesByState(UserAccID, userState);
-            }
-            else //filter type commitment
-            {
-                Dating otherUsers = new Dating();
-                otherProfiles = otherUsers.getProfilesByCommitment(UserAccID, userCommitment);
-            }
-
-            Profiles profiles = new Profiles();
+            // Call the new stored procedure with the provided filtering criteria
+            DataSet searchResults = dating.SearchProfiles(txtAgeMin, txtAgeMax, ddlGender, ddlState, ddlCommitment);
 
             List<Profiles> profilesList = new List<Profiles>();
 
-            //add every profile into list to be shown
-            for (int i = 0; i < otherProfiles.Tables[0].Rows.Count; i++)
+            // Check if the DataSet contains any tables
+            if (searchResults.Tables.Count > 0 && searchResults.Tables[0].Rows.Count > 0)
             {
-                Profiles theProfile = new Profiles();
-                theProfile.profilePic = otherProfiles.Tables[0].Rows[i]["ProfileImg"].ToString();
-                theProfile.age = Convert.ToInt32(otherProfiles.Tables[0].Rows[i]["Age"]);
-                theProfile.description = otherProfiles.Tables[0].Rows[i]["Description"].ToString();
-                theProfile.accID = (int)otherProfiles.Tables[0].Rows[i]["AccountID"];
-                theProfile.city = otherProfiles.Tables[0].Rows[i]["City"].ToString();
-                theProfile.state = otherProfiles.Tables[0].Rows[i]["State"].ToString();
-                profilesList.Add(theProfile);
+                // Iterate over the search results and add them to the list
+                foreach (DataRow row in searchResults.Tables[0].Rows)
+                {
+                    Profiles theProfile = new Profiles();
+                    theProfile.profilePic = row["ProfileImg"].ToString();
+                    theProfile.age = Convert.ToInt32(row["Age"]);
+                    theProfile.description = row["Description"].ToString();
+                    theProfile.accID = (int)row["AccountID"];
+                    theProfile.city = row["City"].ToString();
+                    theProfile.state = row["State"].ToString();
+                    profilesList.Add(theProfile);
+                }
             }
-
-            profiles.profiles = profilesList;
+            else
+            {
+                // No search results found, handle this scenario (e.g., show a message)
+                // You can add a message to indicate that no profiles were found
+                ViewBag.Message = "No profiles found matching the criteria.";
+            }
 
             ViewBag.ProfilesList = profilesList;
 
-            return View("~/Views/Home/home.cshtml", profiles);
+            Debug.WriteLine($"Found {profilesList.Count} profiles matching the criteria.");
+
+            return View("~/Views/Home/home.cshtml", profilesList);
         }
+
+
+
+
+
+
 
         public IActionResult ViewSpecificProfile(string accID)
         {
