@@ -364,6 +364,8 @@ namespace DatingSiteLibrary
             objDB.GetDataSet(objCommand);
         }
 
+
+
         public DataSet getAllOtherProfiles(int accountID)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
@@ -882,5 +884,96 @@ namespace DatingSiteLibrary
 
             return count;
         }
+        //Added new dataset functions for search functionality change, kept the old ones incase something went wrong.
+        public DataSet getProfilesByAge(int ageMin, int ageMax)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getProfilesByAge"; // Stored procedure for looking up profiles with age filter
+
+            SqlParameter para1 = new SqlParameter("@ageMin", ageMin);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            SqlParameter para2 = new SqlParameter("@ageMax", ageMax);
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public DataSet getProfilesByGender(string gender)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getProfilesByGender"; // Stored procedure for looking up profiles with gender filter
+
+            SqlParameter para1 = new SqlParameter("@gender", gender);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 50;
+
+            objCommand.Parameters.Add(para1);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public DataSet getProfilesByCommitment(string commitment)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getProfilesByCommitment"; // Stored procedure for looking up profiles with commitment filter
+
+            SqlParameter para1 = new SqlParameter("@commitment", commitment);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 50;
+
+            objCommand.Parameters.Add(para1);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public DataSet getProfilesByState(string state)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getProfilesByState"; // Stored procedure for looking up profiles with state filter
+
+            SqlParameter para1 = new SqlParameter("@state", state);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 50;
+
+            objCommand.Parameters.Add(para1);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public DataSet getAllOtherProfiles()
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getAllOtherProfiles"; // Stored procedure for retrieving all other profiles
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+
+        public DataSet SearchProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "searchProfiles";
+
+
+            objCommand.Parameters.AddWithValue("@txtAgeMin", txtAgeMin ?? (object)DBNull.Value);
+            objCommand.Parameters.AddWithValue("@txtAgeMax", txtAgeMax ?? (object)DBNull.Value);
+            objCommand.Parameters.AddWithValue("@ddlGender", string.IsNullOrEmpty(ddlGender) ? (object)DBNull.Value : ddlGender);
+            objCommand.Parameters.AddWithValue("@ddlState", string.IsNullOrEmpty(ddlState) ? (object)DBNull.Value : ddlState);
+            objCommand.Parameters.AddWithValue("@ddlCommitment", string.IsNullOrEmpty(ddlCommitment) ? (object)DBNull.Value : ddlCommitment);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+
+
     }
 }

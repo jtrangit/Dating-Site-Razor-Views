@@ -1,8 +1,8 @@
 ﻿@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
 * {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -12,67 +12,34 @@ body {
     border-radius: 10px;
 }
 
-.serachbar {
-    height: 400px;
-    width: 200px;
-
+.searchbar {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
 }
 
 .search-form {
-    width: 100%;
     margin-top: 1rem;
-    display: block;
 }
 
-.search-form input {
-    height: 100%;
-    background: transparent;
-    border: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    font-size: 1rem;
-}
-
-.search-form label {
-    background: transparent;
-    border: 0;
-    padding: 1rem;
-    height: 100%;
-    font-size: 1rem;
-}
-
+.search-form input,
 .search-form select {
-    background: transparent;
-    height: 100%; 
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: 5px;
     font-size: 1rem;
-}
-
-.search-form select:focus {
-    border: 0;
 }
 
 .search-form button {
-    height: 100%;
     width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
     font-size: 1rem;
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .search-body .search-filters {
-        display: flex;
-    }
-
-    .search-body .search-filters .filter-list {
-        margin-right: 1rem;
-    }
-}
-
-@media (min-width: 992px) {
-    .col-lg-2 {
-        flex: 0 0 16.66667%;
-        max-width: 16.66667%;
-    }
+    background-color: #007bff;
+    color: #fff;
 }
 
 .card-margin {
@@ -100,45 +67,33 @@ body {
     color: #000 !important;
 }
 
-.city {
-    font-size: 10px;
-    color: #a1aab9;
-}
-
-.city2 {
-    font-weight: 500;
-}
-
-.state {
-    font-size: 10px;
-    color: #a1aab9;
-}
-
-.state2 {
-    font-weight: 500;
-}
-
+.city,
+.state,
 .age {
     font-size: 10px;
     color: #a1aab9;
 }
 
+.city2,
+.state2,
 .age2 {
     font-weight: 500;
 }
 
-@keyframes animate {
-
-    0% {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-        border-radius: 0;
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .search-body .search-filters {
+        display: flex;
     }
 
-    100% {
-        transform: translateY(-1000px) rotate(720deg);
-        opacity: 0;
-        border-radius: 50%;
+    .search-body .search-filters .filter-list {
+        margin-right: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .col-lg-2 {
+        flex: 0 0 16.66667%;
+        max-width: 16.66667%;
     }
 }
 

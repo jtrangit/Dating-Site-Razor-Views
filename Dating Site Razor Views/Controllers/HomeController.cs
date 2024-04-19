@@ -67,5 +67,6 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
     }
 }
