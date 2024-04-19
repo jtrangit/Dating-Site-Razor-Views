@@ -57,12 +57,6 @@ namespace Dating_Site_Razor_Views.Controllers
             return View("~/Views/Home/home.cshtml", profilesList);
         }
 
-
-
-
-
-
-
         public IActionResult ViewSpecificProfile(string accID)
         {
             int profID = Convert.ToInt32(accID);

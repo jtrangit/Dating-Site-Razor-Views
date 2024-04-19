@@ -59,7 +59,7 @@ namespace Dating_Site_Razor_Views.Controllers
             HttpContext.Session.Clear();
 
 
-            return RedirectToAction("Login", "Home");
+            return View("~/Views/Home/login.cshtml");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
