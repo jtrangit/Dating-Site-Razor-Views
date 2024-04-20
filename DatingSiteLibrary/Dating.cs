@@ -10,6 +10,7 @@ using DatingSiteLibrary;
 using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Data;
+using Microsoft.Identity.Client;
 
 namespace DatingSiteLibrary
 {
@@ -973,7 +974,58 @@ namespace DatingSiteLibrary
             return objDB.GetDataSet(objCommand);
         }
 
+        public DataSet getProfileQuestions(int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getProfileQuestions"; //stored procedure for getting all dating profile info with accountID
 
+            SqlParameter para1 = new SqlParameter("@accountID", accID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
 
+            objCommand.Parameters.Add(para1);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public void createProfileQuestions(int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "createProfileQuestions"; //stored procedure for creating an empty interests record keyed with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(para1);
+            objDB.GetDataSet(objCommand);
+        }
+
+        public void createDatingDislikes(int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "createDatingDislikes"; //stored procedure for creating an empty interests record keyed with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(para1);
+            objDB.GetDataSet(objCommand);
+        }
+
+        public DataSet getDatingDislikes(int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getDatingDislikes"; //stored procedure for getting all dating profile info with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(para1);
+
+            return objDB.GetDataSet(objCommand);
+        }
     }
 }

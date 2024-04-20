@@ -35,7 +35,9 @@ namespace Dating_Site_Razor_Views.Pages
         public string Description { get; set; }
         public string profilePic { get; set; }
         public string Visible { get; set; }
-
+        public string Question1 { get; set; }
+        public string Question2 { get; set; }
+        public string Question3 { get; set; }
         public List<EditProfile> EditProf { get; set; }
 
     }

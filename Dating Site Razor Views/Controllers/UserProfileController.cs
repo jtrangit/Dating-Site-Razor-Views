@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Data;
+using System.Diagnostics;
 
 namespace Dating_Site_Razor_Views.Controllers
 {
@@ -380,6 +381,14 @@ namespace Dating_Site_Razor_Views.Controllers
             //Get Dislikes
 
             return View("~/Views/Home/userProfile.cshtml", editProfile);
+        }
+
+        [HttpPost]
+        public IActionResult UpdateUserProfile()
+        {
+            
+
+            return View("~/Views/Home/home.cshtml");
         }
     }
 }

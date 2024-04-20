@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/dropzone@5/dist/min.js"></script>
 }
 
-<form id="form1" method="post">
+<form id="form1" method="post" asp-controller="UserProfile" asp-action="UpdateUserProfile">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
         <button class="navbar-toggler"
@@ -83,7 +83,7 @@
                             <br />
                             <h6>Upload a different photo...</h6>
 
-                            <input type="text" class="form-control" placeholder="Image URL or Link goes here" value="@profile.profilePic">
+                            <input type="text" class="form-control" placeholder="Image URL or Link goes here" value="@profile.profilePic" name="txtProfilePic">
                             <a class="btn btn-sm btn-outline-primary w-100">Change Profile Picture</a>
                         </div>
                     </div>
@@ -94,31 +94,31 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">First name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" placeholder="..." value="@profile.FirstName">
+                                <input class="form-control" type="text" placeholder="..." value="@profile.FirstName" name="txtFirstName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Last name:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" placeholder="..." value="@profile.LastName">
+                                <input class="form-control" type="text" placeholder="..." value="@profile.LastName" name="txtLastName">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Phone Number:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.PhoneNumber">
+                                <input class="form-control" type="text" value="@profile.PhoneNumber" name="txtPhoneNumber">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Email:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.Email">
+                                <input class="form-control" type="text" value="@profile.Email" name="txtEmail">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Address:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.Address">
+                                <input class="form-control" type="text" value="@profile.Address" name="txtAddress">
                             </div>
                         </div>
                     </div>
@@ -128,19 +128,19 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Age:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="number" placeholder="..." value="@profile.Age">
+                                <input class="form-control" type="number" placeholder="..." value="@profile.Age" name="Age">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Height:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.Height">
+                                <input class="form-control" type="text" value="@profile.Height" name="txtHeight">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Weight:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="number" value="@profile.Weight">
+                                <input class="form-control" type="number" value="@profile.Weight" name="Weight">
                             </div>
                         </div> 
                         <div class="form-group">
@@ -162,13 +162,13 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">City:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.City">
+                                <input class="form-control" type="text" value="@profile.City" name="txtCity">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">State:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.State">
+                                <input class="form-control" type="text" value="@profile.State" name="txtState">
                             </div>
                         </div>
                     </div>
@@ -183,15 +183,15 @@
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label class="col-lg-8 control-label">Bio:</label>
+                            <label class="col-lg-8 control-label">Profile Description:</label>
                             <div class="col-lg-6">
-                                <textarea style="resize:none; height:200px; width: 300px;">@profile.Description</textarea>
+                                <textarea name="txtProfileDesc" style="resize:none; height:200px; width: 300px;">@profile.Description</textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-8 control-label">We would get along if:</label>
                             <div class="col-lg-3">
-                                <textarea style="resize:none; height:200px; width: 300px;"></textarea>
+                                <textarea name="txtQuestion1" style="resize:none; height:200px; width: 300px;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -199,13 +199,13 @@
                         <div class="form-group">
                             <label class="col-lg-8 control-label">On a day off I like to:</label>
                             <div class="col-lg-6">
-                                <textarea style="resize:none; height:200px; width: 300px;"></textarea>
+                                <textarea name="txtQuestion2" style="resize:none; height:200px; width: 300px;"></textarea>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-8 control-label">These are my dealbreakers:</label>
                             <div class="col-lg-3">
-                                <textarea style="resize:none; height:200px; width: 300px;"></textarea>
+                                <textarea name="txtQuestion3" style="resize:none; height:200px; width: 300px;"></textarea>
                             </div>
                         </div>
                     </div>
@@ -217,14 +217,14 @@
                                 {
                                     @if(item.isChecked == false)
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name</label> <br />
                                     }
                                     else
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
                                     }
                                 }
-                                <textarea style="resize:none;">@ViewBag.UserOtherInterest</textarea>
+                                <textarea name="txtareaOtherInterest" style="resize:none;">@ViewBag.UserOtherInterest</textarea>
                             </div>
                         </div>
 
@@ -272,7 +272,7 @@
             <div class="row">
                 <div class="col-md-24">
                     <div class="col-md-3 text-center">
-                        <a class="btn btn-sm btn-outline-primary w-100">Update Profile</a>
+                        <button class="btn btn-sm btn-outline-primary w-100" type="submit">Update Profile</button>
                         <a class="btn btn-sm btn-outline-primary w-100">Back To Home</a>
                     </div>
                 </div>

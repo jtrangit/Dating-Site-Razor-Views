@@ -129,5 +129,6 @@ namespace Dating_Site_Razor_Views.Controllers
 
             return View("~/Views/Home/viewProfile.cshtml", profile);
         }
+
     }
 }
