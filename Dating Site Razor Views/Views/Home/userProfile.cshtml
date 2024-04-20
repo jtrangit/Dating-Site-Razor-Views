@@ -76,10 +76,10 @@
                 <hr>
                 <div class="row">
                     <!-- left column -->
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="text-center">
-                            <h5>Account Status - <label class="badge badge-pill badge-info">@profile.Visible</label></h5>
-                            <img src="@profile.profilePic" class="avatar img-circle img-thumbnail" alt="avatar">
+                            <h5>Account Status - <label class="badge badge-pill badge-info" id="lblAccountStatus">@profile.Visible</label></h5>
+                            <img src="@profile.profilePic" class="avatar img-circle img-thumbnail" alt="avatar" id="aimgUserProfilePic" >
                             <br />
                             <h6>Upload a different photo...</h6>
 
@@ -89,7 +89,7 @@
                     </div>
 
                     <!-- edit form column -->
-                    <div class="col-md-4 personal-info">
+                    <div class="col-md-3 personal-info">
                         <h3>Personal Info</h3>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">First name:</label>
@@ -123,24 +123,12 @@
                         </div>
                     </div>
 
-                    <div class="col-md-4 public-info">
+                    <div class="col-md-3 public-info">
                         <h3>Public Info</h3>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Age:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="number" placeholder="..." value="@profile.Age">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-lg-6 control-label">Gender:</label>
-                            <div class="col-lg-8">
-                                <select class="form-control">
-                                    <option selected="true" value="@profile.Gender">@profile.Gender</option>
-                                    <option>Male</option>
-                                    <option>Female</option>
-                                    <option>Non-binary</option>
-                                    <option>Other</option>
-                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -152,21 +140,38 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Weight:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.Weight">
+                                <input class="form-control" type="number" value="@profile.Weight">
+                            </div>
+                        </div> 
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">Gender:</label>
+                            <div class="col-lg-8">
+                                @Html.DropDownList("ddlGender", (IEnumerable<SelectListItem>)ViewBag.GenderOptions)
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Commitment:</label>
                             <div class="col-lg-8">
-                                <select class="form-control">
-                                    <option>Platonic</option>
-                                    <option>Relationship</option>
-                                    <option>Marriage</option>
-                                </select>
+                                @Html.DropDownList("ddlCommitment", (IEnumerable<SelectListItem>)ViewBag.CommitmentOptions)
                             </div>
                         </div>
                     </div>
-
+                    <div class="col-md-3">
+                        <br/>
+                        <br/>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">City:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="@profile.City">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">State:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="@profile.State">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <hr />
@@ -208,23 +213,17 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Interests:</label>
                             <div class="col-lg-5">
-                                <input type="checkbox" name="Movies" /> <label>Movies</label> <br />
-                                <input type="checkbox" name="TV Shows" /> <label>TV Shows</label> <br />
-                                <input type="checkbox" name="Anime" /> <label>Anime</label> <br />
-                                <input type="checkbox" name="Manga" /> <label>Manga</label> <br />
-                                <input type="checkbox" name="Books" /> <label>Books</label> <br />
-                                <input type="checkbox" name="Video Games" /> <label>Video Games</label> <br />
-                                <input type="checkbox" name="Sports" /> <label>Sports</label> <br />
-                                <input type="checkbox" name="Gym" /> <label>Gym</label> <br />
-                                <input type="checkbox" name="Cooking" /> <label>Cooking</label> <br />
-                                <input type="checkbox" name="Martial Arts" /> <label>Martial Arts</label> <br />
-                                <input type="checkbox" name="Art" /> <label>Art</label> <br />
-                                <input type="checkbox" name="Hiking" /> <label>Hiking</label> <br />
-                                <input type="checkbox" name="Partying" /> <label>Partying</label> <br />
-                                <input type="checkbox" name="Music" /> <label>Music</label> <br />
-                                <input type="checkbox" name="Dancing" /> <label>Dancing</label> <br />
-                                <input type="checkbox" name="Other" /> <label>Other:</label> <br />
-                                <textarea style="resize:none;"></textarea>
+                                @foreach (var item in ViewBag.UserInterests)
+                                {
+                                    @if(item.isChecked == false)
+                                    {
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" /> <label>@item.name</label> <br />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                    }
+                                }
                             </div>
                         </div>
 
@@ -256,6 +255,17 @@
                     </div>
 
                 </div>
+
+
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="form-group">
+                        <label class="col-lg-6 control-label">Make Profile Visible To Others?</label>
+                         @Html.DropDownList("ddlVisible", (IEnumerable<SelectListItem>)ViewBag.VisibleOptions)
+                    </div>
+                </div>
+            </div>
+
             </div>
             <hr>
             <div class="row">

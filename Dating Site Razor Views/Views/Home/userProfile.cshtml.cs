@@ -34,9 +34,16 @@ namespace Dating_Site_Razor_Views.Pages
         public string Commitment { get; set; }
         public string Description { get; set; }
         public string profilePic { get; set; }
-
         public string Visible { get; set; }
 
         public List<EditProfile> EditProf { get; set; }
+
+    }
+
+    public class UserInterests
+    {
+        public string name;
+
+        public bool isChecked; 
     }
 }
