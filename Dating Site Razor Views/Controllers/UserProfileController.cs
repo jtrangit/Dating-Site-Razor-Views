@@ -165,6 +165,8 @@ namespace Dating_Site_Razor_Views.Controllers
             
             ds = userInterests.getInterests(accID);
 
+            string userOtherInterest;
+
             //null logic for the table, if null default to 0 so the empty user interests stays empty
             if (ds.Tables[0].Rows[0]["Movies"] == DBNull.Value)
             {
@@ -361,21 +363,21 @@ namespace Dating_Site_Razor_Views.Controllers
                 interests.Add(new UserInterests { name = "Dancing", isChecked = false });
             }
             
-            if (ds.Tables[0].Rows[0]["Other"] == DBNull.Value)
+            if (ds.Tables[0].Rows[0]["Other"] == DBNull.Value || ds.Tables[0].Rows[0]["Other"].Equals(""))
             {
                 interests.Add(new UserInterests { name = "Other", isChecked = false });
-            }
-            else if (ds.Tables[0].Rows[0]["Other"].Equals(false))
-            {
-                interests.Add(new UserInterests { name = "Other", isChecked = false });
+                userOtherInterest = "";
             }
             else
             {
-                interests.Add(new UserInterests { name = "Other", isChecked = false });
+                interests.Add(new UserInterests { name = "Other", isChecked = true });
+                userOtherInterest = ds.Tables[0].Rows[0]["Other"].ToString();
             }
 
             ViewBag.UserInterests = interests;
+            ViewBag.UserOtherInterest = userOtherInterest;
 
+            //Get Dislikes
 
             return View("~/Views/Home/userProfile.cshtml", editProfile);
         }
