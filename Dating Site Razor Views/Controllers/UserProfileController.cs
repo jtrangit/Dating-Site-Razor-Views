@@ -28,16 +28,140 @@ namespace Dating_Site_Razor_Views.Controllers
 
             string firstName = name[0];
             string lastName = name[1];
-            string profilePic = (string)userInfo.Tables[0].Rows[0]["ProfileImg"];
-            string city = (string)userInfo.Tables[0].Rows[0]["City"];
-            string state = (string)userInfo.Tables[0].Rows[0]["State"];
-            string gender = (string)userInfo.Tables[0].Rows[0]["Gender"];
-            string height = (string)userInfo.Tables[0].Rows[0]["Height"];
-            decimal weight = (decimal)userInfo.Tables[0].Rows[0]["Weight"];
-            int age = Convert.ToInt32(userInfo.Tables[0].Rows[0]["Age"]);
-            string occupation = (string)userInfo.Tables[0].Rows[0]["Occupation"];
-            string commitment = (string)userInfo.Tables[0].Rows[0]["Commitment"];
-            string description = (string)userInfo.Tables[0].Rows[0]["Description"];
+
+
+            string profilePic;
+            int age;
+            decimal weight;
+
+            if (userInfo.Tables[0].Rows[0]["Age"] == DBNull.Value)
+            {
+                age = 18;
+            }
+            else
+            {
+                age = Convert.ToInt32(userInfo.Tables[0].Rows[0]["Age"]);
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Weight"] == DBNull.Value)
+            {
+                weight = 155;
+            }
+            else
+            {
+                weight = Convert.ToDecimal(userInfo.Tables[0].Rows[0]["Weight"]);
+            }
+
+            if (userInfo.Tables[0].Rows[0]["ProfileImg"] == DBNull.Value)
+            {
+                profilePic = "https://upload.wikimedia.org/wikipedia/commons/5/5a/Black_question_mark.png";
+            }
+            else
+            {
+                profilePic = userInfo.Tables[0].Rows[0]["ProfileImg"].ToString();
+            }
+
+            string city;
+            string state;
+            string gender;
+            string height;
+            string occupation;
+            string commitment;
+            string description;
+            //private info 
+            string email;
+            string address;
+            string phoneNumber;
+
+            if (userInfo.Tables[0].Rows[0]["City"] == DBNull.Value)
+            {
+                city = "No City Saved";
+            }
+            else
+            {
+                city = (string)userInfo.Tables[0].Rows[0]["City"];
+            }
+            
+            if (userInfo.Tables[0].Rows[0]["State"] == DBNull.Value)
+            {
+                state = "No State Saved";
+            }
+            else
+            {
+                state = (string)userInfo.Tables[0].Rows[0]["State"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Gender"] == DBNull.Value)
+            {
+                gender = "Male";
+            }
+            else
+            {
+                gender = (string)userInfo.Tables[0].Rows[0]["Gender"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["PhoneNumber"] == DBNull.Value)
+            {
+                phoneNumber = "No Phone Number Saved";
+            }
+            else
+            {
+                phoneNumber = (string)userInfo.Tables[0].Rows[0]["PhoneNumber"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Email"] == DBNull.Value)
+            {
+                email = "No Email Saved";
+            }
+            else
+            {
+                email = (string)userInfo.Tables[0].Rows[0]["Email"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Address"] == DBNull.Value)
+            {
+               address = "No Address Saved";
+            }
+            else
+            {
+                address = (string)userInfo.Tables[0].Rows[0]["Address"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Height"] == DBNull.Value)
+            {
+                height = "No Height Saved";
+            }
+            else
+            {
+                height = (string)userInfo.Tables[0].Rows[0]["Height"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Occupation"] == DBNull.Value)
+            {
+               occupation = "No Occupation Saved";
+            }
+            else
+            {
+                occupation = (string)userInfo.Tables[0].Rows[0]["Occupation"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Occupation"] == DBNull.Value)
+            {
+                commitment = "Platonic";
+            }
+            else
+            {
+                commitment = (string)userInfo.Tables[0].Rows[0]["Commitment"];
+            }
+
+            if (userInfo.Tables[0].Rows[0]["Description"] == DBNull.Value)
+            {
+                description = "No Description";
+            }
+            else
+            {
+                description = (string)userInfo.Tables[0].Rows[0]["Description"];
+            }
 
             bool accVisible;
             string visible;
@@ -57,11 +181,7 @@ namespace Dating_Site_Razor_Views.Controllers
                 accVisible = false;
                 visible = "Not Visible";
             }
-            //private info 
-            string email = (string)userInfo.Tables[0].Rows[0]["Email"];
-            string address = (string)userInfo.Tables[0].Rows[0]["Address"];
-            string phoneNumber = (string)userInfo.Tables[0].Rows[0]["PhoneNumber"];
-
+            
             EditProfile editProfile = new EditProfile();
             editProfile.FirstName = firstName;
             editProfile.LastName = lastName;

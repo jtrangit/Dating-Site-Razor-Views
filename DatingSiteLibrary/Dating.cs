@@ -127,7 +127,7 @@ namespace DatingSiteLibrary
             objDB.GetDataSet(objCommand);
         }
 
-        public void createProfile(int accountID, string email)
+        public void createProfile(int accountID, string email, string name)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "createProfile"; //stored procedure for creating an empty profile keyed with accountID
@@ -141,8 +141,14 @@ namespace DatingSiteLibrary
             para2.SqlDbType = SqlDbType.VarChar;
             para2.Size = 50;
 
+            SqlParameter para3 = new SqlParameter("@name", name);
+            para3.Direction = ParameterDirection.Input;
+            para3.SqlDbType = SqlDbType.VarChar;
+            para3.Size = 50;
+
             objCommand.Parameters.Add(para1);
             objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(para3);
             objDB.GetDataSet(objCommand);
         }
 

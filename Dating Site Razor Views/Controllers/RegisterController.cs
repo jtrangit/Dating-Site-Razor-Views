@@ -16,7 +16,6 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             _dating = new Dating();
         }
-
         public IActionResult Register()
         {
             return View();
@@ -25,15 +24,22 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult Register(RegistrationValidation model)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
                 return View(model);
             }
-
             try
             {
-                /*
-                _dating.createAccount(model.Username, model.Password, model.FirstName, model.LastName, model.Email);
+                string username = model.Username;
+                string password = model.Password;
+                string firstname = model.FirstName;
+                string lastname = model.LastName;
+                string email = model.Email;
+                string sq1 = model.SecurityAnswer1;
+                string sq2 = model.SecurityAnswer2;
+                string sq3 = model.SecurityAnswer3;
+
+                _dating.createAccount(username, password, firstname, lastname, email);
 
                 Dating newProfile = new Dating();
                 DataSet newProfileDs = new DataSet();
@@ -42,12 +48,14 @@ namespace Dating_Site_Razor_Views.Controllers
                 //creates account record for login
                 //This is also where we would encrypt the password
                 //code would go here
-                newProfileDs = newProfile.getUserInfo(model.Username, model.Password);
+                newProfileDs = newProfile.getUserInfo(username, password);
                 accountID = Convert.ToInt32(newProfileDs.Tables[0].Rows[0]["Id"].ToString());
 
                 //creates empty profile record for the new account
+                string fullname = firstname + " " + lastname;
+
                 Dating theProfile = new Dating();
-                theProfile.createProfile(accountID, model.Email);
+                theProfile.createProfile(accountID, email, fullname);
 
                 //creates empty interests record for the new account
                 Dating theInterests = new Dating();
@@ -63,11 +71,8 @@ namespace Dating_Site_Razor_Views.Controllers
 
                 //stores the security questions to table
                 Dating securityQuestions = new Dating();
-                securityQuestions.createSecurityQuestions(accountID, model.SecurityAnswer1, model.SecurityAnswer2, model.SecurityAnswer3);
+                securityQuestions.createSecurityQuestions(accountID, sq1, sq2, sq3);
                 
-                */
-                Debug.WriteLine("answer to security questions " + model.SecurityAnswer1 + ", " +  model.SecurityAnswer2 + ", " + model.SecurityAnswer3);
-
                 return RedirectToAction("Login", "Home");
             }
             catch (Exception ex)
