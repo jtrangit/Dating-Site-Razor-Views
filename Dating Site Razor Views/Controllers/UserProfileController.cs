@@ -379,6 +379,223 @@ namespace Dating_Site_Razor_Views.Controllers
             ViewBag.UserOtherInterest = userOtherInterest;
 
             //Get Dislikes
+            Dating userDislikes = new Dating();
+            DataSet ds2 = new DataSet();
+            List<UserInterests> dislikes = new List<UserInterests>();
+
+            ds2 = userDislikes.getDatingDislikes(accID);
+
+            string userOtherDislike;
+
+            //null logic for the table, if null default to 0 so the empty user interests stays empty
+            if (ds2.Tables[0].Rows[0]["Movies"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DMovies", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Movies"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DMovies", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DMovies", isChecked = true });
+            }
+
+            if (ds2.Tables[0].Rows[0]["TV"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DTV", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["TV"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DTV", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DTV", isChecked = true });
+            }
+            ////////////////////////////////////////////////////////////
+            if (ds2.Tables[0].Rows[0]["Anime"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DAnime", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Anime"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DAnime", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DAnime", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Manga"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DManga", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Manga"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DManga", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DManga", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Books"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DBooks", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Books"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DBooks", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DBooks", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Video Games"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DVideo Games", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Video Games"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DVideo Games", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DVideo Games", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Sports"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DSports", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Sports"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DSports", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DSports", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Gym"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DGym", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Gym"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DGym", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DGym", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Cooking"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DCooking", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Cooking"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DCooking", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DCooking", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Martial Arts"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DMartial Arts", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Martial Arts"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DMartial Arts", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DMartial Arts", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Art"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DArt", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Art"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DArt", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DArt", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Hiking"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DHiking", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Hiking"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DHiking", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DHiking", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Partying"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DPartying", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Partying"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DPartying", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DPartying", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Music"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DMusic", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Music"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DMusic", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DMusic", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Dancing"] == DBNull.Value)
+            {
+                dislikes.Add(new UserInterests { name = "DDancing", isChecked = false });
+            }
+            else if (ds2.Tables[0].Rows[0]["Dancing"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                dislikes.Add(new UserInterests { name = "DDancing", isChecked = false });
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add(new UserInterests { name = "DDancing", isChecked = false });
+            }
+
+            if (ds2.Tables[0].Rows[0]["Other"] == DBNull.Value || ds2.Tables[0].Rows[0]["Other"].Equals(""))
+            {
+                dislikes.Add(new UserInterests { name = "DOther", isChecked = false });
+                userOtherDislike = "";
+            }
+            else
+            {
+                dislikes.Add(new UserInterests { name = "DOther", isChecked = true });
+                userOtherDislike = ds2.Tables[0].Rows[0]["Other"].ToString();
+            }
+
+            ViewBag.UserDislikes = dislikes;
+            ViewBag.UserOtherDislike = userOtherDislike;
 
             return View("~/Views/Home/userProfile.cshtml", editProfile);
         }

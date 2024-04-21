@@ -233,23 +233,18 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">Dislikes:</label>
                             <div class="col-lg-5">
-                                <input type="checkbox" name="Movies" /> <label>Movies</label> <br />
-                                <input type="checkbox" name="TV Shows" /> <label>TV Shows</label> <br />
-                                <input type="checkbox" name="Anime" /> <label>Anime</label> <br />
-                                <input type="checkbox" name="Manga" /> <label>Manga</label> <br />
-                                <input type="checkbox" name="Books" /> <label>Books</label> <br />
-                                <input type="checkbox" name="Video Games" /> <label>Video Games</label> <br />
-                                <input type="checkbox" name="Sports" /> <label>Sports</label> <br />
-                                <input type="checkbox" name="Gym" /> <label>Gym</label> <br />
-                                <input type="checkbox" name="Cooking" /> <label>Cooking</label> <br />
-                                <input type="checkbox" name="Martial Arts" /> <label>Martial Arts</label> <br />
-                                <input type="checkbox" name="Art" /> <label>Art</label> <br />
-                                <input type="checkbox" name="Hiking" /> <label>Hiking</label> <br />
-                                <input type="checkbox" name="Partying" /> <label>Partying</label> <br />
-                                <input type="checkbox" name="Music" /> <label>Music</label> <br />
-                                <input type="checkbox" name="Dancing" /> <label>Dancing</label> <br />
-                                <input type="checkbox" name="Other" /> <label>Other:</label> <br />
-                                <textarea style="resize:none;"></textarea>
+                                @foreach (var item in ViewBag.UserDislikes)
+                                {
+                                    @if (item.isChecked == false)
+                                    {
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name</label> <br />
+                                    }
+                                    else
+                                    {
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                    }
+                                }
+                                <textarea name="txtareaOtherDislike" style="resize:none;">@ViewBag.UserOtherDislike</textarea>
                             </div>
                         </div>
 
