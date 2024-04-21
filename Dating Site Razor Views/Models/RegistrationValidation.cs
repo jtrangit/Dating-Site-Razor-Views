@@ -22,10 +22,16 @@ namespace Dating_Site_Razor_Views.Models
         public string Password { get; set; }
 
         public string SecurityQuestion1 { get; set; }
+
+        [Required(ErrorMessage = "Security question must be answered.")]
         public string SecurityAnswer1 { get; set; }
         public string SecurityQuestion2 { get; set; }
+
+        [Required(ErrorMessage = "Security question must be answered.")]
         public string SecurityAnswer2 { get; set; }
         public string SecurityQuestion3 { get; set; }
+
+        [Required(ErrorMessage = "Security question must be answered.")]
         public string SecurityAnswer3 { get; set; }
     }
 }

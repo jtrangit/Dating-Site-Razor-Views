@@ -8,10 +8,7 @@ namespace Dating_Site_Razor_Views.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly DBConnect _dbConnect;
-        private readonly Dating _dating;
-        private readonly ILogger<HomeController> _logger;
-
+        
         [HttpPost]
         public IActionResult AuthenticateUser()
         {

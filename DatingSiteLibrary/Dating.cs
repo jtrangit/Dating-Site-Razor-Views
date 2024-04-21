@@ -1027,5 +1027,37 @@ namespace DatingSiteLibrary
 
             return objDB.GetDataSet(objCommand);
         }
+
+        public void createSecurityQuestions(int accID, string q1, string q2, string q3)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "createSecurityQuestions"; //stored procedure for creating an empty interests record keyed with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            SqlParameter para2 = new SqlParameter("@q1", q1);
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.VarChar;
+            para2.Size = 256;
+
+            SqlParameter para3 = new SqlParameter("@q2", q2);
+            para3.Direction = ParameterDirection.Input;
+            para3.SqlDbType = SqlDbType.VarChar;
+            para3.Size = 256;
+
+            SqlParameter para4 = new SqlParameter("@q3", q3);
+            para4.Direction = ParameterDirection.Input;
+            para4.SqlDbType = SqlDbType.VarChar;
+            para4.Size = 256;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(para3);
+            objCommand.Parameters.Add(para4);
+
+            objDB.GetDataSet(objCommand);
+        }
     }
 }

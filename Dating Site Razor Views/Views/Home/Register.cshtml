@@ -8,7 +8,7 @@
     <link href="@Url.Content("~/css/registration.css")" rel="stylesheet" type="text/css" />
 }
 <body>
-    <form id="form1" method="post" asp-controller="Register" asp-action="Register">
+    <form id="form1" method="post" action="@Url.Action("Register", "Register")">
         <div class="container h-100">
             <div class="row h-100">
                 <div class="col-sm-10 col-md-8 col-lg-6 mx-auto d-table h-100">
@@ -47,7 +47,21 @@
                                         <input id="txtPassword" class="form-control form-control-lg" type="password" asp-for="Password" />
                                         <span class="text-danger" asp-validation-for="Password"></span>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label>Security Question 1: What was your first pet's name?</label>
+                                        <input id="txtSecurity1" class="form-control form-control-lg" asp-for="SecurityAnswer1"/>
+                                        <span class="text-danger" asp-validation-for="SecurityAnswer1"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Security Question 2: What was your mother's maiden name?</label>
+                                        <input id="txtSecurity2" class="form-control form-control-lg" asp-for="SecurityAnswer2" />
+                                        <span class="text-danger" asp-validation-for="SecurityAnswer2"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Security Question 3: What is your favorite food?</label>
+                                        <input id="txtSecurity3" class="form-control form-control-lg" asp-for="SecurityAnswer3" />
+                                        <span class="text-danger" asp-validation-for="SecurityAnswer3"></span>
+                                    </div>
                                     <br />
 
                                     <center>
