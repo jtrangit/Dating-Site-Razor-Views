@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections;
 using System.Data;
 using System.Diagnostics;
 
@@ -84,7 +85,7 @@ namespace Dating_Site_Razor_Views.Controllers
             
             if (userInfo.Tables[0].Rows[0]["State"] == DBNull.Value)
             {
-                state = "No State Saved";
+                state = "Alabama";
             }
             else
             {
@@ -717,14 +718,52 @@ namespace Dating_Site_Razor_Views.Controllers
             ViewBag.UserDislikes = dislikes;
             ViewBag.UserOtherDislike = userOtherDislike;
 
+            //States
+            var stateList = new ArrayList()
+            { 
+                "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas", 
+                "California", "Colorado", "Connecticut", "Delaware", "District of Columbia", 
+                "Federated States of Micronesia", "Florida", 
+                "Georgia", "Guam", 
+                "Hawaii", 
+                "Idaho", "Illinois", "Indiana", "Iowa", 
+                "Kansas", "Kentucky", 
+                "Louisiana", 
+                "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", 
+                "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands", 
+                "Ohio", "Oklahoma", "Oregon", 
+                "Palau", "Pennsylvania", "Puerto Rico", 
+                "Rhode Island", 
+                "South Carolina", "South Dakota", 
+                "Tennessee", "Texas", 
+                "Utah", 
+                "Vermont", "Virgin Island", "Virginia", 
+                "Washington", "West Virginia", "Wisconsin", "Wyoming" 
+            };
+
+            //create a select list item for each state
+            List<SelectListItem> listOfStates = new List<SelectListItem>();
+
+            foreach(string theState in stateList)
+            {
+                if (state == theState)
+                {
+                    listOfStates.Add(new SelectListItem { Text = theState, Value = theState, Selected = true});
+                }
+                else
+                {
+                    listOfStates.Add(new SelectListItem { Value = theState, Text = theState });
+                }
+            }
+
+            ViewBag.StateOptions = listOfStates;
+
             return View("~/Views/Home/userProfile.cshtml", editProfile);
         }
 
         [HttpPost]
         public IActionResult UpdateUserProfile()
         {
-            
-
             return View("~/Views/Home/home.cshtml");
         }
     }

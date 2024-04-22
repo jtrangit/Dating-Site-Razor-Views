@@ -168,7 +168,7 @@
                         <div class="form-group">
                             <label class="col-lg-6 control-label">State:</label>
                             <div class="col-lg-8">
-                                <input class="form-control" type="text" value="@profile.State" name="txtState">
+                                @Html.DropDownList("ddlState", (IEnumerable<SelectListItem>)ViewBag.StateOptions)
                             </div>
                         </div>
                     </div>
