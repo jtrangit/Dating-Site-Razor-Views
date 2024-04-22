@@ -1,6 +1,8 @@
 ﻿using Dating_Site_Razor_Views.Pages;
 using DatingSiteLibrary;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections;
 using System.Data;
 using System.Diagnostics;
 using System.Numerics;
@@ -11,12 +13,78 @@ namespace Dating_Site_Razor_Views.Controllers
     {
         public IActionResult Home()
         {
+            //States
+            var stateList = new ArrayList()
+            {
+                "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas",
+                "California", "Colorado", "Connecticut", "Delaware", "District of Columbia",
+                "Federated States of Micronesia", "Florida",
+                "Georgia", "Guam",
+                "Hawaii",
+                "Idaho", "Illinois", "Indiana", "Iowa",
+                "Kansas", "Kentucky",
+                "Louisiana",
+                "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
+                "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands",
+                "Ohio", "Oklahoma", "Oregon",
+                "Palau", "Pennsylvania", "Puerto Rico",
+                "Rhode Island",
+                "South Carolina", "South Dakota",
+                "Tennessee", "Texas",
+                "Utah",
+                "Vermont", "Virgin Island", "Virginia",
+                "Washington", "West Virginia", "Wisconsin", "Wyoming"
+            };
+
+            //create a select list item for each state
+            List<SelectListItem> listOfStates = new List<SelectListItem>();
+
+            foreach (string theState in stateList)
+            {
+                listOfStates.Add(new SelectListItem { Value = theState, Text = theState });
+            }
+
+            ViewBag.SearchStateOptions = listOfStates;
+
             return View("~/Views/Home/home.cshtml");
         }
 
         [HttpPost]
         public ActionResult ListProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment)
         {
+            //States
+            var stateList = new ArrayList()
+            {
+                "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas",
+                "California", "Colorado", "Connecticut", "Delaware", "District of Columbia",
+                "Federated States of Micronesia", "Florida",
+                "Georgia", "Guam",
+                "Hawaii",
+                "Idaho", "Illinois", "Indiana", "Iowa",
+                "Kansas", "Kentucky",
+                "Louisiana",
+                "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
+                "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands",
+                "Ohio", "Oklahoma", "Oregon",
+                "Palau", "Pennsylvania", "Puerto Rico",
+                "Rhode Island",
+                "South Carolina", "South Dakota",
+                "Tennessee", "Texas",
+                "Utah",
+                "Vermont", "Virgin Island", "Virginia",
+                "Washington", "West Virginia", "Wisconsin", "Wyoming"
+            };
+
+            //create a select list item for each state
+            List<SelectListItem> listOfStates = new List<SelectListItem>();
+
+            foreach (string theState in stateList)
+            {
+                listOfStates.Add(new SelectListItem { Value = theState, Text = theState });
+            }
+
+            ViewBag.SearchStateOptions = listOfStates;
+
             Debug.WriteLine("ListProfiles action method called.");
 
             // Create an instance of the Dating class

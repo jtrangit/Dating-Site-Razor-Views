@@ -10,13 +10,14 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Data;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections;
 
 namespace Dating_Site_Razor_Views.Pages
 {
 
     public class Home : PageModel
     {
-        
         public void OnGet()
         {
             

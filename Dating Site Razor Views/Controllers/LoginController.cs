@@ -77,7 +77,7 @@ namespace Dating_Site_Razor_Views.Controllers
                 Debug.WriteLine("The session accountEmail value is : " + HttpContext.Session.GetString("accountEmail"));
 
 
-                return View("~/Views/Home/home.cshtml");
+                return RedirectToAction("Home", "DatingHome");
             }
             else
             {

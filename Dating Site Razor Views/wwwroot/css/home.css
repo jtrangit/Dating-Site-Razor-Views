@@ -12,36 +12,6 @@ body {
     border-radius: 10px;
 }
 
-.searchbar {
-    padding: 20px;
-    background-color: #fff;
-    border-radius: 10px;
-}
-
-.search-form {
-    margin-top: 1rem;
-}
-
-.search-form input,
-.search-form select {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-}
-
-.search-form button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    background-color: #007bff;
-    color: #fff;
-}
-
 .card-margin {
     margin-bottom: 2rem;
 }
@@ -119,4 +89,33 @@ a.navbarlinks:hover {
     border: solid;
     border-color: whitesmoke;
     border-width: 2px;
+}
+
+/*search box css start here*/
+.search-sec {
+    background: white;
+    padding: 2rem;
+    border-radius: 30px;
+}
+
+.search-slt {
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: #55595c;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius: 0;
+}
+
+.wrn-btn {
+    width: 100%;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius: 0;
 }
