@@ -237,7 +237,7 @@
                                 {
                                     @if (item.isChecked == false)
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name.ToString().Substring(1)</label> <br />
                                     }
                                     else
                                     {
