@@ -758,6 +758,9 @@ namespace Dating_Site_Razor_Views.Controllers
 
             ViewBag.StateOptions = listOfStates;
 
+            //create viewbag with list of image urls from photogallery table
+            List<string> photos = new List<string>();
+
             return View("~/Views/Home/userProfile.cshtml", editProfile);
         }
 
@@ -765,6 +768,12 @@ namespace Dating_Site_Razor_Views.Controllers
         public IActionResult UpdateUserProfile()
         {
             return View("~/Views/Home/home.cshtml");
+        }
+
+        [HttpPost]
+        public IActionResult AddToPhotoGallery()
+        {
+            return View();
         }
     }
 }
