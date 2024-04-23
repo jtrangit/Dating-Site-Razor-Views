@@ -56,6 +56,7 @@ namespace Dating_Site_Razor_Views.Controllers
             return View("~/Views/Home/home.cshtml");
         }
 
+
         [HttpPost]
         public ActionResult ListProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment)
         {

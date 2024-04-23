@@ -66,6 +66,8 @@ namespace Dating_Site_Razor_Views.Controllers
                 profilePic = userInfo.Tables[0].Rows[0]["ProfileImg"].ToString();
             }
 
+            ViewBag.UserProfilePic = profilePic;
+
             string city;
             string state;
             string gender;
@@ -821,10 +823,91 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult UpdateUserProfile()
         {
+            int accID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
+
+            //getting the info from form for profile table
             string fname = Request.Form["txtFirstName"];
             string lname = Request.Form["txtLastName"];
-            
+            string name = fname + " " + lname;
+            string pnumber = Request.Form["txtPhoneNumber"];
+            string email = Request.Form["txtEmail"];
+            string address = Request.Form["txtAddress"];
+            int age = Convert.ToInt32(Request.Form["Age"]);
+            string height = Request.Form["txtHeight"];
+            decimal weight = Convert.ToDecimal(Request.Form["Weight"]);
+            string city = Request.Form["txtCity"];
+            string state = Request.Form["ddlState"];
+            string gender = Request.Form["ddlGender"];
+            string commitment = Request.Form["ddlCommitment"];
+            string desc = Request.Form["txtProfileDesc"];
+            string profilePic = Request.Form["txtProfilePic"];
+            string occupation = Request.Form["txtOccupation"];
+            bool vis = Convert.ToBoolean(Request.Form["ddlVisible"]);
+            //getting the info from form for profilequestions table
+            string q1 = Request.Form["txtQuestion1"];
+            string q2 = Request.Form["txtQuestion2"];
+            string q3 = Request.Form["txtQuestion3"];
 
+            //getting info for interests table
+            bool iMovies = (Request.Form["Movies"]=="on") ? true : false;
+            bool iTV = (Request.Form["TV"] == "on") ? true : false;
+            bool iAnime = (Request.Form["Anime"] == "on") ? true : false;
+            bool iManga = (Request.Form["Manga"] == "on") ? true : false;
+            bool iBooks = (Request.Form["Books"] == "on") ? true : false;
+            bool iVideoGames = (Request.Form["Video Games"] == "on") ? true : false;
+            bool iSports = (Request.Form["Sports"] == "on") ? true : false;
+            bool iGym = (Request.Form["Gym"] == "on") ? true : false;
+            bool iCooking = (Request.Form["Cooking"] == "on") ? true : false;
+            bool iMartialArts = (Request.Form["Martial Arts"] == "on") ? true : false;
+            bool iArt = (Request.Form["Art"] == "on") ? true : false;
+            bool iHiking = (Request.Form["Hiking"] == "on") ? true : false;
+            bool iPartying = (Request.Form["Partying"] == "on") ? true : false;
+            bool iMusic = (Request.Form["Music"] == "on") ? true : false;
+            bool iDancing = (Request.Form["Dancing"] == "on") ? true : false;
+            bool iOther = (Request.Form["Other"] == "on") ? true : false;
+
+            //getting info for dislikes table
+            bool dMovies = (Request.Form["DMovies"] == "on") ? true : false;
+            bool dTV = (Request.Form["DTV"] == "on") ? true : false;
+            bool dAnime = (Request.Form["DAnime"] == "on") ? true : false;
+            bool dManga = (Request.Form["DManga"] == "on") ? true : false;
+            bool dBooks = (Request.Form["DBooks"] == "on") ? true : false;
+            bool dVideoGames = (Request.Form["DVideo Games"] == "on") ? true : false;
+            bool dSports = (Request.Form["DSports"] == "on") ? true : false;
+            bool dGym = (Request.Form["DGym"] == "on") ? true : false;
+            bool dCooking = (Request.Form["DCooking"] == "on") ? true : false;
+            bool dMartialArts = (Request.Form["DMartial Arts"] == "on") ? true : false;
+            bool dArt = (Request.Form["DArt"] == "on") ? true : false;
+            bool dHiking = (Request.Form["DHiking"] == "on") ? true : false;
+            bool dPartying = (Request.Form["DPartying"] == "on") ? true : false;
+            bool dMusic = (Request.Form["DMusic"] == "on") ? true : false;
+            bool dDancing = (Request.Form["DDancing"] == "on") ? true : false;
+            bool dOther = (Request.Form["DOther"] == "on") ? true : false;
+
+            string otherInterest;
+            string otherDislike;
+
+            if (iOther.Equals(true)) {
+                otherInterest = Request.Form["txtareaOtherInterest"];
+            }
+            else
+            {
+                otherInterest = "";
+            }
+
+            if (dOther.Equals(true))
+            {
+                otherDislike = Request.Form["txtareaOtherDislike"];
+            }
+            else
+            {
+                otherDislike = "";
+            }
+
+            Debug.WriteLine(profilePic);
+            Dating updateProfile = new Dating();
+            updateProfile.updateProfile(accID, address, state, city, email, gender, age, height, weight, profilePic, commitment, desc, pnumber, occupation, vis, name);
+            
             return RedirectToAction("Home", "DatingHome");
         }
 
