@@ -817,7 +817,9 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult UpdateUserProfile()
         {
-            //string fname = Request.Form[""];
+            string fname = Request.Form["txtFirstName"];
+            string lname = Request.Form["txtLastName"];
+            
 
             return RedirectToAction("Home", "DatingHome");
         }
@@ -825,7 +827,9 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult AddToPhotoGallery()
         {
-            return View();
+            Debug.WriteLine(Request.Form["txtGallery"].ToString());
+
+            return RedirectToAction("UserProfile", "UserProfile");
         }
     }
 }
