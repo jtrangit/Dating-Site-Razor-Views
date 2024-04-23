@@ -11,6 +11,8 @@ namespace Dating_Site_Razor_Views.Controllers
 {
     public class DatingHomeController : Controller
     {
+
+
         public IActionResult Home()
         {
             if (!HttpContext.Session.TryGetValue("accountID", out _))
@@ -57,6 +59,8 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public ActionResult ListProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment)
         {
+            Debug.WriteLine("ListProfiles action method called.");
+
             //States
             var stateList = new ArrayList()
             {

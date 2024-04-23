@@ -15,101 +15,96 @@
 }
 <body>
     <form id="form1" method="post">
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light">
-        <button class="navbar-toggler"
-                type="button"
-                data-mdb-toggle="collapse"
-                data-mdb-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent"
-                aria-expanded="false"
-                aria-label="Toggle navigation">
-
-            <i class="fas fa-bars"></i>
-        </button>
-        <div class="container d-flex justify-content-center">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav align-items-center mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link mx-2" asp-controller="UserProfile" asp-action="UserProfile">My Profile &nbsp &nbsp</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link mx-2" href="#">My Likes &nbsp &nbsp</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
-                            </li>
-
-                            <li class="nav-item">
-                                <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
-                            </li>
-
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light mb-4">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="#">My Likes &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
+                                </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-2">
-                                        <div class="d-flex align-items-center">
-                                            <i class="fas fa-heart pe-2" style="color:mediumblue">Logged In as: @Context.Session.GetString("accountUsername")</i>
-                                            <div class="ml-2">
-                                                <a href="@Url.Action("Logout", "Home")" class="btn btn-danger">Logout</a>
-                                            </div>
-                                        </div>
+                                        <i class="fas fa-heart pe-2" style="color:mediumblue">
+                                            Logged In as: @Context.Session.GetString("accountUsername")
+                                        </i>
                                     </a>
                                 </li>
-                        </ul>
+                                <form>
+                                    <a href="@Url.Action("Logout", "Home")" class="btn btn-danger ml-2">Logout</a>
+                                </form>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </nav>
-    <!-- Navbar -->
-    <div>
-        <br />
+        </nav>
+        <!-- Navbar -->
+        <div>
+            <br />
 
             <form id="form1" method="post" asp-controller="DatingHome" asp-action="ListProfiles">
                 <section class="search-sec">
                     <div class="container">
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                            <select class="form-control search-slt" name="ddlGender" id="ddlGender">
-                                                <option value="">Select Gender</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                                <option value="Non-Binary">Non-Binary</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                            @Html.DropDownList("ddlState", (IEnumerable<SelectListItem>)ViewBag.SearchStateOptions, new { @class = "form-control search-slt" })
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                            <select class="form-control search-slt" name="ddlCommitment" id="ddlCommitment">
-                                                <option value="">Select Commitment</option>
-                                                <option value="Platonic">Platonic</option>
-                                                <option value="Married">Married</option>
-                                                <option value="Relationship">Relationship</option>
-                                            </select>
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                            <button type="submit" class="btn btn-primary wrn-btn">Search</button>
-                                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <select class="form-control search-slt" name="ddlGender" id="ddlGender">
+                                            <option value="">Select Gender</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Non-Binary">Non-Binary</option>
+                                        </select>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                            <input type="number" class="form-control search-slt" name="txtAgeMin" id="txtAgeMin" placeholder="Min Age" />
-                                        </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                                            <input type="number" class="form-control search-slt" name="txtAgeMax" id="txtAgeMax" placeholder="Max Age"/>
-                                        </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        @Html.DropDownList("ddlState", (IEnumerable<SelectListItem>)ViewBag.SearchStateOptions, new { @class = "form-control search-slt" })
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <select class="form-control search-slt" name="ddlCommitment" id="ddlCommitment">
+                                            <option value="">Select Commitment</option>
+                                            <option value="Platonic">Platonic</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Relationship">Relationship</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <button type="submit" class="btn btn-primary wrn-btn">Search</button>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <input type="number" class="form-control search-slt" name="txtAgeMin" id="txtAgeMin" placeholder="Min Age" />
+                                    </div>
+                                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                                        <input type="number" class="form-control search-slt" name="txtAgeMax" id="txtAgeMax" placeholder="Max Age" />
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </div>
                 </section>
             </form>
@@ -124,51 +119,53 @@
             else
             {
                 <ul>
-                @foreach(var profile in ViewBag.ProfilesList)
-                {
-                    <div class="container mt-5 d-flex justify-content-center">
+                    @foreach (var profile in ViewBag.ProfilesList)
+                    {
+                        <div class="container mt-5 d-flex justify-content-center">
 
-                        <div class="card p-3">
+                            <div class="card p-3">
 
-                            <div class="d-flex align-items-center">
+                                <div class="d-flex align-items-center">
 
-                                <div class="image">
-                                    <img src="@profile.profilePic" class="rounded" width="155">
-                                </div>
-
-                                <div class="ml-3 w-100">
-
-                                    <h4 class="mb-0 mt-0 description">@profile.description</h4>
-
-                                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white profileInfo">
-
-                                        <div class="d-flex flex-column">
-
-                                            <span class="city">City</span>
-                                            <span class="city2">@profile.city</span>
-
-                                        </div>
-
-                                        <div class="d-flex flex-column">
-
-                                            <span class="state">State</span>
-                                            <span class="state2">@profile.state</span>
-
-                                        </div>
-
-                                        <div class="d-flex flex-column">
-
-                                            <span class="age">Age</span>
-                                            <span class="age2">@profile.age</span>
-
-                                        </div>
-
+                                    <div class="image">
+                                        <img src="@profile.profilePic" class="rounded" width="155">
                                     </div>
 
-                                    <div class="button mt-2 d-flex flex-row align-items-center">
-                                        <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
-                                        &nbsp;
-                                        <a class="btn btn-sm btn-outline-primary w-100">Like</a>
+                                    <div class="ml-3 w-100">
+
+                                        <h4 class="mb-0 mt-0 description">@profile.description</h4>
+
+                                        <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white profileInfo">
+
+                                            <div class="d-flex flex-column">
+
+                                                <span class="city">City</span>
+                                                <span class="city2">@profile.city</span>
+
+                                            </div>
+
+                                            <div class="d-flex flex-column">
+
+                                                <span class="state">State</span>
+                                                <span class="state2">@profile.state</span>
+
+                                            </div>
+
+                                            <div class="d-flex flex-column">
+
+                                                <span class="age">Age</span>
+                                                <span class="age2">@profile.age</span>
+
+                                            </div>
+
+                                        </div>
+
+                                        <div class="button mt-2 d-flex flex-row align-items-center">
+                                            <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@profile.accID" asp-action="ViewSpecificProfile" asp-controller="DatingHome">View Profile</a>
+                                            &nbsp;
+                                            <a class="btn btn-sm btn-outline-primary w-100">Like</a>
+                                        </div>
+
                                     </div>
 
                                 </div>
@@ -176,15 +173,13 @@
                             </div>
 
                         </div>
-
-                    </div>
-                }
+                    }
                 </ul>
             }
 
-            
-    </div>
-        
 
-</form>
+        </div>
+
+
+    </form>
 </body>
