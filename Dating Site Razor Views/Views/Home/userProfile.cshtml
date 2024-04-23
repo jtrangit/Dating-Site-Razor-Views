@@ -82,8 +82,7 @@
                             <img src="@profile.profilePic" class="avatar img-circle img-thumbnail" alt="avatar" id="aimgUserProfilePic" >
                             <br />
                             <h6>Upload a different photo...</h6>
-
-                            <input type="text" class="form-control" placeholder="Image URL or Link goes here" value="@profile.profilePic" name="txtProfilePic">
+                            <textarea class="form-control" placeholder="Image URL or Link goes here" name="txtProfilePic" maxlength="512">@profile.profilePic</textarea>
                             <a class="btn btn-sm btn-outline-primary w-100">Change Profile Picture</a>
                         </div>
                     </div>
@@ -147,6 +146,12 @@
                             <label class="col-lg-6 control-label">City:</label>
                             <div class="col-lg-8">
                                 <input class="form-control" type="text" value="@profile.City" name="txtCity">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">Occupation:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="@profile.Occupation" name="txtOccupation">
                             </div>
                         </div>
                     </div>
@@ -215,13 +220,13 @@
                             <div class="col-lg-5">
                                 @foreach (var item in ViewBag.UserInterests)
                                 {
-                                    @if(item.isChecked == false)
+                                    @if (item.isChecked == false)
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" /> <label>@item.name</label> <br />
                                     }
                                     else
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
                                     }
                                 }
                                 <textarea name="txtareaOtherInterest" style="resize:none;">@ViewBag.UserOtherInterest</textarea>
@@ -237,11 +242,11 @@
                                 {
                                     @if (item.isChecked == false)
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name.ToString().Substring(1)</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" /> <label>@item.name.ToString().Substring(1)</label> <br />
                                     }
                                     else
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
                                     }
                                 }
                                 <textarea name="txtareaOtherDislike" style="resize:none;">@ViewBag.UserOtherDislike</textarea>

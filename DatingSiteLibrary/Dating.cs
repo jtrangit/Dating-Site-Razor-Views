@@ -227,7 +227,7 @@ namespace DatingSiteLibrary
             SqlParameter para15 = new SqlParameter("@profileImg", profileImg);
             para15.Direction = ParameterDirection.Input;
             para15.SqlDbType = SqlDbType.VarChar;
-            para15.Size = 50;
+            para15.Size = 512;
 
             SqlParameter para16 = new SqlParameter("@Name", name);
             para16.Direction = ParameterDirection.Input;

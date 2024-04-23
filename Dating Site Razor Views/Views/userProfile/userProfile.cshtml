@@ -149,6 +149,12 @@
                                 <input class="form-control" type="text" value="@profile.City" name="txtCity">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">Occupation:</label>
+                            <div class="col-lg-8">
+                                <input class="form-control" type="text" value="@profile.Occupation" name="txtOccupation">
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <br/>
@@ -217,11 +223,11 @@
                                 {
                                     @if(item.isChecked == false)
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" /> <label>@item.name</label> <br />
                                     }
                                     else
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
                                     }
                                 }
                                 <textarea name="txtareaOtherInterest" style="resize:none;">@ViewBag.UserOtherInterest</textarea>
@@ -237,11 +243,11 @@
                                 {
                                     @if (item.isChecked == false)
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" /> <label>@item.name.ToString().Substring(1)</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" /> <label>@item.name.ToString().Substring(1)</label> <br />
                                     }
                                     else
                                     {
-                                        <input type="checkbox" aria-label="@item.name" id="@item.name" value="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
+                                        <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" checked="checked" /> <label>@item.name</label> <br />
                                     }
                                 }
                                 <textarea name="txtareaOtherDislike" style="resize:none;">@ViewBag.UserOtherDislike</textarea>

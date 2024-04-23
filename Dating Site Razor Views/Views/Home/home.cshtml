@@ -70,7 +70,6 @@
     <!-- Navbar -->
     <div>
         <br />
-
             <form id="form1" method="post" asp-controller="DatingHome" asp-action="ListProfiles">
                 <section class="search-sec">
                     <div class="container">
@@ -112,79 +111,6 @@
                             </div>
                     </div>
                 </section>
-                @*
-                <div class="searchbar">
-                    <div class="row">
-                        <div class="col-lg-6 card-margin">
-                            <div class="card search-form">
-                                <div class="card-body p-0">
-                                    <div id="search-form">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <div class="row no-gutters">
-                                                    <div class="col-lg-3">
-                                                        <label>Minimum Age:</label>
-                                                        <input type="number" class="form-control" name="txtAgeMin" id="txtAgeMin" />
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <label>Maximum Age:</label>
-                                                        <input type="number" class="form-control" name="txtAgeMax" id="txtAgeMax" />
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <label>Gender:</label>
-                                                        <select name="ddlGender" id="ddlGender" class="form-control">
-                                                            <option value="">Select Gender</option>
-                                                            <option value="Male">Male</option>
-                                                            <option value="Female">Female</option>
-                                                            <option value="Non-Binary">Non-Binary</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <label>State:</label>
-                                                        <select class="form-control" name="ddlState" id="ddlState">
-                                                            <option value="">Select a state</option>
-                                                            <option value="Kentucky">Kentucky</option>
-                                                            <option value="Tennessee">Tennessee</option>
-                                                            <option value="Oregon">Oregon</option>
-                                                            <option value="California">California</option>
-                                                            <option value="Nebraska">Nebraska</option>
-                                                            <option value="North Dakota">North Dakota</option>
-                                                            <option value="Georgia">Georgia</option>
-                                                            <option value="Connecticut">Connecticut</option>
-                                                            <option value="Texas">Texas</option>
-                                                            <option value="Massachusetts">Massachusetts</option>
-                                                            <option value="Florida">Florida</option>
-                                                            <option value="Alabama">Alabama</option>
-                                                            <option value="Pennsylvania">Pennsylvania</option>
-                                                            <option value="South Carolina">South Carolina</option>
-                                                            <option value="District of Columbia">District of Columbia</option>
-                                                            <option value="Idaho">Idaho</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row no-gutters mt-2">
-                                                    <div class="col-lg-3">
-                                                        <label>Commitment:</label>
-                                                        <select name="ddlCommitment" id="ddlCommitment" class="form-control">
-                                                            <option value="">Select Commitment</option>
-                                                            <option value="Platonic">Platonic</option>
-                                                            <option value="Married">Married</option>
-                                                            <option value="Relationship">Relationship</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-lg-3">
-                                                        <button type="submit" id="btnSearchForMatches" class="btn btn-primary">Search</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                *@
             </form>
             @if (Model == null)
             {
