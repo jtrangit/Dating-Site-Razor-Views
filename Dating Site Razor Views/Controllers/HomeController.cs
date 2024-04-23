@@ -52,14 +52,10 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View("~/Views/Home/userProfile.cshtml");
         }
-
         public IActionResult Logout()
         {
-
             HttpContext.Session.Clear();
-
-
-            return View("~/Views/Home/login.cshtml");
+            return RedirectToAction("Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
