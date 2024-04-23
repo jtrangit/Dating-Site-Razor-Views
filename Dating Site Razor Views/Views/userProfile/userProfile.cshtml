@@ -220,7 +220,7 @@
                             <div class="col-lg-5">
                                 @foreach (var item in ViewBag.UserInterests)
                                 {
-                                    @if(item.isChecked == false)
+                                    @if (item.isChecked == false)
                                     {
                                         <input type="checkbox" aria-label="@item.name" id="@item.name" name="@item.name" /> <label>@item.name</label> <br />
                                     }

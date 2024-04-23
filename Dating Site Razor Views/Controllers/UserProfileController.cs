@@ -382,7 +382,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Anime", isChecked = false });
+                interests.Add(new UserInterests { name = "Anime", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Manga"] == DBNull.Value)
@@ -395,7 +395,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Manga", isChecked = false });
+                interests.Add(new UserInterests { name = "Manga", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Books"] == DBNull.Value)
@@ -408,7 +408,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Books", isChecked = false });
+                interests.Add(new UserInterests { name = "Books", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Video Games"] == DBNull.Value)
@@ -421,7 +421,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Video Games", isChecked = false });
+                interests.Add(new UserInterests { name = "Video Games", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Sports"] == DBNull.Value)
@@ -434,7 +434,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Sports", isChecked = false });
+                interests.Add(new UserInterests { name = "Sports", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Gym"] == DBNull.Value)
@@ -447,7 +447,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Gym", isChecked = false });
+                interests.Add(new UserInterests { name = "Gym", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Cooking"] == DBNull.Value)
@@ -460,7 +460,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Cooking", isChecked = false });
+                interests.Add(new UserInterests { name = "Cooking", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Martial Arts"] == DBNull.Value)
@@ -473,7 +473,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Martial Arts", isChecked = false });
+                interests.Add(new UserInterests { name = "Martial Arts", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Art"] == DBNull.Value)
@@ -486,7 +486,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Art", isChecked = false });
+                interests.Add(new UserInterests { name = "Art", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Hiking"] == DBNull.Value)
@@ -499,7 +499,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Hiking", isChecked = false });
+                interests.Add(new UserInterests { name = "Hiking", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Partying"] == DBNull.Value)
@@ -512,7 +512,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Partying", isChecked = false });
+                interests.Add(new UserInterests { name = "Partying", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Music"] == DBNull.Value)
@@ -525,7 +525,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Music", isChecked = false });
+                interests.Add(new UserInterests { name = "Music", isChecked = true });
             }
 
             if (ds.Tables[0].Rows[0]["Dancing"] == DBNull.Value)
@@ -538,7 +538,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                interests.Add(new UserInterests { name = "Dancing", isChecked = false });
+                interests.Add(new UserInterests { name = "Dancing", isChecked = true });
             }
             
             if (ds.Tables[0].Rows[0]["Other"] == DBNull.Value || ds.Tables[0].Rows[0]["Other"].Equals(""))
@@ -907,7 +907,13 @@ namespace Dating_Site_Razor_Views.Controllers
             Debug.WriteLine(profilePic);
             Dating updateProfile = new Dating();
             updateProfile.updateProfile(accID, address, state, city, email, gender, age, height, weight, profilePic, commitment, desc, pnumber, occupation, vis, name);
-            
+
+            Dating updateProfileQuestions = new Dating();
+            updateProfileQuestions.updateProfileQuestions(accID, q1, q2, q3);
+
+            Dating updateInterests = new Dating();
+            updateInterests.updateInterests(accID, iMovies, iTV, iAnime, iManga, iBooks, iVideoGames, iSports, iGym, iCooking, iMartialArts, iArt, iHiking, iPartying, iMusic, iDancing, otherInterest);
+
             return RedirectToAction("Home", "DatingHome");
         }
 
@@ -917,6 +923,49 @@ namespace Dating_Site_Razor_Views.Controllers
             Debug.WriteLine(Request.Form["txtGallery"].ToString());
 
             return RedirectToAction("UserProfile", "UserProfile");
+        }
+
+        public IActionResult Home()
+        {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
+            //States
+            var stateList = new ArrayList()
+            {
+                "Alabama", "Alaska", "American Samoa", "Arizona", "Arkansas",
+                "California", "Colorado", "Connecticut", "Delaware", "District of Columbia",
+                "Federated States of Micronesia", "Florida",
+                "Georgia", "Guam",
+                "Hawaii",
+                "Idaho", "Illinois", "Indiana", "Iowa",
+                "Kansas", "Kentucky",
+                "Louisiana",
+                "Maine", "Marshall Islands", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana",
+                "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Northern Mariana Islands",
+                "Ohio", "Oklahoma", "Oregon",
+                "Palau", "Pennsylvania", "Puerto Rico",
+                "Rhode Island",
+                "South Carolina", "South Dakota",
+                "Tennessee", "Texas",
+                "Utah",
+                "Vermont", "Virgin Island", "Virginia",
+                "Washington", "West Virginia", "Wisconsin", "Wyoming"
+            };
+
+            //create a select list item for each state
+            List<SelectListItem> listOfStates = new List<SelectListItem>();
+
+            foreach (string theState in stateList)
+            {
+                listOfStates.Add(new SelectListItem { Value = theState, Text = theState });
+            }
+
+            ViewBag.SearchStateOptions = listOfStates;
+
+            return View("~/Views/Home/home.cshtml");
         }
     }
 }

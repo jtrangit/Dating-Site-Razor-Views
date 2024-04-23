@@ -282,7 +282,7 @@ namespace DatingSiteLibrary
             return objDB.GetDataSet(objCommand);
         }
 
-        public void updateInterests(int accountID, bool movies, bool tv, bool anime, bool manga, bool books, bool games, bool sports, bool gym, bool cooking, bool martial, bool art, bool hiking, bool partying, bool music, bool dancing)
+        public void updateInterests(int accountID, bool movies, bool tv, bool anime, bool manga, bool books, bool games, bool sports, bool gym, bool cooking, bool martial, bool art, bool hiking, bool partying, bool music, bool dancing, string other)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "updateInterests"; //stored procedure for updating an account's interests
@@ -351,6 +351,11 @@ namespace DatingSiteLibrary
             para16.Direction = ParameterDirection.Input;
             para16.SqlDbType = SqlDbType.Bit;
 
+            SqlParameter para17 = new SqlParameter("@other", other);
+            para17.Direction = ParameterDirection.Input;
+            para17.SqlDbType = SqlDbType.VarChar;
+            para17.Size = 256;
+
             objCommand.Parameters.Add(para1);
             objCommand.Parameters.Add(para2);
             objCommand.Parameters.Add(para3);
@@ -367,6 +372,7 @@ namespace DatingSiteLibrary
             objCommand.Parameters.Add(para14);
             objCommand.Parameters.Add(para15);
             objCommand.Parameters.Add(para16);
+            objCommand.Parameters.Add(para17);
 
             objDB.GetDataSet(objCommand);
         }
@@ -1063,6 +1069,37 @@ namespace DatingSiteLibrary
             objCommand.Parameters.Add(para3);
             objCommand.Parameters.Add(para4);
 
+            objDB.GetDataSet(objCommand);
+        }
+
+        public void updateProfileQuestions(int accID, string q1, string q2, string q3)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "updateProfileQuestions"; //stored procedure for getting all dating profile info with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            SqlParameter para2 = new SqlParameter("@q1", q1);
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.VarChar;
+            para2.Size = 300;
+
+            SqlParameter para3 = new SqlParameter("@q2", q2);
+            para3.Direction = ParameterDirection.Input;
+            para3.SqlDbType = SqlDbType.VarChar;
+            para3.Size = 300;
+
+            SqlParameter para4 = new SqlParameter("@q3", q3);
+            para4.Direction = ParameterDirection.Input;
+            para4.SqlDbType = SqlDbType.VarChar;
+            para4.Size = 300;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(para3);
+            objCommand.Parameters.Add(para4);
             objDB.GetDataSet(objCommand);
         }
     }
