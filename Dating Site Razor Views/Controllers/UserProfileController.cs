@@ -182,7 +182,54 @@ namespace Dating_Site_Razor_Views.Controllers
                 accVisible = false;
                 visible = "Not Visible";
             }
-            
+
+            //get the profile questions
+            Dating profQuestions = new Dating();
+            DataSet theQuestions = new DataSet();
+
+            theQuestions = profQuestions.getProfileQuestions(accID);
+
+            string q1;
+            string q2;
+            string q3;
+
+            if (theQuestions.Tables[0].Rows[0]["Question1"] == DBNull.Value)
+            {
+                q1 = "Not saved";
+            }
+            else if (theQuestions.Tables[0].Rows[0]["Question1"].Equals(null))
+            {
+                q1 = "Not saved";
+            }
+            else
+            {
+                q1 = (string)theQuestions.Tables[0].Rows[0]["Question1"];
+            }
+            if (theQuestions.Tables[0].Rows[0]["Question2"] == DBNull.Value)
+            {
+                q2 = "Not saved";
+            }
+            else if (theQuestions.Tables[0].Rows[0]["Question2"].Equals(null))
+            {
+                q2 = "Not saved";
+            }
+            else
+            {
+                q2 = theQuestions.Tables[0].Rows[0]["Question2"].ToString();
+            }
+            if (theQuestions.Tables[0].Rows[0]["Question3"] == DBNull.Value)
+            {
+                q3 = "Not saved";
+            }
+            else if (theQuestions.Tables[0].Rows[0]["Question3"].Equals(null))
+            {
+                q3 = "Not saved";
+            }
+            else
+            {
+                q3 = theQuestions.Tables[0].Rows[0]["Question3"].ToString();
+            }
+
             EditProfile editProfile = new EditProfile();
             editProfile.FirstName = firstName;
             editProfile.LastName = lastName;
@@ -200,6 +247,9 @@ namespace Dating_Site_Razor_Views.Controllers
             editProfile.PhoneNumber = phoneNumber;
             editProfile.Email = email;
             editProfile.Address = address;
+            editProfile.Question1 = q1;
+            editProfile.Question2 = q2;
+            editProfile.Question3 = q3;
 
             List<EditProfile> theProfile = new List<EditProfile>();
             theProfile.Add(editProfile);
@@ -767,7 +817,9 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult UpdateUserProfile()
         {
-            return View("~/Views/Home/home.cshtml");
+            //string fname = Request.Form[""];
+
+            return RedirectToAction("Home", "DatingHome");
         }
 
         [HttpPost]
