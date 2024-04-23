@@ -12,6 +12,7 @@ namespace Dating_Site_Razor_Views.Controllers
         [HttpPost]
         public IActionResult AuthenticateUser()
         {
+
             //get the credentials that the user typed
             string username = Request.Form["Credential.Username"].ToString();
             string password = Request.Form["Credential.Password"].ToString();

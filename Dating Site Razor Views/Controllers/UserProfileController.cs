@@ -14,6 +14,10 @@ namespace Dating_Site_Razor_Views.Controllers
     {
         public IActionResult UserProfile()
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
             int accID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
 
             Dating dating = new Dating();
