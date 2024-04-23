@@ -3,14 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
-
-
 namespace Dating_Site_Razor_Views.Controllers
 {
     public class HomeController : Controller
     {
-
-
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -38,20 +34,32 @@ namespace Dating_Site_Razor_Views.Controllers
             return View("~/Views/Home/Register.cshtml");
         }
 
+
         public IActionResult Home()
         {
             return View("~/Views/Home/home.cshtml");
         }
 
+
         public IActionResult ViewProfile()
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View("~/Views/Home/viewProfile.cshtml");
         }
 
+
         public IActionResult UserProfile()
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
             return View("~/Views/Home/userProfile.cshtml");
         }
+
         public IActionResult Logout()
         {
             HttpContext.Session.Clear();
@@ -63,6 +71,5 @@ namespace Dating_Site_Razor_Views.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }

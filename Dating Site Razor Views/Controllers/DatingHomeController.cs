@@ -13,6 +13,11 @@ namespace Dating_Site_Razor_Views.Controllers
     {
         public IActionResult Home()
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             //States
             var stateList = new ArrayList()
             {
