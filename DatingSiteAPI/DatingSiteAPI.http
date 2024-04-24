@@ -1,0 +1,7 @@
+POST {{DatingSiteAPI_HostAddress}}/api/login/authenticateuser
+Content-Type: application/json
+
+{
+    "Username": "your_username",
+    "Password": "your_password"
+}
