@@ -3,6 +3,7 @@ using Dating_Site_Razor_Views.Views.Likes;
 using DatingSiteLibrary;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using System.Diagnostics;
 using System.Numerics;
 
 namespace Dating_Site_Razor_Views.Controllers
@@ -139,6 +140,30 @@ namespace Dating_Site_Razor_Views.Controllers
             ViewBag.ReceivedLikes = receivedLikes;
 
             return View("~/Views/Likes/Likes.cshtml");
+        }
+
+        public IActionResult Match(string accID)
+        {
+            int initiator = Convert.ToInt32(accID);
+            int recipient = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
+
+            Dating match = new Dating();
+            Debug.WriteLine("initiator: " + initiator + ", recipient: " + recipient);
+            match.createMatch(initiator, recipient);
+
+            return RedirectToAction("Likes", "Likes");
+        }
+
+        public IActionResult DenyLike(string accID)
+        {
+            int initiator = Convert.ToInt32(accID);
+            int recipient = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
+
+            Dating delete = new Dating();
+            Debug.WriteLine("initiator: " + initiator + ", recipient: " + recipient);
+            delete.deleteLikes(initiator, recipient);
+
+            return RedirectToAction("Likes", "Likes");
         }
     }
 }

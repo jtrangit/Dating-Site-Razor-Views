@@ -32,7 +32,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center mx-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link mx-2" href="@Url.Action("Home", "DatingHome")"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                                    <a class="nav-link mx-2" href="@Url.Action("Home", "DatingHome")"><i class="fas fa-plus-circle pe-2"></i>Home &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
@@ -41,7 +41,7 @@
                                     <a class="nav-link mx-2" href="@Url.Action("Likes", "Likes")">My Likes &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
+                                    <a class="nav-link mx-2" href="@Url.Action("Matches", "Matches")">My Matches &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
@@ -61,8 +61,6 @@
                     </div>
                 </div>
             </div>
-
-        </div>
     </nav>
     <!-- Navbar -->
     <center>
@@ -118,52 +116,55 @@
         <h1>Received Likes</h1>
     </center>
     <hr />
-        @if (ViewBag.ReceivedLikes == null || ViewBag.ReceivedLikes.Count == 0)
-        {
-            <center>
-                <label>You have not received any likes yet.</label>
-            </center>
-        }
-        @foreach (var like in ViewBag.ReceivedLikes)
-        {
-            <div class="container mt-5 d-flex justify-content-center">
+        <form id="likes" method="post">
+                @if (ViewBag.ReceivedLikes == null || ViewBag.ReceivedLikes.Count == 0)
+                {
+                    <center>
+                        <label>You have not received any likes yet.</label>
+                    </center>
+                }
+                @foreach (var like in ViewBag.ReceivedLikes)
+                {
+                    <div class="container mt-5 d-flex justify-content-center">
 
-                <div class="card p-3">
+                        <div class="card p-3">
 
-                    <div class="d-flex align-items-center">
+                            <div class="d-flex align-items-center">
 
-                        <div class="image">
-                            <img src="@like.profilePic" class="rounded" width="155">
-                        </div>
+                                <div class="image">
+                                    <img src="@like.profilePic" class="rounded" width="155">
+                                </div>
 
-                        <div class="ml-3 w-100">
+                                <div class="ml-3 w-100">
 
-                            <h4 class="mb-0 mt-0 description">@like.name</h4>
+                                    <h4 class="mb-0 mt-0 description">@like.name</h4>
 
-                            <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white profileInfo">
+                                    <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white profileInfo">
 
-                                <div class="d-flex flex-column">
+                                        <div class="d-flex flex-column">
 
-                                    <span class="status">Status</span>
-                                    <span class="status2">@like.status</span>
+                                            <span class="status">Status</span>
+                                            <span class="status2">@like.status</span>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="button mt-2 d-flex flex-row align-items-center">
+                                        <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@like.initiator" asp-controller="Likes" asp-action="Match">Accept</a>
+                                        &nbsp;
+                                        <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@like.initiator" asp-controller="Likes" asp-action="DenyLike">Deny</a>
+                                    </div>
 
                                 </div>
 
                             </div>
 
-                            <div class="button mt-2 d-flex flex-row align-items-center">
-                                <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@like.initiator">Accept</a>
-                                &nbsp;
-                                <a class="btn btn-sm btn-outline-primary w-100" asp-route-accID="@like.initiator">Deny</a>
-                            </div>
-
                         </div>
 
                     </div>
-
-                </div>
-
-            </div>
-        }
+                }
+        </form>
+        
     </form>
 </body>
