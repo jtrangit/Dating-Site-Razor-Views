@@ -971,7 +971,7 @@ namespace DatingSiteLibrary
         }
 
 
-        public DataSet SearchProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment)
+        public DataSet SearchProfiles(int? txtAgeMin, int? txtAgeMax, string ddlGender, string ddlState, string ddlCommitment, int accountID)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
             objCommand.CommandText = "searchProfiles";
@@ -982,6 +982,7 @@ namespace DatingSiteLibrary
             objCommand.Parameters.AddWithValue("@ddlGender", string.IsNullOrEmpty(ddlGender) ? (object)DBNull.Value : ddlGender);
             objCommand.Parameters.AddWithValue("@ddlState", string.IsNullOrEmpty(ddlState) ? (object)DBNull.Value : ddlState);
             objCommand.Parameters.AddWithValue("@ddlCommitment", string.IsNullOrEmpty(ddlCommitment) ? (object)DBNull.Value : ddlCommitment);
+            objCommand.Parameters.AddWithValue("@accountID", accountID);
 
             return objDB.GetDataSet(objCommand);
         }

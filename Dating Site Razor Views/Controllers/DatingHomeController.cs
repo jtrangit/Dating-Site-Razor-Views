@@ -97,11 +97,13 @@ namespace Dating_Site_Razor_Views.Controllers
 
             Debug.WriteLine("ListProfiles action method called.");
 
+            int accID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
+
             // Create an instance of the Dating class
             Dating dating = new Dating();
 
             // Call the new stored procedure with the provided filtering criteria
-            DataSet searchResults = dating.SearchProfiles(txtAgeMin, txtAgeMax, ddlGender, ddlState, ddlCommitment);
+            DataSet searchResults = dating.SearchProfiles(txtAgeMin, txtAgeMax, ddlGender, ddlState, ddlCommitment, accID);
 
             List<Profiles> profilesList = new List<Profiles>();
 
