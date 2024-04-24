@@ -36,7 +36,7 @@
                                 <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="btn btn-sm btn-outline-primary w-100" asp-controller="DatingHome" asp-action="Home">My Profile &nbsp;&nbsp;</a>
+                                <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link mx-2" href="#">My Likes &nbsp &nbsp</a>
@@ -176,6 +176,10 @@
                                 @Html.DropDownList("ddlCommitment", (IEnumerable<SelectListItem>)ViewBag.CommitmentOptions)
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label class="col-lg-6 control-label">Add photos to your photo gallery.</label>
+                            <a class="btn btn-sm btn-outline-primary w-100" asp-controller="Gallery" asp-action="Gallery">Head To Gallery</a>
+                        </div>
                     </div>
                 </div>
 
@@ -269,17 +273,12 @@
 
             </div>
             <hr>
-            <div class="row">
-                <div class="col-md-24">
-                    <div class="col-md-3 text-center">
-                        <button class="btn btn-sm btn-outline-primary w-100" type="submit">Update Profile</button>
-                        <a class="btn btn-sm btn-outline-primary w-100" asp-controller="DatingHome" asp-action="Home">Back To Home</a>
-                    </div>
+            <center>
+                <div class="row">
+                    <button class="btn btn-sm btn-outline-primary w-100" type="submit">Update Profile</button>
+                    <a class="btn btn-sm btn-outline-primary w-100" asp-controller="DatingHome" asp-action="Home">Back To Home</a>
                 </div>
-            </div>
-            
-
-
+            </center>
         </div>
         <!-- Edit User Profile-->
     }

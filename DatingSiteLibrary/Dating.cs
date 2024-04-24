@@ -1075,7 +1075,7 @@ namespace DatingSiteLibrary
         public void updateProfileQuestions(int accID, string q1, string q2, string q3)
         {
             objCommand.CommandType = CommandType.StoredProcedure;
-            objCommand.CommandText = "updateProfileQuestions"; //stored procedure for getting all dating profile info with accountID
+            objCommand.CommandText = "updateProfileQuestions"; //update an account's profile questions
 
             SqlParameter para1 = new SqlParameter("@accountID", accID);
             para1.Direction = ParameterDirection.Input;
@@ -1100,6 +1100,153 @@ namespace DatingSiteLibrary
             objCommand.Parameters.Add(para2);
             objCommand.Parameters.Add(para3);
             objCommand.Parameters.Add(para4);
+            objDB.GetDataSet(objCommand);
+        }
+
+        public void updateDislikes(int accountID, bool movies, bool tv, bool anime, bool manga, bool books, bool games, bool sports, bool gym, bool cooking, bool martial, bool art, bool hiking, bool partying, bool music, bool dancing, string other)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "updateDislikes"; //stored procedure for updating an account's dislikes
+
+            SqlParameter para1 = new SqlParameter("@accountID", accountID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            SqlParameter para2 = new SqlParameter("@movies", movies);
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para3 = new SqlParameter("@tv", tv);
+            para3.Direction = ParameterDirection.Input;
+            para3.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para4 = new SqlParameter("@anime", anime);
+            para4.Direction = ParameterDirection.Input;
+            para4.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para5 = new SqlParameter("@manga", manga);
+            para5.Direction = ParameterDirection.Input;
+            para5.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para6 = new SqlParameter("@books", books);
+            para6.Direction = ParameterDirection.Input;
+            para6.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para7 = new SqlParameter("@videoGames", games);
+            para7.Direction = ParameterDirection.Input;
+            para7.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para8 = new SqlParameter("@sports", sports);
+            para8.Direction = ParameterDirection.Input;
+            para8.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para9 = new SqlParameter("@gym", gym);
+            para9.Direction = ParameterDirection.Input;
+            para9.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para10 = new SqlParameter("@cooking", cooking);
+            para10.Direction = ParameterDirection.Input;
+            para10.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para11 = new SqlParameter("@martialarts", martial);
+            para11.Direction = ParameterDirection.Input;
+            para11.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para12 = new SqlParameter("@art", art);
+            para12.Direction = ParameterDirection.Input;
+            para12.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para13 = new SqlParameter("@hiking", hiking);
+            para13.Direction = ParameterDirection.Input;
+            para13.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para14 = new SqlParameter("@partying", partying);
+            para14.Direction = ParameterDirection.Input;
+            para14.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para15 = new SqlParameter("@music", music);
+            para15.Direction = ParameterDirection.Input;
+            para15.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para16 = new SqlParameter("@dancing", dancing);
+            para16.Direction = ParameterDirection.Input;
+            para16.SqlDbType = SqlDbType.Bit;
+
+            SqlParameter para17 = new SqlParameter("@other", other);
+            para17.Direction = ParameterDirection.Input;
+            para17.SqlDbType = SqlDbType.VarChar;
+            para17.Size = 256;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(para3);
+            objCommand.Parameters.Add(para4);
+            objCommand.Parameters.Add(para5);
+            objCommand.Parameters.Add(para6);
+            objCommand.Parameters.Add(para7);
+            objCommand.Parameters.Add(para8);
+            objCommand.Parameters.Add(para9);
+            objCommand.Parameters.Add(para10);
+            objCommand.Parameters.Add(para11);
+            objCommand.Parameters.Add(para12);
+            objCommand.Parameters.Add(para13);
+            objCommand.Parameters.Add(para14);
+            objCommand.Parameters.Add(para15);
+            objCommand.Parameters.Add(para16);
+            objCommand.Parameters.Add(para17);
+
+            objDB.GetDataSet(objCommand);
+        }
+    
+        public void createPhotoGallery(int accountID, string photoUrl)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "createPhotoGallery"; //stored procedure for creating an empty interests record keyed with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accountID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            SqlParameter para2 = new SqlParameter("@photoUrl", photoUrl);
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.VarChar;
+            para2.Size = 512;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objDB.GetDataSet(objCommand);
+        }
+
+        public DataSet getPhotoGallery(int accountID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getPhotoGallery"; //stored procedure for creating an empty interests record keyed with accountID
+
+            SqlParameter para1 = new SqlParameter("@accountID", accountID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            objCommand.Parameters.Add(para1);
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public void deletePhotoInGallery(int accountID, string photoUrl)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "deletePhotoInGallery"; //stored procedure for updating a Profile
+
+            SqlParameter para1 = new SqlParameter("@accountID", accountID);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.Int;
+
+            SqlParameter para2 = new SqlParameter("@photoUrl", photoUrl);
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.VarChar;
+            para2.Size = 512;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+
             objDB.GetDataSet(objCommand);
         }
     }

@@ -601,7 +601,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DAnime", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DAnime", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Manga"] == DBNull.Value)
@@ -614,7 +614,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DManga", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DManga", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Books"] == DBNull.Value)
@@ -627,7 +627,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DBooks", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DBooks", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Video Games"] == DBNull.Value)
@@ -640,7 +640,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DVideo Games", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DVideo Games", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Sports"] == DBNull.Value)
@@ -653,7 +653,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DSports", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DSports", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Gym"] == DBNull.Value)
@@ -666,7 +666,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DGym", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DGym", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Cooking"] == DBNull.Value)
@@ -679,7 +679,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DCooking", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DCooking", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Martial Arts"] == DBNull.Value)
@@ -692,7 +692,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DMartial Arts", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DMartial Arts", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Art"] == DBNull.Value)
@@ -705,7 +705,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DArt", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DArt", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Hiking"] == DBNull.Value)
@@ -718,7 +718,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DHiking", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DHiking", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Partying"] == DBNull.Value)
@@ -731,7 +731,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DPartying", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DPartying", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Music"] == DBNull.Value)
@@ -744,7 +744,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DMusic", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DMusic", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Dancing"] == DBNull.Value)
@@ -757,7 +757,7 @@ namespace Dating_Site_Razor_Views.Controllers
             }
             else //BIT value of 1 is true 
             {
-                dislikes.Add(new UserInterests { name = "DDancing", isChecked = false });
+                dislikes.Add(new UserInterests { name = "DDancing", isChecked = true });
             }
 
             if (ds2.Tables[0].Rows[0]["Other"] == DBNull.Value || ds2.Tables[0].Rows[0]["Other"].Equals(""))
@@ -904,25 +904,23 @@ namespace Dating_Site_Razor_Views.Controllers
                 otherDislike = "";
             }
 
-            Debug.WriteLine(profilePic);
+            //update profile table
             Dating updateProfile = new Dating();
             updateProfile.updateProfile(accID, address, state, city, email, gender, age, height, weight, profilePic, commitment, desc, pnumber, occupation, vis, name);
 
+            //update profile questions table
             Dating updateProfileQuestions = new Dating();
             updateProfileQuestions.updateProfileQuestions(accID, q1, q2, q3);
 
+            //update interests table
             Dating updateInterests = new Dating();
             updateInterests.updateInterests(accID, iMovies, iTV, iAnime, iManga, iBooks, iVideoGames, iSports, iGym, iCooking, iMartialArts, iArt, iHiking, iPartying, iMusic, iDancing, otherInterest);
 
+            //update dislikes table
+            Dating updateDislikes = new Dating();
+            updateDislikes.updateDislikes(accID, dMovies, dTV, dAnime, dManga, dBooks, dVideoGames, dSports, dGym, dCooking, dMartialArts, dArt, dHiking, dPartying, dMusic, dDancing, otherDislike);
+
             return RedirectToAction("Home", "DatingHome");
-        }
-
-        [HttpPost]
-        public IActionResult AddToPhotoGallery()
-        {
-            Debug.WriteLine(Request.Form["txtGallery"].ToString());
-
-            return RedirectToAction("UserProfile", "UserProfile");
         }
 
         public IActionResult Home()
