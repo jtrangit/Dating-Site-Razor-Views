@@ -12,17 +12,40 @@ a.navbarlinks {
     text-decoration: none;
 }
 
-    a.navbarlinks:hover {
-        text-decoration: none;
-    }
+a.navbarlinks:hover {
+    text-decoration: none;
+}
 
-.likes {
-    display: inline-block;
-    align-items: center;
+.card-margin {
+    margin-bottom: 2rem;
+}
+
+.image {
     padding: 10px;
+}
+
+.description {
+    text-wrap: pretty;
     inline-size: 300px;
-    overflow: hidden;
-    border: solid;
-    border-color: whitesmoke;
-    border-width: 2px;
+}
+
+.card {
+    width: 600px;
+    border: none;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.status {
+    font-size: 10px;
+    color: #a1aab9;
+}
+
+.status2 {
+    font-weight: 500;
+}
+
+.profileInfo {
+    background: #f2f5f8 !important;
+    color: #000 !important;
 }

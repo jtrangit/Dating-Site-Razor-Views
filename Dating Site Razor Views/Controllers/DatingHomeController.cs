@@ -185,6 +185,7 @@ namespace Dating_Site_Razor_Views.Controllers
             profile.Question1 = q1;
             profile.Question2 = q2;
             profile.Question3 = q3;
+            profile.accountID = profID;
 
             //private info that will be hidden until the two profiles have a date
             string email = (string)theProfile.Tables[0].Rows[0]["Email"];
@@ -240,6 +241,437 @@ namespace Dating_Site_Razor_Views.Controllers
             }
 
             ViewBag.ViewPhotoGallery = viewPhotos;
+
+            //get the profile's interests
+            //Get the interests
+            Dating userInterests = new Dating();
+            DataSet ds = new DataSet();
+            List<string> interests = new List<string>();
+
+            ds = userInterests.getInterests(profID);
+
+            //null logic for the table, if null default to 0 so the empty user interests stays empty
+            if (ds.Tables[0].Rows[0]["Movies"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Movies"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Movies");
+            }
+
+            if (ds.Tables[0].Rows[0]["TV"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["TV"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("TV");
+            }
+            ////////////////////////////////////////////////////////////
+            if (ds.Tables[0].Rows[0]["Anime"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Anime"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Anime");
+            }
+
+            if (ds.Tables[0].Rows[0]["Manga"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Manga"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Manga");
+            }
+
+            if (ds.Tables[0].Rows[0]["Books"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Books"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Books");
+            }
+
+            if (ds.Tables[0].Rows[0]["Video Games"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Video Games"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Video Games");
+            }
+
+            if (ds.Tables[0].Rows[0]["Sports"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Sports"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Sports");
+            }
+
+            if (ds.Tables[0].Rows[0]["Gym"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Gym"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Gym");
+            }
+
+            if (ds.Tables[0].Rows[0]["Cooking"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Cooking"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Cooking");
+            }
+
+            if (ds.Tables[0].Rows[0]["Martial Arts"] == DBNull.Value)
+            {
+                //do nothing;
+            }
+            else if (ds.Tables[0].Rows[0]["Martial Arts"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Martial Arts");
+            }
+
+            if (ds.Tables[0].Rows[0]["Art"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Art"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Art");
+            }
+
+            if (ds.Tables[0].Rows[0]["Hiking"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Hiking"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Hiking");
+            }
+
+            if (ds.Tables[0].Rows[0]["Partying"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Partying"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Partying");
+            }
+
+            if (ds.Tables[0].Rows[0]["Music"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Music"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Music");
+            }
+
+            if (ds.Tables[0].Rows[0]["Dancing"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds.Tables[0].Rows[0]["Dancing"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                interests.Add("Dancing");
+            }
+
+            if (ds.Tables[0].Rows[0]["Other"] == DBNull.Value || ds.Tables[0].Rows[0]["Other"].Equals(""))
+            {
+                //do nothing
+                //userOtherInterest = "";
+            }
+            else
+            {
+                interests.Add(ds.Tables[0].Rows[0]["Other"].ToString());
+            }
+
+            ViewBag.UserInterests = interests;
+
+            //Get Dislikes
+            Dating userDislikes = new Dating();
+            DataSet ds2 = new DataSet();
+            List<string> dislikes = new List<string>();
+
+            ds2 = userDislikes.getDatingDislikes(profID);
+
+            //null logic for the table, if null default to 0 so the empty user interests stays empty
+            if (ds2.Tables[0].Rows[0]["Movies"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Movies"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Movies");
+            }
+
+            if (ds2.Tables[0].Rows[0]["TV"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["TV"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("TV");
+            }
+            ////////////////////////////////////////////////////////////
+            if (ds2.Tables[0].Rows[0]["Anime"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Anime"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Anime");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Manga"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Manga"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Manga");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Books"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Books"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Books");
+            }
+
+            if (ds.Tables[0].Rows[0]["Video Games"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Video Games"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Video Games");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Sports"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Sports"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Sports");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Gym"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Gym"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Gym");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Cooking"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Cooking"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Cooking");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Martial Arts"] == DBNull.Value)
+            {
+                //do nothing;
+            }
+            else if (ds2.Tables[0].Rows[0]["Martial Arts"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Martial Arts");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Art"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Art"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Art");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Hiking"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Hiking"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Hiking");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Partying"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Partying"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Partying");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Music"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Music"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Music");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Dancing"] == DBNull.Value)
+            {
+                //do nothing
+            }
+            else if (ds2.Tables[0].Rows[0]["Dancing"].Equals(false)) //the columns are BITS so they are either NULL, 0, or 1. 0 meaning false
+            {
+                //do nothing
+            }
+            else //BIT value of 1 is true 
+            {
+                dislikes.Add("Dancing");
+            }
+
+            if (ds2.Tables[0].Rows[0]["Other"] == DBNull.Value || ds2.Tables[0].Rows[0]["Other"].Equals(""))
+            {
+                //do nothing
+                //userOtherInterest = "";
+            }
+            else
+            {
+                dislikes.Add(ds2.Tables[0].Rows[0]["Other"].ToString());
+            }
+
+            ViewBag.UserDislikes = dislikes;
 
             return View("~/Views/Home/viewProfile.cshtml", profile);
         }
@@ -1049,6 +1481,19 @@ namespace Dating_Site_Razor_Views.Controllers
             List<string> photos = new List<string>();
 
             return View("~/Views/Home/userProfile.cshtml", editProfile);
+        }
+
+        public ActionResult LikeProfile(int accID)
+        {
+            //create a like record between the user and the viewed profile
+            Dating like = new Dating();
+            int initiator = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
+            int recipient = accID;
+            bool status = false;
+
+            like.createLikeRequest(initiator, recipient, status);
+            //Debug.WriteLine("Profile " + initiator + " and Profile " + recipient + " have a like request");
+            return RedirectToAction("Likes", "Likes");
         }
     }
 }
