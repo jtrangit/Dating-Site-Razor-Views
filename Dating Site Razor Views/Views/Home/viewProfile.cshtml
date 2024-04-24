@@ -79,7 +79,7 @@
                             </div>
 
                             <button type="button" class="btn btn-success btn-sm w-sm waves-effect m-t-10 waves-light">Like</button>
-                            <button type="button" class="btn btn-danger btn-sm w-sm waves-effect m-t-10 waves-light">Back To Home</button>
+                            <a type="button" class="btn btn-danger btn-sm w-sm waves-effect m-t-10 waves-light" asp-controller="DatingHome" asp-action="Home">Back To Home</a>
 
                             <div class="text-left m-t-40">
                                 <br />
@@ -127,21 +127,39 @@
                                     <div class="m-t-30">
                                         <h5 class="text-primary m-b-5">We would get along if...</h5>
                                         <p class="text-muted font-13 m-b-0">
-                                            "..."
+                                            @profile.Question1
+                                        </p>
+                                    </div>
+                                    <div class="m-t-30">
+                                        <h5 class="text-primary m-b-5">On a day off I like to...</h5>
+                                        <p class="text-muted font-13 m-b-0">
+                                            @profile.Question2
+                                        </p>
+                                    </div>
+                                    <div class="m-t-30">
+                                        <h5 class="text-primary m-b-5">These are my dealbreakers...</h5>
+                                        <p class="text-muted font-13 m-b-0">
+                                            @profile.Question3
                                         </p>
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="tab-profile">
-                                    <div class="row">
-                                        <div class="col-sm-4">
-                                            <div class="gal-detail thumb">
-                                                <a href="#" class="image-popup" title="Screenshot-2">
-                                                    <img src="https://www.bootdey.com/image/400x300/008B8B/00000" class="thumb-img" alt="work-thumbnail">
-                                                </a>
-                                                <h4 class="text-center">Gallary Image</h4>
-                                                <div class="ga-border"></div>
-                                                <p class="text-muted text-center"><small>Photography</small></p>
-                                            </div>
+                                    <div class="photo-gallery">
+                                        <div class="row photos">
+
+                                            @if (ViewBag.ViewPhotoGallery == null || ViewBag.ViewPhotoGallery.Count == 0)
+                                            {
+                                                <p><em>You do not have any photos in your gallery.</em></p>
+                                            }
+                                            @foreach (var photo in ViewBag.ViewPhotoGallery)
+                                            {
+                                                <div class="gal-detail thumb col-sm-6 col-md-4 col-lg-3">
+                                                    <a href="@photo" data-lightbox="photos">
+                                                        <img class="img-fluid" src="@photo">
+                                                    </a>
+                                                </div>
+                                            }
+
                                         </div>
                                     </div>
                                 </div>

@@ -84,9 +84,7 @@
                     </form>
                 </div>
                 <form id="form3" method="post">
-                <div class="row photos">
-                    @{
-                        var count = 0;
+                    <div class="row photos">
                         @if (ViewBag.UserPhotoGallery == null || ViewBag.UserPhotoGallery.Count == 0)
                         {
                             <p><em>You do not have any photos in your gallery.</em></p>   
@@ -100,20 +98,10 @@
                                 <button class="btn btn-sm btn-outline-primary w-100" asp-route-removePhoto="@photo" asp-controller="Gallery" asp-action="RemoveFromGallery">Remove Photo</button>
                             </div>
                         }
-                    }
-                </div>
-                    @*
-                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/img/desk.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/img/desk.jpg"></a></div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/img/building.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/img/building.jpg"></a></div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/img/loft.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/img/loft.jpg"></a></div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/img/building.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/img/building.jpg"></a></div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/img/loft.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/img/loft.jpg"></a></div>
-                    <div class="col-sm-6 col-md-4 col-lg-3 item"><a href="assets/img/desk.jpg" data-lightbox="photos"><img class="img-fluid" src="assets/img/desk.jpg"></a></div>
-                    *@
-                    </form>
+                    </div>
+                </form>
                 </div>
             </div>
-        </div>
     </body>
     <!-- Photo Gallery-->
 </form>

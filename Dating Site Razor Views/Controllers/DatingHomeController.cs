@@ -149,6 +149,10 @@ namespace Dating_Site_Razor_Views.Controllers
 
             name = fullname.Split(' ');
 
+            Dating dating2 = new Dating();
+            DataSet profileQuestions = new DataSet();
+            profileQuestions = dating2.getProfileQuestions(profID);
+
             string firstName = name[0];
             string lastName = name[1];
             string profilePic = (string)theProfile.Tables[0].Rows[0]["ProfileImg"];
@@ -161,7 +165,10 @@ namespace Dating_Site_Razor_Views.Controllers
             string occupation = (string)theProfile.Tables[0].Rows[0]["Occupation"];
             string commitment = (string)theProfile.Tables[0].Rows[0]["Commitment"];
             string description = (string)theProfile.Tables[0].Rows[0]["Description"];
-            
+            string q1 = (string)profileQuestions.Tables[0].Rows[0]["Question1"];
+            string q2 = (string)profileQuestions.Tables[0].Rows[0]["Question2"];
+            string q3 = (string)profileQuestions.Tables[0].Rows[0]["Question3"];
+
             ViewedProfile profile = new ViewedProfile();
             profile.FirstName = firstName;
             profile.LastName = lastName;
@@ -175,6 +182,9 @@ namespace Dating_Site_Razor_Views.Controllers
             profile.Occupation = occupation;
             profile.Commitment = commitment;
             profile.Description = description;
+            profile.Question1 = q1;
+            profile.Question2 = q2;
+            profile.Question3 = q3;
 
             //private info that will be hidden until the two profiles have a date
             string email = (string)theProfile.Tables[0].Rows[0]["Email"];
@@ -204,6 +214,32 @@ namespace Dating_Site_Razor_Views.Controllers
             profile.TheProfile = viewedProf;
 
             ViewBag.ProfileBeingViewed = viewedProf;
+
+            //Photo gallery
+            Dating dating3 = new Dating();
+            DataSet photos = new DataSet();
+
+            photos = dating3.getPhotoGallery(profID);
+
+            List<string> viewPhotos = new List<string>();
+
+            if (photos != null)
+            {
+                foreach (DataTable dataTable in photos.Tables)
+                {
+                    foreach (DataRow row in dataTable.Rows)
+                    {
+                        if (row["PhotoUrl"] != DBNull.Value || row["PhotoUrl"] != null)
+                            viewPhotos.Add(row["PhotoUrl"].ToString());
+                    }
+                }
+            }
+            else
+            {
+                viewPhotos = null;
+            }
+
+            ViewBag.ViewPhotoGallery = viewPhotos;
 
             return View("~/Views/Home/viewProfile.cshtml", profile);
         }
