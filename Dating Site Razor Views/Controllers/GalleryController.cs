@@ -69,13 +69,13 @@ namespace Dating_Site_Razor_Views.Controllers
         }
 
         [HttpPost]
-        public ActionResult RemoveFromGallery(string imgPhotoInGallery)
+        public ActionResult RemoveFromGallery(string removePhoto)
         {
             int accID = Convert.ToInt32(HttpContext.Session.GetString("accountID"));
-            Debug.WriteLine("URL of photo being deleted: " + imgPhotoInGallery);
+            Debug.WriteLine("URL of photo being deleted: " + removePhoto);
 
             Dating dating = new Dating();
-            dating.deletePhotoInGallery(accID, imgPhotoInGallery);
+            dating.deletePhotoInGallery(accID, removePhoto);
             return RedirectToAction("Gallery", "Gallery");
         }
 
