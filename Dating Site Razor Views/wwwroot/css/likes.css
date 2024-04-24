@@ -1,0 +1,28 @@
+﻿body {
+    background-color: #565CCE;
+    padding-top: 65px;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+a.navbarlinks {
+    color: #000000;
+    text-decoration: none;
+}
+
+    a.navbarlinks:hover {
+        text-decoration: none;
+    }
+
+.likes {
+    display: inline-block;
+    align-items: center;
+    padding: 10px;
+    inline-size: 300px;
+    overflow: hidden;
+    border: solid;
+    border-color: whitesmoke;
+    border-width: 2px;
+}

@@ -1,0 +1,80 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http;
+@model List<Dating_Site_Razor_Views.Pages.Profiles>
+
+@{
+    Layout = "noNav";
+    ViewData["Title"] = "Home Page";
+}
+@section styles {
+    <link href="@Url.Content("~/css/home.css")" rel="stylesheet" type="text/css" />
+}
+@section scripts {
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+}
+<body>
+    <form id="form1" method="post">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light mb-4">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="#">My Likes &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2">
+                                        <i class="fas fa-heart pe-2" style="color:mediumblue">
+                                            Logged In as: @Context.Session.GetString("accountUsername")
+                                        </i>
+                                    </a>
+                                </li>
+                                <form>
+                                    <a href="@Url.Action("Logout", "Home")" class="btn btn-danger ml-2">Logout</a>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <!-- Navbar -->
+    <center>
+        <h1>Sent Likes</h1>
+    </center>
+    <hr />
+    <br/>
+    <br/>
+    <center>
+        <h1>Received Likes</h1>
+    </center>
+    <hr />
+
+    </form>
+</body>
