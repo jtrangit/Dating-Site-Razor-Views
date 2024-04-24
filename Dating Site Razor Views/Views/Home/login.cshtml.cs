@@ -21,11 +21,11 @@ namespace Dating_Site_Razor_Views.Pages
 
         public void OnGet()
         {
-            
+
         }
 
         public void OnPost()
-        { 
+        {
 
         }
     }
