@@ -15,6 +15,7 @@ namespace Dating_Site_Razor_Views.Controllers
 
         public IActionResult Matches()
         {
+            //matches
             int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
 
             DataTable populateTable = new DataTable();
@@ -71,6 +72,62 @@ namespace Dating_Site_Razor_Views.Controllers
             }
 
             ViewBag.Matched = matchee;
+
+            //sent dates
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn("Name", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("ProfileImg", typeof(string)));
+            dataTable.Columns.Add(new DataColumn("otherUserID", typeof(int)));
+
+            Dating sentDate = new Dating();
+            DataSet otherUserData = new DataSet();
+
+            otherUserData = sentDate.getDates(userID);
+
+            int datePartnerID;
+
+            for (int i = 0; i < otherUserData.Tables[0].Rows.Count; i++)
+            {
+                if (otherUserData.Tables[0].Rows[i]["User1"].Equals(userID))
+                {
+                    datePartnerID = Convert.ToInt32(otherUserData.Tables[0].Rows[i]["User2"]);
+                }
+                else
+                {
+                    datePartnerID = Convert.ToInt32(otherUserData.Tables[0].Rows[i]["User1"]);
+                }
+
+                Dating dateOtherUser = new Dating();
+                DataSet dateOtherInfo = new DataSet();
+
+                dateOtherInfo = dateOtherUser.getProfileInfo(datePartnerID);
+
+                string dateOtherName = (string)dateOtherInfo.Tables[0].Rows[0]["Name"];
+                string dateOtherProfilePic = (string)dateOtherInfo.Tables[0].Rows[0]["ProfileImg"];
+                
+                DataRow row = dataTable.NewRow();
+                row["Name"] = dateOtherName;
+                row["ProfileImg"] = dateOtherProfilePic;
+                row["otherUserID"] = datePartnerID;
+
+                dataTable.Rows.Add(row);
+            }
+
+            DataSet bindSentDate = new DataSet();
+            bindSentDate.Tables.Add(dataTable);
+
+            List<MatchedProfile> sentDates = new List<MatchedProfile>();
+
+            foreach (DataRow row in bindSentDate.Tables[0].Rows)
+            {
+                MatchedProfile sent = new MatchedProfile();
+                sent.Name = row["Name"].ToString();
+                sent.ProfileImg = row["ProfileImg"].ToString();
+                sent.otherUserID = Convert.ToInt32(row["otherUserID"]);
+                sentDates.Add(sent);
+            }
+
+            ViewBag.SentDates = sentDates;
 
             return View("~/Views/Matches/Matches.cshtml");
         }

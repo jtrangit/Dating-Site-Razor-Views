@@ -63,6 +63,7 @@
     <!-- Matches-->
     <h1>My Matches</h1>
     <hr />
+    <form id="matches" method="post">
         <div class="content">
             <div class="container">
                 <div class="row">
@@ -91,12 +92,42 @@
                 </div>
             </div>
         </div>
+    </form>
     <!-- Matches-->
 
+    <!-- Sent Date Requests -->
     <h1>Sent Dates</h1>
     <hr />
-
-    <!-- Sent Date Requests -->
+        <form id="sentDates" method="post">
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        @if (ViewBag.SentDates == null || ViewBag.SentDates.Count == 0)
+                        {
+                            <center>
+                                <label>You have no matches.</label>
+                            </center>
+                        }
+                        @foreach (var match in ViewBag.SentDates)
+                        {
+                            <div class="col-lg-4">
+                                <div class="text-center card-box">
+                                    <div class="member-card pt-2 pb-2">
+                                        <div class="thumb-lg member-thumb mx-auto"><img src="@match.ProfileImg" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                        <div class="">
+                                            <h4>Name: @match.Name</h4>
+                                            <h5>Pending...</h5>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
+    
 
     <!-- Sent Date Requests -->
 
