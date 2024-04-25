@@ -39,41 +39,54 @@ namespace Dating_Site_Razor_Views.Controllers
                 string sq2 = model.SecurityAnswer2;
                 string sq3 = model.SecurityAnswer3;
 
-                _dating.createAccount(username, password, firstname, lastname, email);
+                Dating checkUniqueUsername = new Dating();
 
-                Dating newProfile = new Dating();
-                DataSet newProfileDs = new DataSet();
-                int accountID;
+                if (checkUniqueUsername.validateUniqueUsername(username) == 1)
+                {
+                    ModelState.AddModelError(nameof(RegistrationValidation.Username), "Username is not unique");
+                    return View(model);
+                    
+                }
+                else
+                {
+                    
+                    _dating.createAccount(username, password, firstname, lastname, email);
 
-                //creates account record for login
-                //This is also where we would encrypt the password
-                //code would go here
-                newProfileDs = newProfile.getUserInfo(username, password);
-                accountID = Convert.ToInt32(newProfileDs.Tables[0].Rows[0]["Id"].ToString());
+                    Dating newProfile = new Dating();
+                    DataSet newProfileDs = new DataSet();
+                    int accountID;
 
-                //creates empty profile record for the new account
-                string fullname = firstname + " " + lastname;
 
-                Dating theProfile = new Dating();
-                theProfile.createProfile(accountID, email, fullname);
+                    //creates account record for login
+                    //This is also where we would encrypt the password
+                    //code would go here
+                    newProfileDs = newProfile.getUserInfo(username, password);
+                    accountID = Convert.ToInt32(newProfileDs.Tables[0].Rows[0]["Id"].ToString());
 
-                //creates empty interests record for the new account
-                Dating theInterests = new Dating();
-                theInterests.createInterests(accountID);
+                    //creates empty profile record for the new account
+                    string fullname = firstname + " " + lastname;
 
-                //creates empty dislikes record for the new account
-                Dating theDislikes = new Dating();
-                theDislikes.createDatingDislikes(accountID);
+                    Dating theProfile = new Dating();
+                    theProfile.createProfile(accountID, email, fullname);
 
-                //creates empty profile questions record for the new account
-                Dating profileQuestions = new Dating();
-                profileQuestions.createProfileQuestions(accountID);
+                    //creates empty interests record for the new account
+                    Dating theInterests = new Dating();
+                    theInterests.createInterests(accountID);
 
-                //stores the security questions to table
-                Dating securityQuestions = new Dating();
-                securityQuestions.createSecurityQuestions(accountID, sq1, sq2, sq3);
-                
-                return RedirectToAction("Login", "Home");
+                    //creates empty dislikes record for the new account
+                    Dating theDislikes = new Dating();
+                    theDislikes.createDatingDislikes(accountID);
+
+                    //creates empty profile questions record for the new account
+                    Dating profileQuestions = new Dating();
+                    profileQuestions.createProfileQuestions(accountID);
+
+                    //stores the security questions to table
+                    Dating securityQuestions = new Dating();
+                    securityQuestions.createSecurityQuestions(accountID, sq1, sq2, sq3);
+
+                    return RedirectToAction("Login", "Home");
+                }
             }
             catch (Exception ex)
             {
