@@ -297,3 +297,16 @@ a.navbarlinks:hover {
 .photo-gallery .item {
     padding-bottom: 30px;
 }
+
+.navbar-light .navbar-nav .nav-link {
+    color: #000;
+}
+
+a.navbarlinks {
+    color: #000000;
+    text-decoration: none;
+}
+
+a.navbarlinks:hover {
+    text-decoration: none;
+}

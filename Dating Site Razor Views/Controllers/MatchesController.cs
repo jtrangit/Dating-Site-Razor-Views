@@ -3,6 +3,7 @@ using Dating_Site_Razor_Views.Views.Matches;
 using DatingSiteLibrary;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using System.Diagnostics;
 
 namespace Dating_Site_Razor_Views.Controllers
 {
@@ -129,7 +130,108 @@ namespace Dating_Site_Razor_Views.Controllers
 
             ViewBag.SentDates = sentDates;
 
+            //received dates
+            DataTable dataTable1 = new DataTable();
+            dataTable1.Columns.Add(new DataColumn("Name", typeof(string)));
+            dataTable1.Columns.Add(new DataColumn("ProfileImg", typeof(string)));
+            dataTable1.Columns.Add(new DataColumn("otherUserID", typeof(int)));
+
+            Dating receivedDate = new Dating();
+            DataSet receivedOtherData = new DataSet();
+
+            receivedOtherData = receivedDate.getReceivedDates(userID);
+
+            int rDatePartnerID;
+
+            for(int i = 0; i < receivedOtherData.Tables[0].Rows.Count; i++)
+            {
+                rDatePartnerID = Convert.ToInt32(receivedOtherData.Tables[0].Rows[i]["User1"]);
+
+                Dating dating = new Dating();
+                DataSet dataSet = new DataSet();
+
+                dataSet = dating.getProfileInfo(rDatePartnerID);
+
+                string rOtherName = (string)dataSet.Tables[0].Rows[0]["Name"];
+                string rOtherProfilePic = (string)dataSet.Tables[0].Rows[0]["ProfileImg"];
+                int rOtherID = (int)dataSet.Tables[0].Rows[0]["AccountID"];
+
+                DataRow row = dataTable1.NewRow();
+                row["Name"] = rOtherName;
+                row["ProfileImg"] = rOtherProfilePic;
+                row["otherUserID"] = rOtherID;
+
+                dataTable1.Rows.Add(row);
+            }
+
+            DataSet bindReceived = new DataSet();
+            bindReceived.Tables.Add(dataTable1);
+
+            List<MatchedProfile> receivedDates = new List<MatchedProfile>();
+
+            foreach(DataRow row in bindReceived.Tables[0].Rows)
+            {
+                MatchedProfile received = new MatchedProfile();
+                received.Name = (string)row["Name"];
+                received.ProfileImg = (string)row["ProfileImg"];
+                received.otherUserID = (int)row["otherUserID"];
+                receivedDates.Add(received);
+            }
+
+            ViewBag.ReceivedDates = receivedDates;
+
             return View("~/Views/Matches/Matches.cshtml");
+        }
+
+        public ActionResult RequestDate(int accID)
+        {
+            int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
+            int otherUser = accID;
+
+            Dating dateRequest = new Dating();
+            dateRequest.dateRequest(userID, otherUser);
+
+            Dating deleteMatch = new Dating();
+            deleteMatch.unMatchOnDate(userID, otherUser);
+
+            return RedirectToAction("Matches", "Matches");
+        }
+
+        public ActionResult UnMatch(int accID)
+        {
+            int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
+            int otherUser = accID;
+
+            Dating unmatch = new Dating();
+            unmatch.unMatch(userID, otherUser);
+
+            return RedirectToAction("Matches", "Matches");
+        }
+
+        public ActionResult AcceptDate(int accID)
+        {
+            int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
+            int otherUser = accID;
+
+            Dating updateDate = new Dating();
+            updateDate.updateDates(otherUser, userID);
+
+            Dating planDate = new Dating();
+            planDate.createDatePlans(otherUser, userID);
+
+            return RedirectToAction("Matches", "Matches");
+        }
+
+        public ActionResult DenyDate(int accID)
+        {
+            int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
+            int otherUser = accID;
+
+            Dating deleteDate = new Dating();
+
+            deleteDate.deleteDate(userID, otherUser);
+
+            return RedirectToAction("Matches", "Matches");
         }
     }
 }

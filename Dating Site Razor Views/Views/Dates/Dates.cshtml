@@ -1,0 +1,114 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http;
+@model List<Dating_Site_Razor_Views.Pages.Profiles>
+
+@{
+    Layout = "noNav";
+    ViewData["Title"] = "User Dates Page";
+}
+@section styles {
+    <link href="@Url.Content("~/css/matches.css")" rel="stylesheet" type="text/css" />
+}
+<body>
+    <form id="form1" method="post">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light mb-4">
+            <button class="navbar-toggler"
+                    type="button"
+                    data-mdb-toggle="collapse"
+                    data-mdb-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="container d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-12 d-flex justify-content-center">
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav align-items-center mx-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("Home", "DatingHome")"><i class="fas fa-plus-circle pe-2"></i>Home &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("Likes", "Likes")">My Likes &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("Matches", "Matches")">My Matches &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2" href="@Url.Action("Dates", "Dates")">My Dates &nbsp &nbsp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link mx-2">
+                                        <i class="fas fa-heart pe-2" style="color:mediumblue">
+                                            Logged In as: @Context.Session.GetString("accountUsername")
+                                        </i>
+                                    </a>
+                                </li>
+                                <form>
+                                    <a href="@Url.Action("Logout", "Home")" class="btn btn-danger ml-2">Logout</a>
+                                </form>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- Navbar -->
+        
+        
+        
+        
+        <!-- Dates -->
+        <center>
+            <h1>Planned Dates</h1>
+        </center>
+        <hr />
+        
+        <div class="container mt-5">
+
+            <div class="row d-flex justify-content-center">
+
+                <div class="col-md-7">
+
+                    <div class="card p-3 py-4">
+
+                        <div class="text-center">
+                            <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
+                        </div>
+
+                        <div class="text-center mt-3">
+                            <span class="bg-secondary p-1 px-4 rounded text-white">Date with: Alexender Schidmt</span>
+                            <h5 class="mt-2 mb-0">Date: 04/12/2024</h5>
+                            <span>Time: 8:00PM</span>
+
+                            <div class="px-4 mt-1">
+                                <p class="fonts">
+                                    Date description would go here...
+                                </p>
+                            </div>
+                            <div class="buttons">
+                                <button class="btn btn-outline-primary px-4">Edit Date Details</button>
+                            </div>
+
+
+                        </div>
+
+
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Dates -->
+    </form>
+</body>

@@ -28,7 +28,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul class="navbar-nav align-items-center mx-auto">
                                 <li class="nav-item">
-                                    <a class="nav-link mx-2" href="@Url.Action("Home", "DatingHome")"><i class="fas fa-plus-circle pe-2"></i>Home</a>
+                                    <a class="nav-link mx-2" href="@Url.Action("Home", "DatingHome")"><i class="fas fa-plus-circle pe-2"></i>Home &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
@@ -37,10 +37,10 @@
                                     <a class="nav-link mx-2" href="@Url.Action("Likes", "Likes")">My Likes &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-2" href="#">My Matches &nbsp &nbsp</a>
+                                    <a class="nav-link mx-2" href="@Url.Action("Matches", "Matches")">My Matches &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link mx-2" href="#">My Dates &nbsp &nbsp</a>
+                                    <a class="nav-link mx-2" href="@Url.Action("Dates", "Dates")">My Dates &nbsp &nbsp</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link mx-2">
@@ -82,8 +82,8 @@
                                     <div class="">
                                         <h4>Name: @match.Name</h4>
                                     </div>
-                                    <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" asp-route-accID="@match.otherUserID">Request Date</button>
-                                    <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" asp-route-accID="@match.otherUserID">Unmatch</button>
+                                    <a type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" asp-controller="Matches" asp-action="RequestDate" asp-route-accID="@match.otherUserID">Request Date</a>
+                                    <a type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" asp-controller="Matches" asp-action="UnMatch" asp-route-accID="@match.otherUserID">Unmatch</a>
                                 </div>
                             </div>
                         </div>
@@ -116,7 +116,7 @@
                                         <div class="thumb-lg member-thumb mx-auto"><img src="@match.ProfileImg" class="rounded-circle img-thumbnail" alt="profile-image"></div>
                                         <div class="">
                                             <h4>Name: @match.Name</h4>
-                                            <h5>Pending...</h5>
+                                            <h5>Request Sent</h5>
                                         </div>
                                     </div>
                                 </div>
@@ -131,9 +131,40 @@
 
     <!-- Sent Date Requests -->
 
+
+    <!-- Received Date Request-->
     <h1>Received Dates</h1>
     <hr />
-    <!-- Received Date Requests -->
+        <form id="receivedDates" method="post">
+            <div class="content">
+                <div class="container">
+                    <div class="row">
+                        @if (ViewBag.ReceivedDates == null || ViewBag.ReceivedDates.Count == 0)
+                        {
+                            <center>
+                                <label>You have not received any date requests.</label>
+                            </center>
+                        }
+                        @foreach (var match in ViewBag.ReceivedDates)
+                        {
+                            <div class="col-lg-4">
+                                <div class="text-center card-box">
+                                    <div class="member-card pt-2 pb-2">
+                                        <div class="thumb-lg member-thumb mx-auto"><img src="@match.ProfileImg" class="rounded-circle img-thumbnail" alt="profile-image"></div>
+                                        <div class="">
+                                            <h4>Name: @match.Name</h4>
+                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" asp-controller="Matches" asp-action="AcceptDate" asp-route-accID="@match.otherUserID">Accept Date</button>
+                                            <button type="button" class="btn btn-primary mt-3 btn-rounded waves-effect w-md waves-light" asp-controller="Matches" asp-action="DenyDate" asp-route-accID="@match.otherUserID">Deny Date</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end col -->
+                        }
+                    </div>
+                </div>
+            </div>
+        </form>
     
     <!-- Received Date Requests -->
 
