@@ -856,7 +856,7 @@ namespace DatingSiteLibrary
 
             para5.Direction = ParameterDirection.Input;
             para5.SqlDbType = SqlDbType.VarChar;
-            para5.Size = 50;
+            para5.Size = 512;
 
             objCommand.Parameters.Add(para1);
             objCommand.Parameters.Add(para2);

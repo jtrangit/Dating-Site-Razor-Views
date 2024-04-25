@@ -1,0 +1,89 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Http;
+@model List<Dating_Site_Razor_Views.Pages.Profiles>
+
+@{
+    Layout = "noNav";
+    ViewData["Title"] = "User Dates Page";
+}
+@section styles {
+    <link href="@Url.Content("~/css/editdate.css")" rel="stylesheet" type="text/css" />
+}
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top bg-light navbar-light mb-4">
+        <button class="navbar-toggler"
+                type="button"
+                data-mdb-toggle="collapse"
+                data-mdb-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="container d-flex justify-content-center">
+            <div class="row">
+                <div class="col-12 d-flex justify-content-center">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav align-items-center mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="home"><i class="fas fa-plus-circle pe-2"></i>Home &nbsp &nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="@Url.Action("UserProfile", "UserProfile")">My Profile &nbsp &nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="@Url.Action("Likes", "Likes")">My Likes &nbsp &nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="@Url.Action("Matches", "Matches")">My Matches &nbsp &nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2" href="@Url.Action("Dates", "Dates")">My Dates &nbsp &nbsp</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link mx-2">
+                                    <i class="fas fa-heart pe-2" style="color:mediumblue">
+                                        Logged In as: @Context.Session.GetString("accountUsername")
+                                    </i>
+                                </a>
+                            </li>
+                            <form>
+                                <a href="@Url.Action("Logout", "Home")" class="btn btn-danger ml-2">Logout</a>
+                            </form>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </div>
+    </nav>
+    <form id="form1" method="post">
+        <div class="container mt-5">
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-7">
+                    <div class="card p-3 py-4">
+                        <div class="text-center">
+                            <span class="bg-secondary p-1 px-4 rounded text-white">Date Details</span>
+                        </div>
+                        <div class="text-center mt-3">
+                            <h5 class="mt-2 mb-0">Date Partner: @ViewBag.TheDate.partnerName</h5>
+                            <h5 class="mt-2 mb-0">Date: <input type="date" name="theDate" value="@ViewBag.TheDate.date" /> </h5>
+                            <h5 class="mt-2 mb-0">Time: <input type="time" name="theTime" value="@ViewBag.TheDate.time" /> </h5>
+                            <div class="px-4 mt-1">
+                                <h5 class="mt-2 mb-0">Description</h5>
+                                <p class="fonts">
+                                    <textarea name="txtDescription" style="width:200px;height:100px;resize:none;">@ViewBag.TheDate.description</textarea>
+                                </p>
+                            </div>
+                            <div class="buttons">
+                                <button type="submit" class="btn btn-outline-primary px-4" asp-controller="EditDate" asp-action="UpdateDetails" asp-route-accID="@ViewBag.TheDate.partnerID">Update Details</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>

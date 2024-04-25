@@ -7,7 +7,7 @@
     ViewData["Title"] = "User Dates Page";
 }
 @section styles {
-    <link href="@Url.Content("~/css/matches.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/dates.css")" rel="stylesheet" type="text/css" />
 }
 <body>
     <form id="form1" method="post">
@@ -69,46 +69,43 @@
         </center>
         <hr />
         
-        <div class="container mt-5">
-
-            <div class="row d-flex justify-content-center">
-
-                <div class="col-md-7">
-
-                    <div class="card p-3 py-4">
-
-                        <div class="text-center">
-                            <img src="https://i.imgur.com/bDLhJiP.jpg" width="100" class="rounded-circle">
-                        </div>
-
-                        <div class="text-center mt-3">
-                            <span class="bg-secondary p-1 px-4 rounded text-white">Date with: Alexender Schidmt</span>
-                            <h5 class="mt-2 mb-0">Date: 04/12/2024</h5>
-                            <span>Time: 8:00PM</span>
-
-                            <div class="px-4 mt-1">
-                                <p class="fonts">
-                                    Date description would go here...
-                                </p>
+        @if (ViewBag.TheDates == null || ViewBag.TheDates.Count == 0)
+        {
+            <center>
+                <span class="bg-secondary p-1 px-4 rounded text-white">You have no dates planned.</span>
+            </center>
+        }
+        else
+        {
+            @foreach (var date in ViewBag.TheDates)
+            {
+                <div class="container mt-5">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-md-7">
+                            <div class="card p-3 py-4">
+                                <div class="text-center">
+                                    <img src="@date.partnerProfilePic" width="150" class="rounded-circle">
+                                </div>
+                                <div class="text-center mt-3">
+                                    <span class="bg-secondary p-1 px-4 rounded text-white">Date with: @date.datePartner</span>
+                                    <h5 class="mt-2 mb-0">Date: @date.theDate</h5>
+                                    <h5 class="mt-2 mb-0">Time: @date.theTime</h5>
+                                    <div class="px-4 mt-1">
+                                        <span>Description</span>
+                                        <p class="fonts">
+                                            @date.description
+                                        </p>
+                                    </div>
+                                    <div class="buttons">
+                                        <a class="btn btn-outline-primary px-4" asp-controller="EditDate" asp-action="EditDate" asp-route-partnerID="@date.partnerID">Edit Date Details</a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="buttons">
-                                <button class="btn btn-outline-primary px-4">Edit Date Details</button>
-                            </div>
-
-
                         </div>
-
-
-
-
                     </div>
-
                 </div>
-
-            </div>
-
-        </div>
-
+            }
+        }
         <!-- Dates -->
     </form>
 </body>

@@ -219,7 +219,7 @@ namespace Dating_Site_Razor_Views.Controllers
             Dating planDate = new Dating();
             planDate.createDatePlans(otherUser, userID);
 
-            return RedirectToAction("Matches", "Matches");
+            return RedirectToAction("Dates", "Dates");
         }
 
         public ActionResult DenyDate(int accID)
