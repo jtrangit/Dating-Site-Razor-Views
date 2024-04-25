@@ -88,7 +88,6 @@ namespace Dating_Site_Razor_Views.Controllers
             else
             {
                 Debug.WriteLine("Account Not Found");
-
                 
                 string invalidCredMsg = "Username or Password is incorrect";
                 ViewData["InvalidCredentials"] = invalidCredMsg;

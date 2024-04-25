@@ -15,6 +15,11 @@ namespace Dating_Site_Razor_Views.Controllers
 
         public IActionResult EditDate(int partnerID)
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             int user1 = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
             int user2 = partnerID;
 

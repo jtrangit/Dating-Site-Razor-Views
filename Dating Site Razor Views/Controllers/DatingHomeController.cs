@@ -139,6 +139,11 @@ namespace Dating_Site_Razor_Views.Controllers
 
         public IActionResult ViewSpecificProfile(string accID)
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             int profID = Convert.ToInt32(accID);
 
             Dating dating = new Dating();

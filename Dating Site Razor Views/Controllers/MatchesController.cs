@@ -16,6 +16,10 @@ namespace Dating_Site_Razor_Views.Controllers
 
         public IActionResult Matches()
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
             //matches
             int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
 

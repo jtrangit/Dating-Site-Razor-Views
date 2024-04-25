@@ -1250,5 +1250,129 @@ namespace DatingSiteLibrary
 
             objDB.GetDataSet(objCommand);
         }
+
+        public int getValidEmail(string email)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "checkForEmail"; //stored procedure for looking up an account via username and password
+
+            SqlParameter para1 = new SqlParameter("@email", email); //username input parameter
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 256;
+
+            SqlParameter returnPara = new SqlParameter("@theCount", DbType.Int32); //return parameter
+            returnPara.Direction = ParameterDirection.ReturnValue;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(returnPara);
+
+            objDB.GetDataSet(objCommand);
+
+            int count;
+            count = int.Parse(objCommand.Parameters["@theCount"].Value.ToString());
+
+            return count;
+        }
+
+        public DataSet getLoginFromEmail(string email)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getLoginFromEmail"; //stored procedure for getting all dating profile info with accountID
+
+            SqlParameter para1 = new SqlParameter("@email", email);
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 256;
+
+            objCommand.Parameters.Add(para1);
+
+            return objDB.GetDataSet(objCommand);
+        }
+
+        public int getSecurityAnswer1(string answer, int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getSecurityAnswer1"; //stored procedure for looking up an account via username and password
+
+            SqlParameter para1 = new SqlParameter("@theAnswer", answer); //username input parameter
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 256;
+
+            SqlParameter para2 = new SqlParameter("@accountID", accID); //username input parameter
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.Int;
+
+            SqlParameter returnPara = new SqlParameter("@theCount", DbType.Int32); //return parameter
+            returnPara.Direction = ParameterDirection.ReturnValue;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(returnPara);
+
+            objDB.GetDataSet(objCommand);
+
+            int count;
+            count = int.Parse(objCommand.Parameters["@theCount"].Value.ToString());
+
+            return count;
+        }
+        public int getSecurityAnswer2(string answer, int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getSecurityAnswer2"; //stored procedure for looking up an account via username and password
+
+            SqlParameter para1 = new SqlParameter("@theAnswer", answer); //username input parameter
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 256;
+
+            SqlParameter para2 = new SqlParameter("@accountID", accID); //username input parameter
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.Int;
+
+            SqlParameter returnPara = new SqlParameter("@theCount", DbType.Int32); //return parameter
+            returnPara.Direction = ParameterDirection.ReturnValue;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(returnPara);
+
+            objDB.GetDataSet(objCommand);
+
+            int count;
+            count = int.Parse(objCommand.Parameters["@theCount"].Value.ToString());
+
+            return count;
+        }
+        public int getSecurityAnswer3(string answer, int accID)
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "getSecurityAnswer3"; //stored procedure for looking up an account via username and password
+
+            SqlParameter para1 = new SqlParameter("@theAnswer", answer); //username input parameter
+            para1.Direction = ParameterDirection.Input;
+            para1.SqlDbType = SqlDbType.VarChar;
+            para1.Size = 256;
+
+            SqlParameter para2 = new SqlParameter("@accountID", accID); //username input parameter
+            para2.Direction = ParameterDirection.Input;
+            para2.SqlDbType = SqlDbType.Int;
+
+            SqlParameter returnPara = new SqlParameter("@theCount", DbType.Int32); //return parameter
+            returnPara.Direction = ParameterDirection.ReturnValue;
+
+            objCommand.Parameters.Add(para1);
+            objCommand.Parameters.Add(para2);
+            objCommand.Parameters.Add(returnPara);
+
+            objDB.GetDataSet(objCommand);
+
+            int count;
+            count = int.Parse(objCommand.Parameters["@theCount"].Value.ToString());
+
+            return count;
+        }
     }
 }

@@ -15,6 +15,11 @@ namespace Dating_Site_Razor_Views.Controllers
 
         public IActionResult Dates()
         {
+            if (!HttpContext.Session.TryGetValue("accountID", out _))
+            {
+                return RedirectToAction("Login", "Home");
+            }
+
             int userID = Convert.ToInt32(HttpContext.Session.GetString("accountID")); //current user 
 
             //the table which we will populate the repeaters with after getting all the info from each match
