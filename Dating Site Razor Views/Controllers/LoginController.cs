@@ -77,8 +77,6 @@ namespace Dating_Site_Razor_Views.Controllers
                 HttpContext.Session.SetString("accountEmail", userInfo.Tables[0].Rows[0]["Email"].ToString());
                 Debug.WriteLine("The session accountEmail value is : " + HttpContext.Session.GetString("accountEmail"));
 
-                var response = new { success = true, message = "User authenticated successfully" };
-                return Ok(response);
                 
                 return RedirectToAction("Home", "DatingHome");
             }
@@ -86,9 +84,6 @@ namespace Dating_Site_Razor_Views.Controllers
             {
                 Debug.WriteLine("Account Not Found");
 
-                //show error message on invalid login
-                var response = new { success = false, message = "Invalid username or password" };
-                return BadRequest(response);
                 
                 string invalidCredMsg = "Username or Password is incorrect";
                 ViewData["InvalidCredentials"] = invalidCredMsg;

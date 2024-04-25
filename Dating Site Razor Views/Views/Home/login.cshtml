@@ -9,103 +9,72 @@
 }
 
 <body>
-    <div>
-        <section class="h-100 gradient-form" style="background-color: lightskyblue">
-            <div class="container py-5 h-100">
-                <div class="row d-flex justify-content-center align-items-center h-100">
-                    <div class="col-xl-10">
-                        <div class="card rounded-3 text-black">
-                            <div class="row g-0">
-                                <div class="col-lg-6">
-                                    <div class="card-body p-md-5 mx-md-4">
+    <form id="form1" method="post" asp-controller="Login" asp-action="AuthenticateUser">
+        <div>
+            <section class="h-100 gradient-form" style="background-color: lightskyblue">
+                <div class="container py-5 h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-xl-10">
+                            <div class="card rounded-3 text-black">
+                                <div class="row g-0">
+                                    <div class="col-lg-6">
+                                        <div class="card-body p-md-5 mx-md-4">
 
-                                        <div class="text-center">
-                                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
-                                                 style="width: 185px;" alt="logo">
-                                            <h4 class="mt-1 mb-5 pb-1">Love Lotus</h4>
-                                        </div>
+                                            <div class="text-center">
+                                                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/lotus.webp"
+                                                     style="width: 185px;" alt="logo">
+                                                <h4 class="mt-1 mb-5 pb-1">Love Lotus</h4>
+                                            </div>
 
-                                        <p>Please login to your account</p>
-                                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label">Username</label> <br />
-                                            <input type="text" class="form-control" id="txtUsername" value="@Context.Request.Cookies["username"]" />
-                                        </div>
-
-
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label">Password</label> <br />
-                                            <input type="password" class="form-control" id="txtPassword" value="@Context.Request.Cookies["password"]" />
-                                        </div>
-
-                                        <div id="divInccorectUserOrPass" style="color:red">@Html.Raw(ViewData["InvalidCredentials"])</div>
-
-                                        <div id="keepLoggedIn">
-                                            <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn" value="true" checked /> <label>Remember Me</label> &nbsp; &nbsp; <span class="forgot-password">
-                                                <a href="#" title="Forgot Password" id="link-reset">Forgot Password?</a>
-                                            </span>
-                                        </div>
-
-                                        <br />
-                                        <div class="text-center pt-1 mb-5 pb-1">
-                                            <button type="button" id="btnLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3">Login</button>
-                                        </div>
+                                            <p>Please login to your account</p>
+                                            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label">Username</label> <br />
+                                                <input type="text" asp-for="Credential.Username" class="form-control" id="txtUsername" value="@Context.Request.Cookies["username"]" />
+                                                <span class="text-danger" asp-validation-for="Credential.Username"></span>
+                                            </div>
 
 
-                                        <div class="d-flex align-items-center justify-content-center pb-4">
-                                            <p class="mb-0 me-2">Don't have an account?</p>
-                                            <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" causesvalidation="false" onclick="location.href='@Url.Action("Register", "Home")'">Create Account</button>
+                                            <div class="form-outline mb-4">
+                                                <label class="form-label">Password</label> <br />
+                                                <input type="password" asp-for="Credential.Password" class="form-control" value="@Context.Request.Cookies["password"]" />
+                                                <span class="text-danger" asp-validation-for="Credential.Password"></span>
+                                            </div>
+
+                                            <div id="divInccorectUserOrPass" style="color:red">@Html.Raw(ViewData["InvalidCredentials"])</div>
+
+                                            <div id="keepLoggedIn">
+                                                <input type="checkbox" id="keepLoggedIn" name="keepLoggedIn" value="true" checked /> <label>Remember Me</label> &nbsp; &nbsp; <span class="forgot-password">
+                                                    <a href="#" title="Forgot Password" id="link-reset">Forgot Password?</a>
+                                                </span>
+                                            </div>
+
+                                            <br />
+                                            <div class="text-center pt-1 mb-5 pb-1">
+                                                <input type="submit" id="btnLogin" class="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3" value="Login" />
+                                            </div>
+
+
+                                            <div class="d-flex align-items-center justify-content-center pb-4">
+                                                <p class="mb-0 me-2">Don't have an account?</p>
+                                                <button type="button" id="btnNewAccount" class="btn btn-outline-danger" runat="server" causesvalidation="false" onclick="location.href='@Url.Action("Register", "Home")'">Create Account</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
-                                    <div class="text-white px-3 py-4 p-md-5 mx-md-4">
-                                        <h4 class="mb-4">Find Your Match Today!</h4>
-                                        <p class="small mb-0">We will extract and sell all your data.</p>
-                                    </div>
+                                    <div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+                                        <div class="text-white px-3 py-4 p-md-5 mx-md-4">
+                                            <h4 class="mb-4">Find Your Match Today!</h4>
+                                            <p class="small mb-0">We will extract and sell all your data.</p>
+                                        </div>
 
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-    </div>
+            </section>
+        </div>
 
-    <script>
-        document.getElementById('btnLogin').addEventListener('click', function () {
-            var username = document.getElementById('txtUsername').value;
-            var password = document.getElementById('txtPassword').value;
-
-            // Construct form data
-            var formData = new FormData();
-            formData.append('Credential.Username', username);
-            formData.append('Credential.Password', password);
-
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/Login/AuthenticateUser'); // Update the endpoint URL
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    var response = JSON.parse(xhr.responseText);
-                    if (response.success) {
-                        // Authentication succeeded, redirect to home page
-                        window.location.href = '/DatingHome/Home';
-                    } else {
-                        // Authentication failed, display error message to the user
-                        console.error(response.message);
-                    }
-                } else {
-
-                    console.error(xhr.status, xhr.statusText);
-                }
-            };
-
-
-            xhr.send(formData); // Send form data
-        });
-
-    </script>
-
-
+    </form>
 </body>

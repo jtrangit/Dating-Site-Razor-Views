@@ -18,7 +18,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatingAPI\DatingAPI.csproj" />
     <ProjectReference Include="..\DatingSiteLibrary\DatingSiteLibrary.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>
