@@ -1,4 +1,5 @@
-﻿using DatingSiteLibrary;
+﻿using Dating_Site_Razor_Views.Models;
+using DatingSiteLibrary;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
 using System.Diagnostics;
@@ -22,7 +23,10 @@ namespace Dating_Site_Razor_Views.Controllers
 
             Dating login = new Dating();
 
+            string inputPass = SecurePassword.EncryptPass(password);
+
             int count = login.validateLogin(username, password); //does the stored procedure to validate username and password
+            //int count = login.validateLogin(username, inputPass); //does the stored procedure to validate username and password with encrypting the password the user input
 
             if (count == 1)
             {
@@ -49,7 +53,8 @@ namespace Dating_Site_Razor_Views.Controllers
 
                 DataSet userInfo = new DataSet();
 
-                userInfo = user.getUserInfo(username, password);
+                userInfo = user.getUserInfo(username, password); //no encryption login
+                //userInfo = user.getUserInfo(username, inputPass); //login with encryption
 
                 //debug showing the values from the getUserInfo stored procedures
                 Debug.WriteLine("Account ID: " + userInfo.Tables[0].Rows[0]["ID"].ToString()); //account ID#
