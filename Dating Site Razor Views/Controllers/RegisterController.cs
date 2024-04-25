@@ -45,12 +45,16 @@ namespace Dating_Site_Razor_Views.Controllers
                 {
                     ModelState.AddModelError(nameof(RegistrationValidation.Username), "Username is not unique");
                     return View(model);
-                    
                 }
                 else
                 {
+                    SecurePassword encrypt = new SecurePassword();
+                    encrypt.EncryptedPassword = SecurePassword.EncryptPass(password);
+
+                    string securedPassword = encrypt.EncryptedPassword; 
                     
-                    _dating.createAccount(username, password, firstname, lastname, email);
+                    
+                    _dating.createAccount(username, securedPassword, firstname, lastname, email);
 
                     Dating newProfile = new Dating();
                     DataSet newProfileDs = new DataSet();
@@ -58,9 +62,7 @@ namespace Dating_Site_Razor_Views.Controllers
 
 
                     //creates account record for login
-                    //This is also where we would encrypt the password
-                    //code would go here
-                    newProfileDs = newProfile.getUserInfo(username, password);
+                    newProfileDs = newProfile.getUserInfo(username, securedPassword);
                     accountID = Convert.ToInt32(newProfileDs.Tables[0].Rows[0]["Id"].ToString());
 
                     //creates empty profile record for the new account
@@ -86,6 +88,7 @@ namespace Dating_Site_Razor_Views.Controllers
                     securityQuestions.createSecurityQuestions(accountID, sq1, sq2, sq3);
 
                     return RedirectToAction("Login", "Home");
+                    
                 }
             }
             catch (Exception ex)
