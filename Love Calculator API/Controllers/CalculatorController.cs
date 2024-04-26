@@ -1,8 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Text.Json.Serialization;
+using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using RestSharp;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace Love_Calculator_API.Controllers
 {
@@ -19,32 +24,22 @@ namespace Love_Calculator_API.Controllers
 
         public class LovePercent
         {
-            public string person1 { get; set; }
-            public string person2 { get; set; }
-            public decimal lovePercent { get; set; }
-            public string description { get; set; }
+            public string fname { get; set; }
+            public string sname { get; set; }
+            public decimal percentage { get; set; }
+            public string result { get; set; }
 
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            var url = "https://love-calculator.p.rapidapi.com/getPercentage?fname=John&sname=Alice";
+            var client = new RestClient($"https://love-calculator.p.rapidapi.com/getPercentage?sname=Alice&fname=John");
+            var request = new RestRequest(Method.GET);
+            
+            IRestResponse response = await client.ExecuteAsync(request);
 
-            var request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-
-            request.Headers["X-RapidAPI-Key"] = "1aaea12668msh25d702e80d1c95cp14501fjsn28916c99fb9c";
-            request.Headers["X-RapidAPI-Host"] = "love-calculator.p.rapidapi.com";
-
-            using var webResponse = request.GetResponse();
-
-            using var webStream = webResponse.GetResponseStream();
-
-            using var reader = new StreamReader(webStream);
-            var data = reader.ReadToEnd();
-
-            return View();
+            return Ok(response);
         }
     }
 }
