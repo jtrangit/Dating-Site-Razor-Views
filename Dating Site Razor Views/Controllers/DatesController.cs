@@ -10,6 +10,7 @@ namespace Dating_Site_Razor_Views.Controllers
     {
         public IActionResult Index()
         {
+
             return View();
         }
 

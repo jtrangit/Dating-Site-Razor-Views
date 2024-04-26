@@ -12,7 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dating Site Razor Views\Dating Site Razor Views.csproj" />
     <ProjectReference Include="..\DatingSiteLibrary\DatingSiteLibrary.csproj" />
     <ProjectReference Include="..\Utilities\Utilities.csproj" />
   </ItemGroup>

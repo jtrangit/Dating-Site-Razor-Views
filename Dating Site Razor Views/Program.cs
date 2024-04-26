@@ -4,7 +4,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddSession();
 builder.Services.AddScoped<DatingSiteLibrary.Dating>();
-
+builder.Services.AddHttpClient(); // Add this line to register HttpClientFactory
 
 var app = builder.Build();
 

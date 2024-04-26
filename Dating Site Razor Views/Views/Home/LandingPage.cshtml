@@ -1,0 +1,264 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Dating_Site_Razor_Views.Models.LandingPageModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Landing Page";
+}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<!-- Header Section -->
+<header class="bg-dark text-white py-5">
+    <div class="container text-center">
+        <h1 class="display-4">Welcome to Love Lotus</h1>
+        <p class="lead mb-0">Find your perfect match today!</p>
+        <a href="@Url.Action("Login")" class="btn btn-primary btn-lg mt-3">Sign Up Now</a>
+    </div>
+</header>
+
+<!-- Features Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="feature-item text-center">
+                    <i class="fas fa-heart fa-3x mb-4"></i>
+                    <h3>Find True Love</h3>
+                    <p class="text-muted">Discover meaningful connections with our advanced matching algorithm.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="feature-item text-center">
+                    <i class="fas fa-users fa-3x mb-4"></i>
+                    <h3>Meet New People</h3>
+                    <p class="text-muted">Expand your social circle and meet interesting individuals.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="feature-item text-center">
+                    <i class="fas fa-lock fa-3x mb-4"></i>
+                    <h3>Secure & Private</h3>
+                    <p class="text-muted">Your privacy is our top priority. Connect with other people and have fun!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Statistics Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Users</h5>
+                        <canvas id="totalUsersChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Dates</h5>
+                        <canvas id="totalDatesChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Total Matches</h5>
+                        <canvas id="totalMatchesChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call-to-Action Section -->
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2 class="mb-4">Ready to find your perfect match?</h2>
+        <a href="@Url.Action("Login")" class="btn btn-lg btn-outline-light">Sign Up Now</a>
+    </div>
+</section>
+
+@section scripts {
+    <script>
+        // Fetch data from the server using Razor ViewData
+        var totalUsers = @Html.Raw(Json.Serialize(ViewData["TotalUsers"]));
+        var totalDates = @Html.Raw(Json.Serialize(ViewData["TotalDates"]));
+        var totalMatches = @Html.Raw(Json.Serialize(ViewData["TotalMatches"]));
+
+        // Update charts with the fetched data
+        updateTotalUsersChart(totalUsers);
+        updateTotalDatesChart(totalDates);
+        updateTotalMatchesChart(totalMatches);
+
+        // Define functions to update the charts
+        function updateTotalUsersChart(totalUsers) {
+            var ctx = document.getElementById('totalUsersChart').getContext('2d');
+            var totalUsersChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Users'],
+                    datasets: [{
+                        label: 'Total Users',
+                        data: [totalUsers],
+                        backgroundColor: 'rgba(255, 99, 132, 0.7)', // Background color
+                        borderColor: 'rgba(255, 99, 132, 1)', // Border color
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1, // Show ticks by 1's
+                                font: {
+                                    size: 14 // Font size for y-axis labels
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 14 // Font size for x-axis labels
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Total Users', // Chart title
+                            font: {
+                                size: 18, // Font size for chart title
+                                weight: 'bold' // Font weight for chart title
+                            }
+                        },
+                        legend: {
+                            display: false // Hide legend
+                        }
+                    },
+                    animation: {
+                        duration: 2000, // Animation duration in milliseconds
+                        easing: 'easeInOutQuart' // Animation easing function
+                    }
+                }
+            });
+        }
+
+        function updateTotalDatesChart(totalDates) {
+            var ctx = document.getElementById('totalDatesChart').getContext('2d');
+            var totalDatesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Dates'],
+                    datasets: [{
+                        label: 'Total Dates',
+                        data: [totalDates],
+                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1, // Show ticks by 1's
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Total Dates',
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+
+        function updateTotalMatchesChart(totalMatches) {
+            var ctx = document.getElementById('totalMatchesChart').getContext('2d');
+            var totalMatchesChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Total Matches'],
+                    datasets: [{
+                        label: 'Total Matches',
+                        data: [totalMatches],
+                        backgroundColor: 'rgba(75, 192, 192, 0.7)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                stepSize: 1, // Show ticks by 1's
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                font: {
+                                    size: 14
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Total Matches',
+                            font: {
+                                size: 18,
+                                weight: 'bold'
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        }
+    </script>
+}
+
+
