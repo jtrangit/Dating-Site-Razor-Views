@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingSiteLibrary", "Dating
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingAPI", "DatingAPI\DatingAPI.csproj", "{B5B72D01-97FB-4CAC-86D2-FD1C1890317F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Love Calculator API", "Love Calculator API\Love Calculator API.csproj", "{B0D32352-812B-4E9E-95E5-46FF865A92DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{B5B72D01-97FB-4CAC-86D2-FD1C1890317F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5B72D01-97FB-4CAC-86D2-FD1C1890317F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5B72D01-97FB-4CAC-86D2-FD1C1890317F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0D32352-812B-4E9E-95E5-46FF865A92DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D32352-812B-4E9E-95E5-46FF865A92DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D32352-812B-4E9E-95E5-46FF865A92DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D32352-812B-4E9E-95E5-46FF865A92DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
