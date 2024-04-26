@@ -1374,5 +1374,65 @@ namespace DatingSiteLibrary
 
             return count;
         }
+
+        public int GetTotalUsers()
+        {
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetTotalUsers";
+
+            DataSet dataSet = objDB.GetDataSet(objCommand);
+
+            if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+            {
+                int totalUsers = Convert.ToInt32(dataSet.Tables[0].Rows[0]["TotalUsers"]);
+                return totalUsers;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+
+        public int GetTotalDates()
+        {
+            int totalDates = 0;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetTotalDates";
+
+            DataSet dataSet = objDB.GetDataSet(objCommand);
+
+            if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+            {
+                totalDates = Convert.ToInt32(dataSet.Tables[0].Rows[0]["TotalDates"]);
+            }
+
+            return totalDates;
+        }
+
+
+
+
+
+        public int GetTotalMatches()
+        {
+            int totalMatches = 0;
+
+            objCommand.CommandType = CommandType.StoredProcedure;
+            objCommand.CommandText = "GetTotalMatches";
+
+            DataSet dataSet = objDB.GetDataSet(objCommand);
+
+            if (dataSet.Tables.Count > 0 && dataSet.Tables[0].Rows.Count > 0)
+            {
+                totalMatches = Convert.ToInt32(dataSet.Tables[0].Rows[0]["TotalMatches"]);
+            }
+
+            return totalMatches;
+        }
+
+
+
     }
 }
