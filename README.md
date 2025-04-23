@@ -45,7 +45,7 @@
   <section>
     <h2>✍️ Author</h2>
     <p><strong>Johnny Tran</strong></p>
-    <p><a href="https://www.linkedin.com/in/johnny-tran-66247b250/" target="_blank">LinkedIn</a> | 
+    <p><a href="https://www.linkedin.com/in/johnny-tran-66247b250/" target="_blank">LinkedIn</a> 
     <p>267-423-6148</p>
     <p>johnnytran.work@gmail.com</p>
   </section>
