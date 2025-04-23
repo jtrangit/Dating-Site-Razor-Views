@@ -30,40 +30,6 @@
   </section>
 
   <section>
-    <h2>📂 Project Structure</h2>
-    <pre>
-/DatingApp
-│
-├── Pages/                # Razor Pages (UI)
-├── Models/               # Entity and View Models
-├── Data/                 # Database context and stored procedures
-├── Services/             # Business logic and helpers
-├── wwwroot/              # Static files (CSS, JS, images)
-├── appsettings.json      # App configuration
-└── Startup.cs            # Middleware setup and DI
-    </pre>
-  </section>
-
-  <section>
-    <h2>🚀 Getting Started</h2>
-    <ol>
-      <li><strong>Clone the repository</strong>
-        <pre><code>git clone https://github.com/yourusername/dating-app.git
-cd dating-app</code></pre>
-      </li>
-      <li><strong>Configure the Database</strong><br>
-        Update <code>appsettings.json</code> with your SQL Server connection string.<br>
-        Run the provided SQL script or use EF Core migrations.
-      </li>
-      <li><strong>Run the application</strong>
-        <pre><code>dotnet build
-dotnet run</code></pre>
-      </li>
-      <li>Visit <code>https://localhost:5001</code> in your browser.</li>
-    </ol>
-  </section>
-
-  <section>
     <h2>🔒 Security</h2>
     <ul>
       <li>Passwords are hashed using ASP.NET Core Identity.</li>
@@ -79,10 +45,6 @@ dotnet run</code></pre>
        <a href="https://yourwebsite.com" target="_blank">Portfolio</a></p>
   </section>
 
-  <section>
-    <h2>📝 License</h2>
-    <p>This project is for educational purposes. You may adapt or extend it, but please give credit.</p>
-  </section>
 </main>
 
 <footer>
