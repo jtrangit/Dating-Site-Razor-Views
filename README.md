@@ -5,13 +5,8 @@
   <p>A secure dating web application built with .NET and Razor Pages</p>
 </header>
 
-<header>
   <h2>Collaborators: Johnny Tran & Daniel Dang</h2>
-</header>
-
-<header>
   <h1>Live Project Link: https://cis-iis2.temple.edu/Spring2024/CIS3342_tun45633/TermProject/Home/LandingPage</h1>
-</header>
 
 <main>
   <section>
