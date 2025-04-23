@@ -5,6 +5,10 @@
   <p>A secure dating web application built with .NET and Razor Pages</p>
 </header>
 
+<header>
+  <h2>Collaborators: Johnny Tran & Daniel Dang</h2>
+</header>
+
 <main>
   <section>
     <h2>🔐 Features</h2>
